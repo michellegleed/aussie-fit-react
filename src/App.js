@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import LoginPage from './pages/admin/login';
 import AttendancePage from './pages/attendance';
 import QuestionsPage from './pages/questions';
 
@@ -20,7 +21,7 @@ function App() {
                 <QuestionsPage />
               </Route>
               <Route path="/login">
-                {/* <LoginPage /> */}
+                <LoginPage />
               </Route>
               <Route path="/unauthorized">
                 {/* <Unauthorized /> */}

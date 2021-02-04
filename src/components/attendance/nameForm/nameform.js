@@ -3,7 +3,9 @@ import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-function NameForm() {
+function NameForm(props) {
+
+    const { participants } = props;
 
     const history = useHistory();
 
@@ -11,12 +13,12 @@ function NameForm() {
         history.push("/check-in");
     }
 
-    const participants = [
-        { first_name: "Evie", last_name: "Smith" },
-        { first_name: "Mako", last_name: "Edwards" },
-        { first_name: "Billy", last_name: "Smith" },
-        { first_name: "Ruby", last_name: "Smith" },
-    ]
+    // const participants = [
+    //     { first_name: "Evie", last_name: "Smith" },
+    //     { first_name: "Mako", last_name: "Edwards" },
+    //     { first_name: "Billy", last_name: "Smith" },
+    //     { first_name: "Ruby", last_name: "Smith" },
+    // ]
 
     return (
         <form autocomplete="off">
