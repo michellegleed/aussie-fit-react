@@ -35,7 +35,8 @@ function AttendancePage() {
             { groupData ?
                 <React.Fragment>
                     <Header groupName={groupData.group_name} nextClass={groupData.next_class[0]} />
-                    <NameForm participants={groupData.participants} />
+                    {/* check if class is currently open otherwise don't show this form!!! */}
+                    <NameForm participants={groupData.participants} classID={groupData.next_class[0].id} />
                 </React.Fragment>
                 :
                 null

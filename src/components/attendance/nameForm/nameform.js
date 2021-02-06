@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { fetchRequest } from '../../../utils/fetchRequest';
 
 function NameForm(props) {
 
     const { participants } = props;
+    const { classID } = props;
+
+    const [participantID, setParticipantID] = useState();
 
     const history = useHistory();
 
     const registerAttendance = () => {
+        fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participantID}/class/${classID}`)
         history.push("/check-in");
     }
 
@@ -30,6 +35,7 @@ function NameForm(props) {
                     getOptionLabel={(option) => option.first_name + " " + option.last_name}
                     style={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} variant="outlined" autocomplete="off" />}
+                    onChange={(e, value) => setParticipantID(value.id)}
                 />
             </section>
             <button onClick={registerAttendance}>Next</button>

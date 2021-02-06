@@ -9,9 +9,10 @@ function Question(props) {
 
     const [disableNext, setDisableNext] = useState(true);
 
-    // disable next button whenever a new question is rendered
+    // reset whenever a new question is rendered
     useEffect(() => {
         setDisableNext(true);
+        setMessage();
     }, [question])
 
     return (
