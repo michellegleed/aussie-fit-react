@@ -9,20 +9,22 @@ function AttendancePage() {
 
     const [groupData, setGroupData] = useState();
 
+    const [nextClass, setNextClass] = useState();
+
     const history = useHistory();
 
     // will need to eventually get this from params!!!
     const groupID = 1;
 
     useEffect(() => {
-        fetchRequest(`${process.env.REACT_APP_API_URL}groups/1/`)
+        fetchRequest(`${process.env.REACT_APP_API_URL}groups/${groupID}/`)
             // fetchRequest(`https://still-forest-93396.herokuapp.com/groups/1/`)
             .then((result) => {
                 if (result.ok) {
                     setGroupData(result.data);
                 }
                 else {
-                    // history.push("/notfound");
+                    history.push("/notfound");
                     console.log("no group data")
                 }
             })
@@ -32,7 +34,7 @@ function AttendancePage() {
         <div>
             { groupData ?
                 <React.Fragment>
-                    <Header />
+                    <Header groupName={groupData.group_name} nextClass={groupData.next_class[0]} />
                     <NameForm participants={groupData.participants} />
                 </React.Fragment>
                 :
@@ -40,7 +42,6 @@ function AttendancePage() {
             }
         </div>
     )
-
 }
 
 export default AttendancePage;

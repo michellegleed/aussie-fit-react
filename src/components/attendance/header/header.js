@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Moment from 'react-moment';
 
-function Header() {
+function Header(props) {
+
+    const { groupName, nextClass } = props;
+
+    useEffect(() => {
+        console.log("NExt class as passed to header... ", nextClass)
+    }, [])
+
     return (
         <div>
-            <h1>Swans</h1>
+            <h1>{groupName}</h1>
             <div>
-                <h2>Session 1</h2>
-                <h6>27/02/2021</h6>
-                <h6>5.30pm</h6>
+                <h2>{nextClass.title}</h2>
+                <h6><Moment format="ddd DD/MM/YY">
+                    {nextClass.time}
+                </Moment></h6>
+                <h6><Moment format="h:mma">
+                    {nextClass.time}
+                </Moment></h6>
             </div>
         </div>
     )

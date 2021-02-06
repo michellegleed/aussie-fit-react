@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from '../../alert/alert';
 
 function Question(props) {
@@ -7,21 +7,36 @@ function Question(props) {
 
     const [message, setMessage] = useState(null);
 
+    const [disableNext, setDisableNext] = useState(true);
+
+    // disable next button whenever a new question is rendered
+    useEffect(() => {
+        setDisableNext(true);
+    }, [question])
+
     return (
         <div>
             <h1>{question.q}</h1>
             { question.y != null || question.n != null ?
                 <React.Fragment>
                     <div>
-                        <button onClick={() => question.y != null ? setMessage(question.y) : setMessage(null)}>Yes</button>
-                        <button onClick={() => question.n != null ? setMessage(question.n) : setMessage(null)}>No</button>
+                        <button onClick={() => {
+                            question.y != null ? setMessage(question.y) : setMessage(null);
+                            setDisableNext(false);
+                        }
+                        }>Yes</button>
+                        <button onClick={() => {
+                            question.n != null ? setMessage(question.n) : setMessage(null);
+                            setDisableNext(false);
+                        }
+                        }>No</button>
                     </div>
                     {message != null ?
                         <Alert message={message} />
                         :
                         null
                     }
-                    <button onClick={() => nextQuestion()}>Next</button>
+                    <button disabled={disableNext} onClick={() => nextQuestion()}>Next</button>
                 </React.Fragment>
                 :
                 null
