@@ -12,15 +12,22 @@ function Header(props) {
     return (
         <div>
             <h1>{groupName}</h1>
-            <div>
-                <h2>{nextClass.title}</h2>
-                <h6><Moment format="ddd DD/MM/YY">
-                    {nextClass.time}
-                </Moment></h6>
-                <h6><Moment format="h:mma">
-                    {nextClass.time}
-                </Moment></h6>
-            </div>
+            {nextClass != null ?
+                <div>
+                    <h2>{nextClass.title}</h2>
+                    <h6><Moment format="ddd DD/MM/YY">
+                        {nextClass.time}
+                    </Moment></h6>
+                    <h6><Moment format="h:mma">
+                        {nextClass.time}
+                    </Moment></h6>
+                </div>
+                :
+                <div>
+                    <h2>No Upcoming Classes</h2>
+                </div>
+            }
+
         </div>
     )
 }

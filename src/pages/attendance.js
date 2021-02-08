@@ -34,9 +34,14 @@ function AttendancePage() {
         <div>
             { groupData ?
                 <React.Fragment>
-                    <Header groupName={groupData.group_name} nextClass={groupData.next_class[0]} />
+                    <Header groupName={groupData.group_name} nextClass={groupData.next_class ? groupData.next_class[0] : null} />
                     {/* check if class is currently open otherwise don't show this form!!! */}
-                    <NameForm participants={groupData.participants} classID={groupData.next_class[0].id} />
+                    {groupData.next_class != null && groupData.next_class[0].in_progress ?
+                        <NameForm participants={groupData.participants} classID={groupData.next_class[0].id} />
+                        :
+                        <h4>Attendance for this class opens one hour before start time.</h4>
+                    }
+
                 </React.Fragment>
                 :
                 null
