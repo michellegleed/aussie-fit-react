@@ -1,15 +1,24 @@
 import React from 'react';
 import Moment from 'react-moment';
 
-function GroupCard() {
+function GroupCard(props) {
+
+    const { group } = props;
+
     return (
         <div>
             <div>
-                <h2>Swans-1</h2>
-                <p>12</p>
+                <h2>{group.group_name}</h2>
+                <p>{group.number_of_participants}</p>
             </div>
             <p>Next Session:</p>
-            <p><Moment format="DD/MM/YY">2021-02-06T23:48:00+08:00</Moment> @ <Moment format="h:mma">2021-02-06T23:48:00+08:00</Moment></p>
+            {
+                group.next_class != null ?
+                    <p><Moment format="DD/MM/YY">{group.next_class.time}</Moment> @ <Moment format="h:mma">{group.next_class.time}</Moment></p>
+                    :
+                    <h4>No upcoming classes</h4>
+            }
+
         </div>
     )
 }
