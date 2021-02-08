@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Nav from './components/nav/nav';
 import Dashboard from './pages/admin/dashboard';
-import LoginPage from './pages/admin/login';
+import LoginPage from './pages/login';
 import AttendancePage from './pages/attendance';
 import QuestionsPage from './pages/questions';
 
