@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react';
 import GroupCard from '../groupCard/groupCard';
 
 import { fetchRequest } from '../../../utils/fetchRequest'
-import NewGroupForm from './newGroup';
+import GroupForm from '../groupForm/groupForm';
 
 function Groups() {
 
-    const [showNewGroupForm, setShowNewGroupForm] = useState(false);
+    const [showGroupForm, setShowGroupForm] = useState(false);
+
+    const [groupToEdit, setGroupToEdit] = useState();
+
     const [groupList, setGroupList] = useState();
 
     useEffect(() => {
-        getGroupList();
-    }, [showNewGroupForm]);
-
-    const getGroupList = () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}groups/`)
             .then((result) => {
                 if (result.ok) {
@@ -24,33 +23,41 @@ function Groups() {
                     console.log("no group data")
                 }
             });
+    }, [showGroupForm]);
+
+    const editGroup = (groupID) => {
+        setGroupToEdit(groupID);
+        setShowGroupForm(true);
     }
 
-    const displayNewGroupForm = (bool) => {
-        setShowNewGroupForm(bool);
+    const displayGroupForm = (bool) => {
+        setShowGroupForm(bool);
+        // this clears group details from form upon closing
+        bool === false ? setGroupToEdit(null) : null;
+    }
+
+    const populateGroupForm = () => {
+        return groupToEdit ? groupList.filter(group => group.id == groupToEdit)[0] : { group_name: "" };
     }
 
     return (
         <div>
             <h1>Groups</h1>
-            <button onClick={() => displayNewGroupForm(true)}>New Group</button>
+            <button onClick={() => displayGroupForm(true)}>New Group</button>
             {
                 groupList != null && groupList.length > 0 ?
-                    groupList.map(group => <GroupCard group={group} />)
-                    // groupList.map(group => <GroupCard group={group} />)
+                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} />)
                     :
                     <h4>No groups found</h4>
             }
             {
-                showNewGroupForm ?
-                    <NewGroupForm updateGroupList={getGroupList} displayNewGroupForm={displayNewGroupForm} />
+                showGroupForm ?
+                    <GroupForm displayGroupForm={displayGroupForm} group={populateGroupForm()} />
                     :
                     null
             }
-
         </div>
     )
-
 }
 
 export default Groups;

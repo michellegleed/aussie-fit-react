@@ -4,14 +4,14 @@ import { useHistory } from 'react-router-dom';
 
 // import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 
-function NewGroupForm(props) {
+function GroupForm(props) {
 
-    const { updateGroupList, displayNewGroupForm } = props;
+    const { group, displayGroupForm } = props;
 
     // const [errorMessage, setErrorMessage] = useState();
 
     const [groupDetails, setGroupDetails] = useState({
-        group_name: ""
+        group_name: group.group_name
     });
 
     const history = useHistory();
@@ -26,16 +26,10 @@ function NewGroupForm(props) {
 
     const postData = async () => {
         const result = fetchRequest(`${process.env.REACT_APP_API_URL}groups/`, "POST", groupDetails)
-        return result;
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        postData()
             .then(result => {
                 console.log("result is", result)
                 if (result.ok) {
-                    displayNewGroupForm(false);
+                    displayGroupForm(false);
                 } else {
                     // the API returned an error - do something with it
                     console.error(data);
@@ -43,6 +37,26 @@ function NewGroupForm(props) {
                 }
             })
             .catch(error => history.push("/network-error"))
+    }
+
+    const putData = async () => {
+        const result = fetchRequest(`${process.env.REACT_APP_API_URL}groups/${group.id}/`, "PUT", groupDetails)
+            .then(result => {
+                console.log("result is", result)
+                if (result.ok) {
+                    displayGroupForm(false);
+                } else {
+                    // the API returned an error - do something with it
+                    console.error(data);
+                    setErrorMessage("All fields are required.");
+                }
+            })
+            .catch(error => history.push("/network-error"))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        group.id ? putData() : postData()
     }
 
     return (
@@ -57,7 +71,7 @@ function NewGroupForm(props) {
                             null
                     }
                 </div> */}
-                <button id="close-button" onClick={() => displayNewGroupForm(false)}>
+                <button id="close-button" onClick={() => displayGroupForm(false)}>
                     <p>X</p>
                 </button>
                 <div className="form-item">
@@ -65,6 +79,7 @@ function NewGroupForm(props) {
                     <input
                         type="text"
                         id="group_name"
+                        value={groupDetails.group_name}
                         onChange={handleChange}
                     />
                 </div>
@@ -77,4 +92,4 @@ function NewGroupForm(props) {
     )
 }
 
-export default NewGroupForm;
+export default GroupForm;
