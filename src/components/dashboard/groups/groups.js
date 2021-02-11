@@ -10,6 +10,8 @@ function Groups() {
 
     const [groupToEdit, setGroupToEdit] = useState();
 
+    const [groupCardDeleted, setGroupCardDeleted] = useState(0);
+
     const [groupList, setGroupList] = useState();
 
     useEffect(() => {
@@ -23,7 +25,11 @@ function Groups() {
                     console.log("no group data")
                 }
             });
-    }, [showGroupForm]);
+    }, [showGroupForm, groupCardDeleted]);
+
+    const rerenderOnGroupDeleted = () => {
+        setGroupCardDeleted((prevState) => prevState + 1)
+    }
 
     const editGroup = (groupID) => {
         setGroupToEdit(groupID);
@@ -46,7 +52,7 @@ function Groups() {
             <button onClick={() => displayGroupForm(true)}>New Group</button>
             {
                 groupList != null && groupList.length > 0 ?
-                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} />)
+                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} rerenderGroupList={rerenderOnGroupDeleted} />)
                     :
                     <h4>No groups found</h4>
             }
