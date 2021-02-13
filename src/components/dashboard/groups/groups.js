@@ -10,7 +10,7 @@ function Groups() {
 
     const [groupToEdit, setGroupToEdit] = useState();
 
-    const [groupCardDeleted, setGroupCardDeleted] = useState(0);
+    const [refetchGroups, setrefetchGroups] = useState(0);
 
     const [groupList, setGroupList] = useState();
 
@@ -25,10 +25,10 @@ function Groups() {
                     console.log("no group data")
                 }
             });
-    }, [showGroupForm, groupCardDeleted]);
+    }, [refetchGroups]);
 
-    const rerenderOnGroupDeleted = () => {
-        setGroupCardDeleted((prevState) => prevState + 1)
+    const refetchGroupList = () => {
+        setrefetchGroups((prevState) => prevState + 1)
     }
 
     const editGroup = (groupID) => {
@@ -52,13 +52,13 @@ function Groups() {
             <button onClick={() => displayGroupForm(true)}>New Group</button>
             {
                 groupList != null && groupList.length > 0 ?
-                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} rerenderGroupList={rerenderOnGroupDeleted} />)
+                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
                     :
                     <h4>No groups found</h4>
             }
             {
                 showGroupForm ?
-                    <GroupForm displayGroupForm={displayGroupForm} group={populateGroupForm()} />
+                    <GroupForm displayGroupForm={displayGroupForm} group={populateGroupForm()} refetchGroupList={refetchGroupList} />
                     :
                     null
             }

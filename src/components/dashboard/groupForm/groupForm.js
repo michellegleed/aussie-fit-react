@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 function GroupForm(props) {
 
-    const { group, displayGroupForm } = props;
+    const { group, displayGroupForm, refetchGroupList } = props;
 
     // const [errorMessage, setErrorMessage] = useState();
 
@@ -30,13 +30,15 @@ function GroupForm(props) {
                 console.log("result is", result)
                 if (result.ok) {
                     displayGroupForm(false);
+                    refetchGroupList();
                 } else {
                     // the API returned an error - do something with it
                     console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
-            .catch(error => history.push("/network-error"))
+            // .catch(error => history.push("/network-error"))
+            .catch(error => console.log(error))
     }
 
     const putData = async () => {
@@ -45,13 +47,15 @@ function GroupForm(props) {
                 console.log("result is", result)
                 if (result.ok) {
                     displayGroupForm(false);
+                    refetchGroupList();
                 } else {
                     // the API returned an error - do something with it
                     console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
-            .catch(error => history.push("/network-error"))
+            // .catch(error => history.push("/network-error"))
+            .catch(error => console.log(error))
     }
 
     const handleSubmit = (e) => {

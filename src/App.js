@@ -17,7 +17,7 @@ function App() {
           <Nav />
           <div id="main-container">
             <Switch>
-              <Route path="/" exact>
+              <Route path="/group/:id" >
                 <AttendancePage />
               </Route>
               <Route path="/check-in" exact>
@@ -26,12 +26,11 @@ function App() {
               <Route path="/login">
                 <LoginPage />
               </Route>
+              <Route path="/admin/:id">
+                <GroupDetail />
+              </Route>
               <Route path="/admin">
                 <Dashboard />
-              </Route>
-              {/* add params here to /group! */}
-              <Route path="/group">
-                <GroupDetail />
               </Route>
               <Route path="/unauthorized">
                 {/* <Unauthorized /> */}

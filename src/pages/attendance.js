@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { fetchRequest } from '../utils/fetchRequest';
 
 import Header from '../components/attendance/header/header';
@@ -9,15 +9,14 @@ function AttendancePage() {
 
     const [groupData, setGroupData] = useState();
 
-    const [nextClass, setNextClass] = useState();
+    // const [nextClass, setNextClass] = useState();
 
     const history = useHistory();
 
-    // will need to eventually get this from params!!!
-    const groupID = 1;
+    const { id } = useParams();
 
     useEffect(() => {
-        fetchRequest(`${process.env.REACT_APP_API_URL}groups/${groupID}/`)
+        fetchRequest(`${process.env.REACT_APP_API_URL}groups/${id}/`)
             // fetchRequest(`https://still-forest-93396.herokuapp.com/groups/1/`)
             .then((result) => {
                 if (result.ok) {

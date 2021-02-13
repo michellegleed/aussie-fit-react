@@ -7,7 +7,7 @@ function GroupCard(props) {
 
     const history = useHistory();
 
-    const { group, editGroup, rerenderGroupList } = props;
+    const { group, editGroup, refetchGroupList } = props;
 
     const [deleteGroupID, setDeleteGroupID] = useState();
 
@@ -20,7 +20,7 @@ function GroupCard(props) {
             .then(result => {
                 console.log("result is", result)
                 if (result.ok) {
-                    rerenderGroupList();
+                    refetchGroupList();
                     console.log("successfully deleted something!")
                 } else {
                     // the API returned an error - do something with it
@@ -28,7 +28,8 @@ function GroupCard(props) {
                     setErrorMessage("All fields are required.");
                 }
             })
-            .catch(error => history.push("/network-error"))
+            // .catch(error => history.push("/network-error"))
+            .catch(error => console.log(error))
     }
 
     return (

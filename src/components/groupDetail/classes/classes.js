@@ -3,39 +3,50 @@ import Moment from 'react-moment';
 import ClassCard from '../classCard/classCard';
 import ClassForm from '../classForm/classForm';
 
+import { fetchRequest } from '../../../utils/fetchRequest';
+
 function Classes(props) {
 
-    const { classList } = props;
+    const [classList, setClassList] = useState();
+    const { group } = props;
 
     const [showClassForm, setShowClassForm] = useState(false);
 
     const [classToEdit, setClassToEdit] = useState();
 
-    const rerenderOnClassDeleted = () => {
-        setClassCardDeleted((prevState) => prevState + 1)
-    }
+    const [refetchClasses, setRefetchClasses] = useState(0);
+
+    useEffect(() => {
+        fetchRequest(`${process.env.REACT_APP_API_URL}groups/${group}/`)
+            .then((result) => {
+                if (result.ok) {
+                    setClassList(result.data.classes);
+                }
+                else {
+                    history.push("/notfound");
+                    console.log("no group data")
+                }
+            });
+    }, [refetchClasses]);
 
     const editClass = (classID) => {
         setClassToEdit(classID);
         setShowClassForm(true);
     }
 
-    // const displayGroupForm = (bool) => {
-    //     setShowGroupForm(bool);
-    //     // this clears group details from form upon closing
-    //     bool === false ? setGroupToEdit(null) : null;
-    // }
-
-    // const populateGroupForm = () => {
-    //     return groupToEdit ? groupList.filter(group => group.id == groupToEdit)[0] : { group_name: "" };
-    // }
+    const refetchClassList = () => {
+        setRefetchClasses((prevState) => prevState + 1)
+    }
 
     const displayClassForm = (bool) => {
         setShowClassForm(bool);
+
+        // this clears group details from form upon closing
+        bool === false ? setClassToEdit(null) : null;
     }
 
     const populateClassForm = () => {
-        return classToEdit ? classList.filter(session => session.id == classToEdit)[0] : { title: "", time: "" };
+        return classToEdit ? classList.filter(session => session.id == classToEdit)[0] : { title: "", group: group, time: "" };
     }
 
     return (
@@ -44,13 +55,13 @@ function Classes(props) {
             <button onClick={() => displayClassForm(true)}>New Class</button>
             {
                 showClassForm ?
-                    <ClassForm session={populateClassForm()} displayClassForm={displayClassForm} />
+                    <ClassForm session={populateClassForm()} displayClassForm={displayClassForm} refetchClassList={refetchClassList} />
                     :
                     null
             }
             {
                 classList != null && classList.length > 0 ?
-                    classList.map(session => <ClassCard session={session} editClass={editClass} rerenderClassList={rerenderOnClassDeleted} />)
+                    classList.map(session => <ClassCard session={session} editClass={editClass} refetchClassList={refetchClassList} />)
                     :
                     <h4>No classes found</h4>
             }

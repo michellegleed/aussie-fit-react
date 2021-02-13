@@ -7,7 +7,7 @@ import Datetime from 'react-datetime';
 
 function ClassForm(props) {
 
-    const { session, displayClassForm } = props;
+    const { session, displayClassForm, refetchClassList } = props;
 
     // const [errorMessage, setErrorMessage] = useState();
 
@@ -40,6 +40,7 @@ function ClassForm(props) {
                 console.log("result is", result)
                 if (result.ok) {
                     displayClassForm(false);
+                    refetchClassList();
                 } else {
                     // the API returned an error - do something with it
                     console.error(data);
@@ -56,13 +57,15 @@ function ClassForm(props) {
                 console.log("result is", result)
                 if (result.ok) {
                     displayClassForm(false);
+                    refetchClassList();
                 } else {
                     // the API returned an error - do something with it
                     console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
-            .catch(error => history.push("/network-error"))
+            // .catch(error => history.push("/network-error"))
+            .catch(error => console.log(error))
     }
 
     const handleSubmit = (e) => {
@@ -82,7 +85,7 @@ function ClassForm(props) {
                             null
                     }
                 </div> */}
-                <button id="close-button" onClick={() => displayGroupForm(false)}>
+                <button id="close-button" onClick={() => displayClassForm(false)}>
                     <p>X</p>
                 </button>
                 <div className="form-item">

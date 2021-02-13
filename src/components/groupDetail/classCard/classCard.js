@@ -7,7 +7,7 @@ function ClassCard(props) {
 
     const history = useHistory();
 
-    const { session, editClass, rerenderClassList } = props;
+    const { session, editClass, refetchClassList } = props;
 
     const [deleteClassID, setDeleteClassID] = useState();
 
@@ -20,7 +20,7 @@ function ClassCard(props) {
             .then(result => {
                 console.log("result is", result)
                 if (result.ok) {
-                    rerenderClassList();
+                    refetchClassList();
                     console.log("successfully deleted something!")
                 } else {
                     // the API returned an error - do something with it
@@ -28,7 +28,8 @@ function ClassCard(props) {
                     setErrorMessage("All fields are required.");
                 }
             })
-            .catch(error => history.push("/network-error"))
+            .catch(error => console.log(error));
+        // .catch(error => history.push("/network-error"))
     }
 
     // icons might be better here than strings :)
