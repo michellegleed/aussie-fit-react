@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchRequest } from '../../../utils/fetchRequest';
+import { fetchRequest } from '../../../../utils/fetchRequest';
 import { useHistory } from 'react-router-dom';
 import Datetime from 'react-datetime';
 

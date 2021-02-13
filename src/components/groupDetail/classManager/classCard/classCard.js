@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
-import { fetchRequest } from '../../../utils/fetchRequest';
+import { fetchRequest } from '../../../../utils/fetchRequest';
 
 function ClassCard(props) {
 
@@ -21,6 +21,7 @@ function ClassCard(props) {
                 console.log("result is", result)
                 if (result.ok) {
                     refetchClassList();
+                    setDeleteClassID(null);
                     console.log("successfully deleted something!")
                 } else {
                     // the API returned an error - do something with it

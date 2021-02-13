@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import ClassCard from '../classCard/classCard';
 import ClassForm from '../classForm/classForm';
 
-import { fetchRequest } from '../../../utils/fetchRequest';
+import { fetchRequest } from '../../../../utils/fetchRequest';
 
 function Classes(props) {
 

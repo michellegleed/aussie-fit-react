@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Classes from '../../../components/groupDetail/classes/classes';
+import Classes from '../../../components/groupDetail/classManager/classes/classes';
+import Participants from '../../../components/groupDetail/participantManager/participants/participants';
 
 import { fetchRequest } from '../../../utils/fetchRequest';
 
@@ -29,7 +30,7 @@ function GroupDetail() {
             <div>
                 <h1>{groupData.group_name}</h1>
                 < Classes group={id} />
-                {/* <Participants /> */}
+                <Participants group={id} />
             </div >
             :
             null
