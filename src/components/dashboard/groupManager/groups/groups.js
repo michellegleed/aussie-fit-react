@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GroupCard from '../groupCard/groupCard';
 
-import { fetchRequest } from '../../../utils/fetchRequest'
+import { fetchRequest } from '../../../../utils/fetchRequest'
 import GroupForm from '../groupForm/groupForm';
 
 function Groups() {

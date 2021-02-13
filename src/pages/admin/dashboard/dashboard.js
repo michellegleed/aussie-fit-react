@@ -1,6 +1,6 @@
 import React from 'react';
-import Groups from '../../../components/dashboard/groups/groups';
-import Quiz from '../../../components/dashboard/quiz/quiz';
+import Groups from '../../../components/dashboard/groupManager/groups/groups';
+import Quiz from '../../../components/dashboard/quizManager/quiz/quiz';
 
 import "react-datetime/css/react-datetime.css";
 

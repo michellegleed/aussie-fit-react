@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
-import { fetchRequest } from '../../../utils/fetchRequest';
+import { fetchRequest } from '../../../../utils/fetchRequest';
 
 function GroupCard(props) {
 
