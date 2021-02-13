@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 import Nav from './components/nav/nav';
-import Dashboard from './pages/admin/dashboard';
+import Dashboard from './pages/admin/dashboard/dashboard';
 import LoginPage from './pages/login';
 import AttendancePage from './pages/attendance';
 import QuestionsPage from './pages/questions';
+import GroupDetail from './pages/admin/groupDetail/groupDetail';
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
               </Route>
               <Route path="/admin">
                 <Dashboard />
+              </Route>
+              {/* add params here to /group! */}
+              <Route path="/group">
+                <GroupDetail />
               </Route>
               <Route path="/unauthorized">
                 {/* <Unauthorized /> */}

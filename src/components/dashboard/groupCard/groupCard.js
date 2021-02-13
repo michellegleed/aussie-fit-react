@@ -28,7 +28,7 @@ function GroupCard(props) {
                     setErrorMessage("All fields are required.");
                 }
             })
-        // .catch(error => history.push("/network-error"))
+            .catch(error => history.push("/network-error"))
     }
 
     return (
