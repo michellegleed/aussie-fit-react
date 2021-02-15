@@ -56,7 +56,7 @@ function Nav() {
                         {isAdmin ?
                             <React.Fragment>
                                 <div className="nav-item">
-                                    <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Admin</NavLink>
+                                    <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Dashboard</NavLink>
                                 </div>
                                 <div className="nav-item">
                                     <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`}>Download Attendance Data</a>
