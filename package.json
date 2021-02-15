@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.6.2",
     "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-datetime": "^3.0.4",
     "react-dom": "^17.0.1",
     "react-moment": "^1.1.1",
