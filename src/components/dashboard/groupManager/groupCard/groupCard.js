@@ -56,7 +56,10 @@ function GroupCard(props) {
                 <p>Next Session:</p>
                 {
                     group.next_class != null ?
-                        <p><Moment format="DD/MM/YY">{group.next_class.time}</Moment> @ <Moment format="h:mma">{group.next_class.time}</Moment></p>
+                        <React.Fragment>
+                            <h6>{group.next_class[0].title}</h6>
+                            <p><Moment format="DD/MM/YY">{group.next_class[0].time}</Moment> @ <Moment format="h:mma">{group.next_class.time}</Moment></p>
+                        </React.Fragment>
                         :
                         <h4>No upcoming classes</h4>
                 }

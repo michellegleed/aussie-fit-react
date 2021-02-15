@@ -23,7 +23,6 @@ function Groups() {
                     setGroupList(result.data);
                 }
                 else {
-                    history.push("/notfound");
                     console.log("no group data")
                 }
             });

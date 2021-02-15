@@ -12,22 +12,22 @@ function Question(props) {
     // reset whenever a new question is rendered
     useEffect(() => {
         setDisableNext(true);
-        setMessage();
+        setMessage(null);
     }, [question])
 
     return (
         <div>
-            <h1>{question.q}</h1>
-            { question.y != null || question.n != null ?
+            <h1>{question.question}</h1>
+            { question.yesAction != "" || question.noAction != "" ?
                 <React.Fragment>
                     <div>
                         <button onClick={() => {
-                            question.y != null ? setMessage(question.y) : setMessage(null);
+                            question.yesAction != "" ? setMessage(question.yesAction) : setMessage(null);
                             setDisableNext(false);
                         }
                         }>Yes</button>
                         <button onClick={() => {
-                            question.n != null ? setMessage(question.n) : setMessage(null);
+                            question.noAction != "" ? setMessage(question.noAction) : setMessage(null);
                             setDisableNext(false);
                         }
                         }>No</button>

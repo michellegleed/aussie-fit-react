@@ -24,8 +24,7 @@ function Quiz() {
                     setQuestionList(JSON.parse(result.data.questions))
                 }
                 else {
-                    history.push("/notfound");
-                    console.log("no group data")
+                    console.log("no questions found")
                 }
             });
     }, [])
