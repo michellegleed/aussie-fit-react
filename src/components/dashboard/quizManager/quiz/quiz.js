@@ -15,6 +15,8 @@ function Quiz() {
 
     const [questionToEdit, setQuestionToEdit] = useState();
 
+    const [questionFormStatus, setQuestionFormStatus] = useState();
+
     const [saveUpdatesToAPI, setSaveUpdatesToAPI] = useState(0);
 
     useEffect(() => {
@@ -27,15 +29,59 @@ function Quiz() {
                     console.log("no questions found")
                 }
             });
-    }, [])
+    }, []);
+
+    // Is Evie snoring?
+
+    // None
+
+    // Take her for a walk
+
+    // Does Evie smell like cornchips?
+
+    // Take her for a bath
+
+    // None
+
+    // Is Evie a good dog?
+
+    // None
+
+    // Go see the dog trainer
+
+    // Does Evie have big ears?
+
+    // Brush them
+
+    // None
+
+    // Does Evie have bad breath?
+
+    // Brush her teeth
+
+    // None
+
+    // Is Evie hungry?
+
+    // Give her some chicken
+
+    // She's always hungry! Give her some chicken
+
+    const editQuestion = (index) => {
+        setQuestionToEdit(index);
+        setShowQuestionForm(true);
+    }
 
     const displayQuestionForm = (bool) => {
         setShowQuestionForm(bool);
-        bool === false ? setQuestionToEdit(null) : null;
+        if (bool === false) {
+            setQuestionToEdit(null);
+            setQuestionFormStatus(null);
+        }
     }
 
     const populateQuestionForm = () => {
-        return questionToEdit ? questionList.filter(question => question.index == questionToEdit) : { question: "", yesAction: "None", noAction: "None", index: questionList.length };
+        return questionToEdit != null ? questionList[questionToEdit] : { id: Date.now().toString(), question: "", yesAction: "", noAction: "" };
     }
 
     const addQuestionToQuiz = (question) => {
@@ -44,6 +90,20 @@ function Quiz() {
             question
         ]);
 
+        setSaveUpdatesToAPI((prevState) => prevState + 1);
+    }
+
+    const updateQuestion = (question, index) => {
+        let items = Array.from(questionList);
+        items[index] = question;
+        setQuestionList(items);
+        setSaveUpdatesToAPI((prevState) => prevState + 1);
+    }
+
+    const deleteQuestion = (index) => {
+        let items = Array.from(questionList);
+        items.splice(index, 1)
+        setQuestionList(items);
         setSaveUpdatesToAPI((prevState) => prevState + 1);
     }
 
@@ -83,7 +143,7 @@ function Quiz() {
             <h4>Drag and drop questions in the list to change the order they show on the Attendance Page.</h4>
             {
                 showQuestionForm ?
-                    <QuestionForm question={populateQuestionForm()} displayQuestionForm={displayQuestionForm} addQuestionToQuiz={addQuestionToQuiz} />
+                    <QuestionForm question={populateQuestionForm()} index={questionToEdit} displayQuestionForm={displayQuestionForm} addQuestionToQuiz={addQuestionToQuiz} updateQuestion={updateQuestion} deleteQuestion={deleteQuestion} />
                     :
                     null
             }
@@ -97,8 +157,8 @@ function Quiz() {
                                     {
                                         questionList.map((question, index) => {
                                             return (
-                                                <Draggable draggableId={question.question} index={index}>
-                                                    {(provided) => (<li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}><QuestionCard question={question} /></li>)}
+                                                <Draggable draggableId={question.id} index={index} key={question.id}>
+                                                    {(provided) => (<li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}><QuestionCard index={index} question={question} editQuestion={editQuestion} deleteQuestion={deleteQuestion} /></li>)}
                                                 </Draggable>)
                                         })
                                         // <h3>{questionList[0].question}</h3>

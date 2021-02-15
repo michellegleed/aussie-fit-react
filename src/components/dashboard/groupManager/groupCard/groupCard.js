@@ -5,7 +5,7 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 
 function GroupCard(props) {
 
-    const history = useHistory();
+    // const history = useHistory();
 
     const { group, editGroup, refetchGroupList } = props;
 
