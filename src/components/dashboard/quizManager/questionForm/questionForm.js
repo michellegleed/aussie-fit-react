@@ -50,7 +50,7 @@ function QuestionForm(props) {
         <div>
             { questionDetails ?
                 <form>
-                    <h1>New Question</h1>
+                    <h1>{index != null ? "Edit Question" : "New Question"}</h1>
                     {/* <div className="error-message">
                     {
                         errorMessage ?

@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import { fetchRequest } from '../../../../utils/fetchRequest';
+
+import QRCodeUrls from '../../qrCodeUrls/qrCodeUrls';
 
 function GroupCard(props) {
 
     // const history = useHistory();
 
     const { group, editGroup, refetchGroupList } = props;
+
+    const [showQRComponent, setShowQRCodeComponent] = useState(false);
+
+    const getQRCode = () => {
+        setShowQRCodeComponent(true);
+    }
 
     const [deleteGroupID, setDeleteGroupID] = useState();
 
@@ -44,27 +52,37 @@ function GroupCard(props) {
                     :
                     null
             }
+            {
+                showQRComponent ?
+                    <QRCodeUrls groupID={group.id} />
+                    :
+                    null
+            }
             <div>
-                <div>
-                    <h2>{group.group_name}</h2>
-                    <p>{group.number_of_participants}</p>
-                </div>
-                <div>
-                    <button onClick={() => editGroup(group.id)}>edit</button>
-                    <button onClick={() => deleteGroup(group.id)}>X</button>
-                </div>
-                <p>Next Session:</p>
-                {
-                    group.next_class != null ?
-                        <React.Fragment>
-                            <h6>{group.next_class[0].title}</h6>
-                            <p><Moment format="DD/MM/YY">{group.next_class[0].time}</Moment> @ <Moment format="h:mma">{group.next_class.time}</Moment></p>
-                        </React.Fragment>
-                        :
-                        <h4>No upcoming classes</h4>
-                }
-
+                <button onClick={() => getQRCode()}>QR Code</button>
+                <button onClick={() => editGroup(group.id)}>edit</button>
+                <button onClick={() => deleteGroup(group.id)}>X</button>
             </div>
+            <Link to={`/admin/${group.id}/`}>
+                <div>
+                    <div>
+                        <h2>{group.group_name}</h2>
+                        <p>{group.number_of_participants}</p>
+                    </div>
+
+                    <p>Next Session:</p>
+                    {
+                        group.next_class != null ?
+                            <React.Fragment>
+                                <h6>{group.next_class[0].title}</h6>
+                                <p><Moment format="DD/MM/YY">{group.next_class[0].time}</Moment> @ <Moment format="h:mma">{group.next_class.time}</Moment></p>
+                            </React.Fragment>
+                            :
+                            <h4>No upcoming classes</h4>
+                    }
+
+                </div>
+            </Link>
         </React.Fragment>
     )
 }

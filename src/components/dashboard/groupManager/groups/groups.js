@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
 
 
 import { fetchRequest } from '../../../../utils/fetchRequest'
@@ -53,7 +52,7 @@ function Groups() {
             <button onClick={() => displayGroupForm(true)}>New Group</button>
             {
                 groupList != null && groupList.length > 0 ?
-                    groupList.map(group => <Link to={`/admin/${group.id}/`}><GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} /></Link>)
+                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
                     :
                     <h4>No groups found</h4>
             }

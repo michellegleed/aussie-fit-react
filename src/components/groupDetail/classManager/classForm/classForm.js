@@ -76,7 +76,7 @@ function ClassForm(props) {
     return (
         <div>
             <form>
-                <h1>New Class</h1>
+                <h1>{session.id ? "Edit Class" : "New Class"}</h1>
                 {/* <div className="error-message">
                     {
                         errorMessage ?

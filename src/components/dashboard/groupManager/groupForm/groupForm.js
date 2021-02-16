@@ -66,7 +66,7 @@ function GroupForm(props) {
     return (
         <div>
             <form>
-                <h1>New Group</h1>
+                <h1>{group.id ? `Edit ${group.group_name}` : "New Group"}</h1>
                 {/* <div className="error-message">
                     {
                         errorMessage ?

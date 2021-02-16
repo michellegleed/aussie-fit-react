@@ -98,7 +98,7 @@ function participantForm(props) {
     return (
         <div>
             <form>
-                <h1>New participant</h1>
+                <h1>{participant.id ? `Edit ${participant.first_name} ${participant.last_name}` : "New Participant"}</h1>
                 {/* <div participantName="error-message">
                     {
                         errorMessage ?
