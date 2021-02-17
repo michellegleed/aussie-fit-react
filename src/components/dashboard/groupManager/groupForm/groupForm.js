@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { fetchRequest } from '../../../../utils/fetchRequest';
 import { useHistory } from 'react-router-dom';
 
-// import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
 function GroupForm(props) {
 
     const { group, displayGroupForm, refetchGroupList } = props;
 
-    // const [errorMessage, setErrorMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
     const [groupDetails, setGroupDetails] = useState({
         group_name: group.group_name
@@ -48,14 +48,14 @@ function GroupForm(props) {
                 if (result.ok) {
                     displayGroupForm(false);
                     refetchGroupList();
-                } else {
+                } else if (result.status == 400) {
                     // the API returned an error - do something with it
-                    console.error(data);
+                    // console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
             // .catch(error => history.push("/network-error"))
-            .catch(error => console.log(error))
+            .catch(error => setErrorMessage(error.message))
     }
 
     const handleSubmit = (e) => {
@@ -67,14 +67,14 @@ function GroupForm(props) {
         <div>
             <form>
                 <h1>{group.id ? `Edit ${group.group_name}` : "New Group"}</h1>
-                {/* <div className="error-message">
+                <div className="error-message">
                     {
                         errorMessage ?
                             <ErrorMessage message={errorMessage} type="error" />
                             :
                             null
                     }
-                </div> */}
+                </div>
                 <button id="close-button" onClick={() => displayGroupForm(false)}>
                     <p>X</p>
                 </button>

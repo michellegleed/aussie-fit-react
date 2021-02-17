@@ -15,9 +15,9 @@ function Quiz() {
 
     const [questionToEdit, setQuestionToEdit] = useState();
 
-    const [questionFormStatus, setQuestionFormStatus] = useState();
-
     const [saveUpdatesToAPI, setSaveUpdatesToAPI] = useState(0);
+
+    const [errorMessage, setErrorMessage] = useState();
 
     useEffect(() => {
         fetchRequest(`${process.env.REACT_APP_API_URL}questions/`)
@@ -76,7 +76,6 @@ function Quiz() {
         setShowQuestionForm(bool);
         if (bool === false) {
             setQuestionToEdit(null);
-            setQuestionFormStatus(null);
         }
     }
 
@@ -125,19 +124,23 @@ function Quiz() {
                     console.log("result is", result)
                     if (result.ok) {
                         setQuestionList(JSON.parse(result.data.questions))
-                    } else {
-                        // the API returned an error - do something with it
-                        console.error(data);
-                        setErrorMessage("All fields are required.");
                     }
                 })
                 // .catch(error => history.push("/network-error"))
-                .catch(error => console.log(error))
+                .catch(error => setErrorMessage(error.message))
         }
     }, [saveUpdatesToAPI])
 
     return (
         <div>
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
             <h1>Questions</h1>
             <button onClick={() => displayQuestionForm(true)}>New Question</button>
             <h4>Drag and drop questions in the list to change the order they show on the Attendance Page.</h4>

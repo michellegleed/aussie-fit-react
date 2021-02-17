@@ -3,13 +3,13 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import { useHistory } from 'react-router-dom';
 import Datetime from 'react-datetime';
 
-// import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
 function participantForm(props) {
 
     const { groupID, participant, displayParticipantForm, refetchParticipantList } = props;
 
-    // const [errorMessage, setErrorMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
     const [groupList, setGroupList] = useState();
 
@@ -63,14 +63,14 @@ function participantForm(props) {
                 if (result.ok) {
                     displayParticipantForm(false);
                     refetchParticipantList();
-                } else {
+                } else if (result.status == 400) {
                     // the API returned an error - do something with it
-                    console.error(data);
+                    // console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
             // .catch(error => history.push("/network-error"))
-            .catch(error => console.log(error))
+            .catch(error => setErrorMessage(error.message))
     }
 
     const putData = async () => {
@@ -80,14 +80,14 @@ function participantForm(props) {
                 if (result.ok) {
                     displayParticipantForm(false);
                     refetchParticipantList();
-                } else {
+                } else if (result.status == 400) {
                     // the API returned an error - do something with it
-                    console.error(data);
+                    // console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
             // .catch(error => history.push("/network-error"))
-            .catch(error => console.log(error))
+            .catch(error => setErrorMessage(error.message))
     }
 
     const handleSubmit = (e) => {
@@ -99,14 +99,14 @@ function participantForm(props) {
         <div>
             <form>
                 <h1>{participant.id ? `Edit ${participant.first_name} ${participant.last_name}` : "New Participant"}</h1>
-                {/* <div participantName="error-message">
+                <div participantName="error-message">
                     {
                         errorMessage ?
                             <ErrorMessage message={errorMessage} type="error" />
                             :
                             null
                     }
-                </div> */}
+                </div>
                 <button id="close-button" onClick={() => displayParticipantForm(false)}>
                     <p>X</p>
                 </button>

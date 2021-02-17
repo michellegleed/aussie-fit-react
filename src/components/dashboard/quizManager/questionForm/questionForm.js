@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { fetchRequest } from '../../../../utils/fetchRequest';
 import { useHistory } from 'react-router-dom';
 
-// import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
 function QuestionForm(props) {
 
     const { index, question, displayQuestionForm, addQuestionToQuiz, updateQuestion } = props;
 
-    // const [errorMessage, setErrorMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
     const [questionDetails, setQuestionDetails] = useState(question);
 
@@ -41,9 +41,13 @@ function QuestionForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        index != null ? updateQuestion(questionDetails, index) : addQuestionToQuiz(questionDetails);
-
-        displayQuestionForm(false);
+        if (questionDetails.question != "") {
+            index != null ? updateQuestion(questionDetails, index) : addQuestionToQuiz(questionDetails);
+            displayQuestionForm(false);
+        }
+        else {
+            setErrorMessage("Question field cannot be blank")
+        }
     }
 
     return (
@@ -51,14 +55,14 @@ function QuestionForm(props) {
             { questionDetails ?
                 <form>
                     <h1>{index != null ? "Edit Question" : "New Question"}</h1>
-                    {/* <div className="error-message">
-                    {
-                        errorMessage ?
-                            <ErrorMessage message={errorMessage} type="error" />
-                            :
-                            null
-                    }
-                </div> */}
+                    <div className="error-message">
+                        {
+                            errorMessage ?
+                                <ErrorMessage message={errorMessage} type="error" />
+                                :
+                                null
+                        }
+                    </div>
                     <button id="close-button" onClick={() => displayQuestionForm(false)}>
                         <p>X</p>
                     </button>

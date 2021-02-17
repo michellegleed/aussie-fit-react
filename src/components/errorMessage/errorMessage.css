@@ -1,0 +1,6 @@
+.error-message p {
+  font-size: 14px;
+  font-weight: 500;
+  color: red;
+  margin: 24px 0;
+}
