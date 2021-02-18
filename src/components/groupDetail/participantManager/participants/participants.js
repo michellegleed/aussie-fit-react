@@ -52,6 +52,7 @@ function Participants(props) {
     return (
         <div>
             <h2>Participants</h2>
+            <h6>{participantList != null ? participantList.length : 0}</h6>
             <button onClick={() => displayParticipantForm(true)}>New participant</button>
             {
                 showparticipantForm ?
