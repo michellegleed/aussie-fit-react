@@ -80,7 +80,6 @@ function GroupCard(props) {
                             :
                             <h4>No upcoming classes</h4>
                     }
-
                 </div>
             </Link>
         </React.Fragment>

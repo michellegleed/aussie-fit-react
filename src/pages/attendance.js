@@ -38,7 +38,10 @@ function AttendancePage() {
                     {groupData.next_class != null && groupData.next_class[0].in_progress ?
                         <NameForm participants={groupData.participants} classID={groupData.next_class[0].id} />
                         :
-                        <h4>Attendance for this class opens one hour before start time.</h4>
+                        groupData.next_class != null ?
+                            <h4>Attendance for this class opens one hour before start time.</h4>
+                            :
+                            null
                     }
 
                 </React.Fragment>
