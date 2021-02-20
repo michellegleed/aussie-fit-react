@@ -1,0 +1,52 @@
+.nav-menu-items {
+  position: absolute;
+  right: 100vw;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: all 0.5s;
+}
+
+.nav-active {
+  right: 0;
+  transition: all 0.5s;
+}
+
+#close-menu-svg {
+  color: white;
+  stroke: white;
+}
+
+.nav-item {
+  margin: 3vh 2vw;
+}
+
+.nav-item a {
+  color: white;
+}
+
+@media screen and (min-width: 720px) {
+  nav {
+    width: 96vw;
+    height: 64px;
+    margin: 0 2vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-menu-items {
+    position: unset;
+    display: flex;
+  }
+
+  .nav-item {
+    margin: 0 2vw;
+  }
+}

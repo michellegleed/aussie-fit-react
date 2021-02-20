@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { fetchRequest } from '../../utils/fetchRequest';
+import closeIcon from '../icons/close';
+
+import './nav.css';
 
 function Nav() {
 
@@ -10,6 +13,8 @@ function Nav() {
     /// Update Nav Based on Logged In/Out and logged in user isAdmin or not
     const [loggedIn, setLoggedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState();
+
+    const [showMobileNav, setShowMobileNav] = useState(false);
 
     const checkUserPermissions = () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}user/`)
@@ -39,6 +44,9 @@ function Nav() {
         }
     }, [location]);
 
+    const toggleMobileNav = (bool) => {
+        setShowMobileNav(bool)
+    }
 
     /// Logout
     const handleLogout = () => {
@@ -47,36 +55,37 @@ function Nav() {
 
     return (
         <nav>
-            <div id="nav-container">
-                <div className="nav-logo">
-                    <i class="far fa-lightbulb"></i>
-                </div>
-                {loggedIn ?
-                    <div className="nav-menu-items">
-                        {isAdmin ?
-                            <React.Fragment>
-                                <div className="nav-item">
-                                    <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Dashboard</NavLink>
-                                </div>
-                                <div className="nav-item">
-                                    <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`}>Download Attendance Data</a>
-                                </div>
-                            </React.Fragment>
-                            :
+            <div className="nav-logo">
+                <p onClick={() => toggleMobileNav(true)}><img src="/icons/menu.svg" alt="Menu" /></p>
+            </div>
+            {loggedIn ?
+                <div className={showMobileNav ? " nav-menu-items nav-active" : "nav-menu-items"}>
+                    {isAdmin ?
+                        <React.Fragment>
+                            <p onClick={() => toggleMobileNav(false)}><img id="close-menu-svg" src="/icons/close.svg" alt="Menu" /></p>
                             <div className="nav-item">
-                                <NavLink exact to="/" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Home</NavLink>
+                                <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Dashboard</NavLink>
                             </div>
-                        }
+                            <div className="nav-item">
+                                <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`}>Download Attendance Data</a>
+                            </div>
+                        </React.Fragment>
+                        :
+                        <div className="nav-item">
+                            <NavLink exact to="/" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Home</NavLink>
+                        </div>
+                    }
+                    <div className="nav-item">
                         <Link to="/login" onClick={handleLogout}>Log Out</Link>
                     </div>
-                    :
-                    <div className="nav-menu-items logged-out">
-                        <div className="nav-item">
-                            <Link to="/login">Log In</Link>
-                        </div>
+                </div>
+                :
+                <div className="nav-menu-items logged-out">
+                    <div className="nav-item">
+                        <Link to="/login">Log In</Link>
                     </div>
-                }
-            </div >
+                </div>
+            }
         </nav >
     )
 }
