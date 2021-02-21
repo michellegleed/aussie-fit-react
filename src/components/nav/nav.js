@@ -63,25 +63,25 @@ function Nav() {
                     {isAdmin ?
                         <React.Fragment>
                             <div className="menu-button" onClick={() => toggleMobileNav(false)}><CloseIcon color="white" /></div>
-                            <div className="nav-item">
+                            <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                                 <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Dashboard</NavLink>
                             </div>
-                            <div className="nav-item">
+                            <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                                 <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`}>Download Attendance Data</a>
                             </div>
                         </React.Fragment>
                         :
-                        <div className="nav-item">
+                        <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                             <NavLink exact to="/" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Home</NavLink>
                         </div>
                     }
-                    <div className="nav-item">
+                    <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                         <Link to="/login" onClick={handleLogout}>Log Out</Link>
                     </div>
                 </div>
                 :
                 <div className="nav-menu-items logged-out">
-                    <div className="nav-item">
+                    <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                         <Link to="/login">Log In</Link>
                     </div>
                 </div>
