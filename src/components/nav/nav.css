@@ -7,6 +7,7 @@
 nav {
   height: 64px;
   width: 100vw;
+  font-family: "Montserrat", sans-serif;
 }
 
 .menu-button {
@@ -16,7 +17,7 @@ nav {
 }
 
 .nav-menu-items {
-  position: absolute;
+  position: fixed;
   left: 100vw;
   top: 0;
   width: 100vw;
