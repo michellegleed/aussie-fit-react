@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { fetchRequest } from '../../utils/fetchRequest';
-import closeIcon from '../icons/close';
+import CloseIcon from '../icons/close';
 
 import './nav.css';
 
@@ -55,14 +55,14 @@ function Nav() {
 
     return (
         <nav>
-            <div className="nav-logo">
-                <p onClick={() => toggleMobileNav(true)}><img src="/icons/menu.svg" alt="Menu" /></p>
+            <div id="menu-button-container">
+                <div onClick={() => toggleMobileNav(true)} className="menu-button"><img src="/icons/menu.svg" alt="Menu" /></div>
             </div>
             {loggedIn ?
                 <div className={showMobileNav ? " nav-menu-items nav-active" : "nav-menu-items"}>
                     {isAdmin ?
                         <React.Fragment>
-                            <p onClick={() => toggleMobileNav(false)}><img id="close-menu-svg" src="/icons/close.svg" alt="Menu" /></p>
+                            <div className="menu-button" onClick={() => toggleMobileNav(false)}><CloseIcon color="white" /></div>
                             <div className="nav-item">
                                 <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Dashboard</NavLink>
                             </div>

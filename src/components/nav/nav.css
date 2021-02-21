@@ -1,6 +1,23 @@
+/* #menu-button-container {
+  justify-content: flex-end;
+  display: flex;
+  padding: 24px;
+} */
+
+nav {
+  height: 64px;
+  width: 100vw;
+}
+
+.menu-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
 .nav-menu-items {
   position: absolute;
-  right: 100vw;
+  left: 100vw;
   top: 0;
   width: 100vw;
   height: 100vh;
@@ -14,7 +31,7 @@
 }
 
 .nav-active {
-  right: 0;
+  left: 0;
   transition: all 0.5s;
 }
 
@@ -25,10 +42,12 @@
 
 .nav-item {
   margin: 3vh 2vw;
+  text-align: center;
 }
 
 .nav-item a {
   color: white;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 720px) {
