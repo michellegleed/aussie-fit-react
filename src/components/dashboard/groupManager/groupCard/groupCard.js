@@ -41,7 +41,7 @@ function GroupCard(props) {
     }
 
     return (
-        <React.Fragment>
+        <div className="card">
             {
                 deleteGroupID ?
                     <div>
@@ -58,13 +58,15 @@ function GroupCard(props) {
                     :
                     null
             }
-            <div>
+            <div className="card-buttons">
                 <button onClick={() => getQRCode()}>QR Code</button>
-                <button onClick={() => editGroup(group.id)}>edit</button>
-                <button onClick={() => deleteGroup(group.id)}>X</button>
+                <div>
+                    <button onClick={() => editGroup(group.id)}><img src="/icons/pencil.svg" alt="Edit Group" /></button>
+                    <button onClick={() => deleteGroup(group.id)}><img src="/icons/close.svg" alt="Delete Group" /></button>
+                </div>
             </div>
             <Link to={`/admin/${group.id}/`}>
-                <div>
+                <div className="card-content">
                     <div>
                         <h2>{group.group_name}</h2>
                         <p>{group.number_of_participants}</p>
@@ -82,7 +84,7 @@ function GroupCard(props) {
                     }
                 </div>
             </Link>
-        </React.Fragment>
+        </div>
     )
 }
 

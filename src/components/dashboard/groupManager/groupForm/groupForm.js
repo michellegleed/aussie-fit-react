@@ -64,7 +64,7 @@ function GroupForm(props) {
     }
 
     return (
-        <div>
+        <div className="modal-form">
             <form>
                 <h1>{group.id ? `Edit ${group.group_name}` : "New Group"}</h1>
                 <div className="error-message">

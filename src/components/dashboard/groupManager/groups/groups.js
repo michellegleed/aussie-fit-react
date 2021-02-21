@@ -48,8 +48,10 @@ function Groups() {
 
     return (
         <div>
-            <h1>Groups</h1>
-            <button onClick={() => displayGroupForm(true)}>New Group</button>
+            <div className="section-title">
+                <h1>Groups</h1>
+                <button onClick={() => displayGroupForm(true)}><img src="/icons/plus.svg" alt="New Group" /></button>
+            </div>
             {
                 groupList != null && groupList.length > 0 ?
                     groupList.map(group => <GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
