@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { fetchRequest } from '../../utils/fetchRequest';
 import CloseIcon from '../icons/close';
+import MenuIcon from '../icons/menu';
 
 import './nav.css';
 
@@ -56,7 +57,12 @@ function Nav() {
     return (
         <nav>
             <div id="menu-button-container">
-                <div onClick={() => toggleMobileNav(true)} className="menu-button"><img src="/icons/menu.svg" alt="Menu" /></div>
+                {
+                    showMobileNav ?
+                        null
+                        :
+                        <div onClick={() => toggleMobileNav(true)} className="menu-button"><MenuIcon /></div>
+                }
             </div>
             {loggedIn ?
                 <div className={showMobileNav ? " nav-menu-items nav-active" : "nav-menu-items"}>

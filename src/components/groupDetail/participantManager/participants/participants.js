@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import ParticipantCard from '../participantCard/participantCard';
 import ParticipantForm from '../participantForm/participantForm';
+import PlusIcon from '../../../icons/plus';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
 

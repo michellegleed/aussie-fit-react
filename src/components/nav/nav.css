@@ -51,21 +51,30 @@ nav {
 }
 
 @media screen and (min-width: 720px) {
-  nav {
-    width: 96vw;
-    height: 64px;
-    margin: 0 2vw;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .menu-button {
+    display: none;
   }
 
   .nav-menu-items {
     position: unset;
+    width: 96vw;
+    height: 64px;
+    margin: 0 2vw;
+    background-color: transparent;
+
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: none;
   }
 
   .nav-item {
     margin: 0 2vw;
+  }
+
+  .nav-item a {
+    color: #232323;
   }
 }

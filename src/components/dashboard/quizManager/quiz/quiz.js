@@ -6,6 +6,7 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 
 import QuestionCard from '../questionCard/questionCard';
 import QuestionForm from '../questionForm/questionForm';
+import PlusIcon from '../../../icons/plus';
 
 function Quiz() {
 
@@ -132,7 +133,7 @@ function Quiz() {
     }, [saveUpdatesToAPI])
 
     return (
-        <div>
+        <div id="quiz-section">
             <div className="error-message">
                 {
                     errorMessage ?
@@ -141,8 +142,10 @@ function Quiz() {
                         null
                 }
             </div>
-            <h1>Questions</h1>
-            <button onClick={() => displayQuestionForm(true)}>New Question</button>
+            <div className="section-title">
+                <h1>Questions</h1>
+                <button onClick={() => displayQuestionForm(true)}><PlusIcon /></button>
+            </div>
             <h4>Drag and drop questions in the list to change the order they show on the Attendance Page.</h4>
             {
                 showQuestionForm ?
@@ -150,30 +153,32 @@ function Quiz() {
                     :
                     null
             }
-            {
-                questionList != null && questionList.length > 0 ?
-                    /// may need to make the contents of this a list! Using ul and li elements for DragDrop to work... not sure yet.
-                    <DragDropContext onDragEnd={handleOnDragEnd}>
-                        <Droppable droppableId="questionList">
-                            {(provided) => (
-                                <ul {...provided.droppableProps} ref={provided.innerRef}>
-                                    {
-                                        questionList.map((question, index) => {
-                                            return (
-                                                <Draggable draggableId={question.id} index={index} key={question.id}>
-                                                    {(provided) => (<li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}><QuestionCard index={index} question={question} editQuestion={editQuestion} deleteQuestion={deleteQuestion} /></li>)}
-                                                </Draggable>)
-                                        })
-                                        // <h3>{questionList[0].question}</h3>
-                                    }
-                                    {provided.placeholder}
-                                </ul>
-                            )}
-                        </Droppable>
-                    </DragDropContext>
-                    :
-                    <h4>No Questions Found</h4>
-            }
+            <div className="card-container">
+                {
+                    questionList != null && questionList.length > 0 ?
+                        /// may need to make the contents of this a list! Using ul and li elements for DragDrop to work... not sure yet.
+                        <DragDropContext onDragEnd={handleOnDragEnd}>
+                            <Droppable droppableId="questionList">
+                                {(provided) => (
+                                    <ul {...provided.droppableProps} ref={provided.innerRef}>
+                                        {
+                                            questionList.map((question, index) => {
+                                                return (
+                                                    <Draggable draggableId={question.id} index={index} key={question.id}>
+                                                        {(provided) => (<li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}><QuestionCard index={index} question={question} editQuestion={editQuestion} deleteQuestion={deleteQuestion} /></li>)}
+                                                    </Draggable>)
+                                            })
+                                            // <h3>{questionList[0].question}</h3>
+                                        }
+                                        {provided.placeholder}
+                                    </ul>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                        :
+                        <h4>No Questions Found</h4>
+                }
+            </div>
 
 
         </div >

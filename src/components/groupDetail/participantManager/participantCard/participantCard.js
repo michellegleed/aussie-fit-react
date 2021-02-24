@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import { fetchRequest } from '../../../../utils/fetchRequest';
 
+import CloseIcon from '../../../icons/close';
+import PencilIcon from '../../../icons/pencil';
+
 function ParticipantCard(props) {
 
     const history = useHistory();
@@ -49,8 +52,8 @@ function ParticipantCard(props) {
                 <div>
                     <p>{`${participant.first_name} ${participant.last_name}`}</p>
                     <div>
-                        <button onClick={() => editParticipant(participant.id)}>edit</button>
-                        <button onClick={() => deleteParticipant(participant.id)}>X</button>
+                        <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
+                        <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
                     </div>
                 </div>
             </div>

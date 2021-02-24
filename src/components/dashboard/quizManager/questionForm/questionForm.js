@@ -3,6 +3,7 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import { useHistory } from 'react-router-dom';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
+import CloseIcon from '../../../icons/close';
 
 function QuestionForm(props) {
 
@@ -51,8 +52,8 @@ function QuestionForm(props) {
     }
 
     return (
-        <div>
-            { questionDetails ?
+        questionDetails ?
+            <div className="modal-form">
                 <form>
                     <h1>{index != null ? "Edit Question" : "New Question"}</h1>
                     <div className="error-message">
@@ -64,7 +65,7 @@ function QuestionForm(props) {
                         }
                     </div>
                     <button id="close-button" onClick={() => displayQuestionForm(false)}>
-                        <p>X</p>
+                        <CloseIcon />
                     </button>
                     <div className="form-item">
                         <label htmlFor="question">Question:</label>
@@ -98,10 +99,9 @@ function QuestionForm(props) {
                         Save
                 </button>
                 </form>
-                :
-                null
-            }
-        </div>
+            </div>
+            :
+            null
     )
 }
 

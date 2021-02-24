@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Datetime from 'react-datetime';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
+import CloseIcon from '../../../icons/close';
 
 function ClassForm(props) {
 
@@ -86,7 +87,7 @@ function ClassForm(props) {
                     }
                 </div>
                 <button id="close-button" onClick={() => displayClassForm(false)}>
-                    <p>X</p>
+                    <CloseIcon />
                 </button>
                 <div className="form-item">
                     <label htmlFor="title">Title:</label>

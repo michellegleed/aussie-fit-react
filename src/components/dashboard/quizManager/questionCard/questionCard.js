@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import CloseIcon from '../../../icons/close';
+import PencilIcon from '../../../icons/pencil';
 
 function QuestionCard(props) {
 
     const { question, index, editQuestion, deleteQuestion } = props;
 
     return (
-        <div>
-            <div>
-                <button onClick={() => editQuestion(index)}>edit</button>
-                <button onClick={() => deleteQuestion(index)}>X</button>
+        <div className="card">
+            <div className="card-buttons">
+                <button onClick={() => editQuestion(index)}><PencilIcon /></button>
+                <button onClick={() => deleteQuestion(index)}><CloseIcon /></button>
             </div>
             <p>{question.question}</p>
             <p>Yes: {question.yesAction != "" ? question.yesAction : "(No message)"}</p>

@@ -3,6 +3,7 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import { useHistory } from 'react-router-dom';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
+import CloseIcon from '../../../icons/close';
 
 function GroupForm(props) {
 
@@ -66,6 +67,11 @@ function GroupForm(props) {
     return (
         <div className="modal-form">
             <form>
+                <div className="card-buttons">
+                    <button id="close-button" onClick={() => displayGroupForm(false)}>
+                        <CloseIcon />
+                    </button>
+                </div>
                 <h1>{group.id ? `Edit ${group.group_name}` : "New Group"}</h1>
                 <div className="error-message">
                     {
@@ -75,9 +81,6 @@ function GroupForm(props) {
                             null
                     }
                 </div>
-                <button id="close-button" onClick={() => displayGroupForm(false)}>
-                    <p>X</p>
-                </button>
                 <div className="form-item">
                     <label htmlFor="group_name">Group Name:</label>
                     <input

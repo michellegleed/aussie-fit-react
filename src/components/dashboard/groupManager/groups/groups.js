@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-
 import { fetchRequest } from '../../../../utils/fetchRequest'
 import GroupForm from '../groupForm/groupForm';
 import GroupCard from '../groupCard/groupCard';
+import PlusIcon from '../../../icons/plus';
 
 function Groups() {
 
@@ -47,17 +47,19 @@ function Groups() {
     }
 
     return (
-        <div>
+        <div id="group-section">
             <div className="section-title">
                 <h1>Groups</h1>
-                <button onClick={() => displayGroupForm(true)}><img src="/icons/plus.svg" alt="New Group" /></button>
+                <button onClick={() => displayGroupForm(true)}><PlusIcon /></button>
             </div>
-            {
-                groupList != null && groupList.length > 0 ?
-                    groupList.map(group => <GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
-                    :
-                    <h4>No groups found</h4>
-            }
+            <div className="card-container">
+                {
+                    groupList != null && groupList.length > 0 ?
+                        groupList.map(group => <GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
+                        :
+                        <h4>No groups found</h4>
+                }
+            </div>
             {
                 showGroupForm ?
                     <GroupForm displayGroupForm={displayGroupForm} group={populateGroupForm()} refetchGroupList={refetchGroupList} />

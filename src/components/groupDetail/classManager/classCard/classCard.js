@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import { fetchRequest } from '../../../../utils/fetchRequest';
 
+import CloseIcon from '../../../icons/close';
+import PencilIcon from '../../../icons/pencil';
+
 function ClassCard(props) {
 
     const history = useHistory();
@@ -64,8 +67,8 @@ function ClassCard(props) {
                     <Moment format="h:mma">{session.time}</Moment>
                     <p>{getClassStatus(session)}</p>
                     <div>
-                        <button onClick={() => editClass(session.id)}>edit</button>
-                        <button onClick={() => deleteClass(session.id)}>X</button>
+                        <button onClick={() => editClass(session.id)}><PencilIcon /></button>
+                        <button onClick={() => deleteClass(session.id)}><CloseIcon /></button>
                     </div>
                 </div>
             </div>

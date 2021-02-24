@@ -4,6 +4,8 @@ import Moment from 'react-moment';
 import { fetchRequest } from '../../../../utils/fetchRequest';
 
 import QRCodeUrls from '../../qrCodeUrls/qrCodeUrls';
+import CloseIcon from '../../../icons/close';
+import PencilIcon from '../../../icons/pencil';
 
 function GroupCard(props) {
 
@@ -15,6 +17,10 @@ function GroupCard(props) {
 
     const getQRCode = () => {
         setShowQRCodeComponent(true);
+    }
+
+    const closeQRModal = () => {
+        setShowQRCodeComponent(false);
     }
 
     const [deleteGroupID, setDeleteGroupID] = useState();
@@ -54,16 +60,14 @@ function GroupCard(props) {
             }
             {
                 showQRComponent ?
-                    <QRCodeUrls groupID={group.id} />
+                    <QRCodeUrls groupID={group.id} closeModal={closeQRModal} />
                     :
                     null
             }
             <div className="card-buttons">
-                <button onClick={() => getQRCode()}>QR Code</button>
-                <div>
-                    <button onClick={() => editGroup(group.id)}><img src="/icons/pencil.svg" alt="Edit Group" /></button>
-                    <button onClick={() => deleteGroup(group.id)}><img src="/icons/close.svg" alt="Delete Group" /></button>
-                </div>
+                <button onClick={() => editGroup(group.id)}><PencilIcon /></button>
+                {/* <button onClick={() => deleteGroup(group.id)}><img src="/icons/close.svg" alt="Delete Group" /></button> */}
+                <button onClick={() => deleteGroup(group.id)}><CloseIcon /></button>
             </div>
             <Link to={`/admin/${group.id}/`}>
                 <div className="card-content">
@@ -84,6 +88,9 @@ function GroupCard(props) {
                     }
                 </div>
             </Link>
+            <div className="card-buttons">
+                <button onClick={() => getQRCode()}>QR Code</button>
+            </div>
         </div>
     )
 }

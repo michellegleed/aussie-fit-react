@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import ClassCard from '../classCard/classCard';
 import ClassForm from '../classForm/classForm';
+import PlusIcon from '../../../icons/plus';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
 
