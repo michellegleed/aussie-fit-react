@@ -6,6 +6,10 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import QRCodeUrls from '../../qrCodeUrls/qrCodeUrls';
 import CloseIcon from '../../../icons/close';
 import PencilIcon from '../../../icons/pencil';
+import UsersIcon from '../../../icons/users';
+
+import './groupCard.css';
+import QRCodeIcon from '../../../icons/qrCode';
 
 function GroupCard(props) {
 
@@ -72,8 +76,11 @@ function GroupCard(props) {
             <Link to={`/admin/${group.id}/`}>
                 <div className="card-content">
                     <div>
+                        <div className="participants-icon">
+                            <UsersIcon color="orange" />
+                            <p>{group.number_of_participants}</p>
+                        </div>
                         <h2>{group.group_name}</h2>
-                        <p>{group.number_of_participants}</p>
                     </div>
 
                     <p>Next Session:</p>
@@ -89,7 +96,7 @@ function GroupCard(props) {
                 </div>
             </Link>
             <div className="card-buttons">
-                <button onClick={() => getQRCode()}>QR Code</button>
+                <button onClick={() => getQRCode()}><QRCodeIcon /></button>
             </div>
         </div>
     )
