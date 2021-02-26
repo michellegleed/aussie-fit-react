@@ -68,7 +68,7 @@ function GroupCard(props) {
                     :
                     null
             }
-            <div className="card-buttons">
+            <div className="card-buttons edit-buttons">
                 <button onClick={() => editGroup(group.id)}><PencilIcon /></button>
                 {/* <button onClick={() => deleteGroup(group.id)}><img src="/icons/close.svg" alt="Delete Group" /></button> */}
                 <button onClick={() => deleteGroup(group.id)}><CloseIcon /></button>
@@ -95,7 +95,7 @@ function GroupCard(props) {
                     }
                 </div>
             </Link>
-            <div className="card-buttons">
+            <div className="card-buttons qr-button">
                 <button onClick={() => getQRCode()}><QRCodeIcon /></button>
             </div>
         </div>

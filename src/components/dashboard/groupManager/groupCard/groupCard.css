@@ -33,3 +33,11 @@
   margin-top: 20px;
   font-weight: bold;
 }
+
+.edit-buttons {
+  margin-bottom: -24px;
+}
+
+.qr-button {
+  margin-top: -52px;
+}
