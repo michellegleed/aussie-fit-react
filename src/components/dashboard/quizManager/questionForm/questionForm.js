@@ -53,7 +53,7 @@ function QuestionForm(props) {
 
     return (
         questionDetails ?
-            <div className="modal-form">
+            <div className="modal">
                 <form>
                     <h1>{index != null ? "Edit Question" : "New Question"}</h1>
                     <div className="error-message">

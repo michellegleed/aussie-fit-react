@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import CloseIcon from '../../icons/close';
+
 function QRCodeUrls(props) {
 
     const { groupID, closeModal } = props;
@@ -14,8 +16,8 @@ function QRCodeUrls(props) {
     }, []);
 
     return (
-        <div className="modal-form">
-            <div id="qr-code-modal">
+        <div className="modal">
+            <div className="modal-content">
                 <div className="card-buttons">
                     <button id="close-button" onClick={() => closeModal()}>
                         <CloseIcon />

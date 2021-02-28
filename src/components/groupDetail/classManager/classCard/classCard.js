@@ -6,6 +6,8 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import CloseIcon from '../../../icons/close';
 import PencilIcon from '../../../icons/pencil';
 
+import './classCard.css';
+
 function ClassCard(props) {
 
     const history = useHistory();
@@ -48,31 +50,30 @@ function ClassCard(props) {
     }
 
     return (
-        <React.Fragment>
+        <div className="class-card">
             {
                 deleteClassID ?
-                    <div>
-                        <h4>Permanently delete {session.title}?</h4>
-                        <button onClick={() => deleteData()}>OK</button>
-                        <button onClick={() => setDeleteClassID(null)}>Cancel</button>
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h4>Permanently delete {session.title}?</h4>
+                            <button onClick={() => deleteData()}>OK</button>
+                            <button onClick={() => setDeleteClassID(null)}>Cancel</button>
+                        </div>
                     </div>
                     :
                     null
             }
-            <div>
-                <div>
-                    <p>{session.title}</p>
-                    <Moment format="DD/MM/YY">{session.time}</Moment>
-                    <br></br>
-                    <Moment format="h:mma">{session.time}</Moment>
-                    <p>{getClassStatus(session)}</p>
-                    <div>
-                        <button onClick={() => editClass(session.id)}><PencilIcon /></button>
-                        <button onClick={() => deleteClass(session.id)}><CloseIcon /></button>
-                    </div>
+            <div className="table-row">
+                <p>{session.title}</p>
+                <Moment format="DD/MM/YY">{session.time}</Moment>
+                <Moment format="h:mma">{session.time}</Moment>
+                <p>{getClassStatus(session)}</p>
+                <div className="card-buttons edit-buttons">
+                    <button onClick={() => editClass(session.id)}><PencilIcon /></button>
+                    <button onClick={() => deleteClass(session.id)}><CloseIcon /></button>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
 
+:root {
+  --darkHeading: #232323;
+  --lightHeading: #ffffff;
+  --darkBG: #232323;
+  --lightBG: #fff;
+  --card1: orange;
+  --card2: rgb(25, 154, 240);
+  --card3: rgb(7, 194, 7);
+  --card4: purple;
+  --hoverAccent1: #565656;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +45,7 @@ button {
   justify-content: space-between;
 }
 
-.card {
+/* .card {
   margin: 4vh 0;
   border: 2px solid #eb8809;
   color: #eb8809;
@@ -56,11 +68,12 @@ button:hover path {
 
 .card-content {
   margin: 24px 0;
-}
+} */
 
-.modal-form {
+.modal {
   position: fixed;
   top: 0;
+  z-index: 10;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -70,10 +83,28 @@ button:hover path {
   align-items: center;
 }
 
-.modal-form form,
-#qr-code-modal {
+.modal form,
+.modal-content {
   background-color: white;
   padding: 5vh;
+  border-radius: 10px;
+}
+
+.table-row {
+  width: 66vw;
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  padding: 4px 8px;
+}
+
+.class-card:nth-child(2n) {
+  background-color: #efefef;
+  border-radius: 10px;
+}
+
+.class-card:nth-child(2n + 1) {
+  background-color: #dedede;
   border-radius: 10px;
 }
 

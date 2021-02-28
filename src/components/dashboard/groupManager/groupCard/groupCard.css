@@ -4,6 +4,54 @@
   scale: 3;
 } */
 
+.card {
+  margin: 4vh 0;
+  border: 2px solid;
+  padding: 2vh;
+  border-radius: 10px;
+}
+
+.card:nth-child(4n),
+.card:nth-child(4n) svg {
+  color: var(--card1);
+}
+
+.card:nth-child(4n + 1),
+.card:nth-child(4n + 1) svg {
+  color: var(--card2);
+}
+
+.card:nth-child(4n + 2),
+.card:nth-child(4n + 2) svg {
+  color: var(--card3);
+}
+
+.card:nth-child(4n + 3),
+.card:nth-child(4n + 3) svg {
+  color: var(--card4);
+}
+
+.card svg {
+  fill: currentColor;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-buttons button {
+  border: none;
+}
+
+button:hover path {
+  fill: tomato;
+}
+
+.card-content {
+  margin: 24px 0;
+}
+
 .participants-icon {
   display: grid;
   grid-template-columns: 100%;
@@ -20,7 +68,6 @@
   justify-self: center;
   align-self: center;
   scale: 2;
-  z-index: 1;
 }
 
 .participants-icon p {
@@ -29,7 +76,7 @@
   justify-self: center;
   align-self: center;
   color: white;
-  z-index: 5;
+  z-index: 1;
   margin-top: 20px;
   font-weight: bold;
 }

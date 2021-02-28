@@ -37,27 +37,27 @@ function ParticipantCard(props) {
     }
 
     return (
-        <React.Fragment>
+        <div className="class-card">
             {
                 deleteParticipantID ?
-                    <div>
-                        <h4>{`Permanently delete ${participant.first_name} ${participant.last_name}?`}</h4>
-                        <button onClick={() => deleteData()}>OK</button>
-                        <button onClick={() => setDeleteParticipantID(null)}>Cancel</button>
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h4>{`Permanently delete ${participant.first_name} ${participant.last_name}?`}</h4>
+                            <button onClick={() => deleteData()}>OK</button>
+                            <button onClick={() => setDeleteParticipantID(null)}>Cancel</button>
+                        </div>
                     </div>
                     :
                     null
             }
-            <div>
+            <div className="table-row">
+                <p>{`${participant.first_name} ${participant.last_name}`}</p>
                 <div>
-                    <p>{`${participant.first_name} ${participant.last_name}`}</p>
-                    <div>
-                        <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
-                        <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
-                    </div>
+                    <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
+                    <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

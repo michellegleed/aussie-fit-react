@@ -65,7 +65,7 @@ function GroupForm(props) {
     }
 
     return (
-        <div className="modal-form">
+        <div className="modal">
             <form>
                 <div className="card-buttons">
                     <button id="close-button" onClick={() => displayGroupForm(false)}>
