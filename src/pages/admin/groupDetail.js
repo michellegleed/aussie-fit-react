@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Classes from '../../../components/groupDetail/classManager/classes/classes';
-import Participants from '../../../components/groupDetail/participantManager/participants/participants';
+import Classes from '../../components/groupDetail/classManager/classes/classes';
+import Participants from '../../components/groupDetail/participantManager/participants/participants';
 
-import { fetchRequest } from '../../../utils/fetchRequest';
+import { fetchRequest } from '../../utils/fetchRequest';
 
 
 function GroupDetail() {

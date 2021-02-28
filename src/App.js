@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 import Nav from './components/nav/nav';
-import Dashboard from './pages/admin/dashboard/dashboard';
+import Dashboard from './pages/admin/dashboard';
 import LoginPage from './pages/login';
 import AttendancePage from './pages/attendance';
 import QuestionsPage from './pages/questions';
-import GroupDetail from './pages/admin/groupDetail/groupDetail';
+import GroupDetail from './pages/admin/groupDetail';
+import ParticipantDetail from './pages/admin/participantDetail';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
               </Route>
               <Route path="/login">
                 <LoginPage />
+              </Route>
+              <Route path="/admin/participant/:id">
+                <ParticipantDetail />
               </Route>
               <Route path="/admin/:id">
                 <GroupDetail />

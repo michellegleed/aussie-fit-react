@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import ErrorMessage from '../../errorMessage/errorMessage';
 import { fetchRequest } from '../../../utils/fetchRequest';
 
 function NameForm(props) {
@@ -11,34 +12,43 @@ function NameForm(props) {
 
     const [participantID, setParticipantID] = useState();
 
+    const [errorMessage, setErrorMessage] = useState();
+
     const history = useHistory();
 
-    const registerAttendance = () => {
-        fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participantID}/class/${classID}`)
-        history.push("/check-in");
+    const registerAttendance = (e) => {
+        e.preventDefault();
+        if (participantID != null) {
+            fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participantID}/class/${classID}`)
+            history.push("/check-in");
+        }
+        else {
+            setErrorMessage("Choose your name from the list to continue")
+        }
     }
-
-    // const participants = [
-    //     { first_name: "Evie", last_name: "Smith" },
-    //     { first_name: "Mako", last_name: "Edwards" },
-    //     { first_name: "Billy", last_name: "Smith" },
-    //     { first_name: "Ruby", last_name: "Smith" },
-    // ]
 
     return (
         <form autocomplete="off">
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
             <section>
                 <label for="participant">Name:</label>
                 <Autocomplete
-                    id="combo-box-demo"
+                    id="participant"
                     options={participants}
                     getOptionLabel={(option) => option.first_name + " " + option.last_name}
                     style={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} variant="outlined" autocomplete="off" />}
-                    onChange={(e, value) => setParticipantID(value.id)}
+                    onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                 />
             </section>
-            <button onClick={registerAttendance}>Next</button>
+            <button onClick={e => registerAttendance(e)}>Next</button>
         </form>
     )
 }

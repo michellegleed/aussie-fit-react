@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { fetchRequest } from '../../utils/fetchRequest';
+import SearchForm from '../dashboard/searchForm/searchForm';
 import CloseIcon from '../icons/close';
 import MenuIcon from '../icons/menu';
 
@@ -24,7 +25,7 @@ function Nav() {
                     setIsAdmin(result.data.is_admin);
                 }
                 else {
-                    console.log("couldn't het user permissions");
+                    console.log("couldn't get user permissions");
                 }
             })
     }
@@ -74,6 +75,9 @@ function Nav() {
                             </div>
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                                 <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`}>Download Attendance Data</a>
+                            </div>
+                            <div>
+                                <SearchForm />
                             </div>
                         </React.Fragment>
                         :
