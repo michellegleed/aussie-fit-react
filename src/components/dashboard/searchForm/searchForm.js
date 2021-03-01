@@ -4,6 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { fetchRequest } from '../../../utils/fetchRequest';
 
+import './searchForm.css';
+import SearchIcon from '../../icons/search';
+
 function SearchForm() {
 
     const [participantList, setParticipantList] = useState();
@@ -33,19 +36,19 @@ function SearchForm() {
 
     return (
         participantList != null ?
-            <form autoComplete="off">
+            <form id="search-form" autoComplete="off">
                 <section>
-                    <label htmlFor="search-box">Name:</label>
                     <Autocomplete
                         id="search-box"
                         options={participantList}
                         getOptionLabel={(option) => option.first_name + " " + option.last_name}
-                        style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" />}
+                        style={{ width: 220 }}
+                        size="small"
+                        renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" label="Search Participants" />}
                         onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                     />
                 </section>
-                <button onClick={viewParticipantPage}>Go</button>
+                <button onClick={viewParticipantPage}><SearchIcon /></button>
             </form>
             :
             null

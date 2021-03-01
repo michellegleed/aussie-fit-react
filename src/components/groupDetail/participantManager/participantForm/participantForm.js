@@ -141,17 +141,6 @@ function participantForm(props) {
                         null
                     }
                 </div>
-                <div className="form-item">
-                    <label htmlFor="attendance">Attendance Record:</label>
-                    { }
-                    <input
-                        type="text"
-                        id="last_name"
-                        value={participantDetails.last_name}
-                        onChange={handleChange}
-                    />
-                </div>
-
 
                 <button type="submit" onClick={handleSubmit}>
                     Save

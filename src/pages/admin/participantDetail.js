@@ -7,6 +7,7 @@ import CloseIcon from '../../components/icons/close';
 import { fetchRequest } from '../../utils/fetchRequest';
 import ParticipantForm from '../../components/groupDetail/participantManager/participantForm/participantForm';
 import EditAttendanceForm from '../../components/groupDetail/participantManager/editAttendanceForm/editAttendanceForm';
+import CalendarIcon from '../../components/icons/calendar';
 
 
 function ParticipantDetail() {
@@ -89,20 +90,24 @@ function ParticipantDetail() {
                 }
                 <h1>{participantData.first_name} {participantData.last_name}</h1>
                 <div className="card-buttons edit-buttons">
+                    <button onClick={() => displayEditAttendanceForm(true)}><CalendarIcon /></button>
                     <button onClick={() => displayParticipantForm(true)}><PencilIcon /></button>
                     <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
                 </div>
-                <button onClick={() => displayEditAttendanceForm(true)}>Show Edit Attendance Form</button>
-                <h4>{groupData.group_name}</h4>
+                <h2>{groupData.group_name}</h2>
                 {
                     classList ?
-                        <React.Fragment>
-                            <h2>Attended:</h2>
-                            {participantData.attended.map(session => <h4 key={`${session}-attended`}>{getSessionTitle(session)}</h4>)}
-                            <h2>Absent:</h2>
-                            {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
-                            {participantData.absent.map(session => <h4 key={`${session}-absent`}>{getSessionTitle(session)}</h4>)}
-                        </React.Fragment>
+                        <div className="card-container">
+                            <div>
+                                <h4>Attended:</h4>
+                                {participantData.attended.map(session => <p key={`${session}-attended`}>{getSessionTitle(session)}</p>)}
+                            </div>
+                            <div>
+                                <h4>Absent:</h4>
+                                {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
+                                {participantData.absent.map(session => <p key={`${session}-absent`}>{getSessionTitle(session)}</p>)}
+                            </div>
+                        </div>
                         :
                         null
                 }

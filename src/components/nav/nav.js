@@ -76,7 +76,7 @@ function Nav() {
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                                 <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`}>Download Attendance Data</a>
                             </div>
-                            <div>
+                            <div className="nav-item">
                                 <SearchForm />
                             </div>
                         </React.Fragment>

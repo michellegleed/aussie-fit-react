@@ -55,7 +55,7 @@ function Groups() {
             <div className="card-container">
                 {
                     groupList != null && groupList.length > 0 ?
-                        groupList.map(group => <GroupCard group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
+                        groupList.map(group => <GroupCard key={group.id} group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
                         :
                         <h4>No groups found</h4>
                 }
