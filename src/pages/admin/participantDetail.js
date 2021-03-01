@@ -98,10 +98,10 @@ function ParticipantDetail() {
                     classList ?
                         <React.Fragment>
                             <h2>Attended:</h2>
-                            {participantData.attended.map(session => <h4>{getSessionTitle(session)}</h4>)}
+                            {participantData.attended.map(session => <h4 key={`${session}-attended`}>{getSessionTitle(session)}</h4>)}
                             <h2>Absent:</h2>
                             {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
-                            {participantData.absent.map(session => <h4>{getSessionTitle(session)}</h4>)}
+                            {participantData.absent.map(session => <h4 key={`${session}-absent`}>{getSessionTitle(session)}</h4>)}
                         </React.Fragment>
                         :
                         null

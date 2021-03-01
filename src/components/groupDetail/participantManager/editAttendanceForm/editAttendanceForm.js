@@ -97,14 +97,14 @@ function EditAttendanceForm(props) {
                 </button>
                 {
                     classList != null ?
-                        classList.map(session => <div className="form-item" key={session.id} onChange={handleChange}>
+                        classList.map(session => <div className="form-item" key={session.id}>
                             <h4>{session.title}</h4>
                             <input
                                 type="radio"
                                 name={session.id}
                                 id={`${session.id}-true`}
                                 value={true}
-                                // onChange={handleChange}
+                                onChange={handleChange}
                                 checked={attended.includes(session.id)}
                             />
                             <label htmlFor="attended">Attended</label>
@@ -113,7 +113,7 @@ function EditAttendanceForm(props) {
                                 name={session.id}
                                 id={`${session.id}-false`}
                                 value={false}
-                                // onChange={handleChange}
+                                onChange={handleChange}
                                 checked={absent.includes(session.id)}
                             />
                             <label htmlFor="absent">Absent</label>

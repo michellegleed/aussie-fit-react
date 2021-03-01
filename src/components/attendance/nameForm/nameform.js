@@ -28,7 +28,7 @@ function NameForm(props) {
     }
 
     return (
-        <form autocomplete="off">
+        <form autoComplete="off">
             <div className="error-message">
                 {
                     errorMessage ?
@@ -38,13 +38,13 @@ function NameForm(props) {
                 }
             </div>
             <section>
-                <label for="participant">Name:</label>
+                <label htmlFor="participant">Name:</label>
                 <Autocomplete
                     id="participant"
                     options={participants}
                     getOptionLabel={(option) => option.first_name + " " + option.last_name}
                     style={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} variant="outlined" autocomplete="off" />}
+                    renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" />}
                     onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                 />
             </section>

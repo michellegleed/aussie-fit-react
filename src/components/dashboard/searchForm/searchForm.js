@@ -33,15 +33,15 @@ function SearchForm() {
 
     return (
         participantList != null ?
-            <form autocomplete="off">
+            <form autoComplete="off">
                 <section>
-                    <label for="search-box">Name:</label>
+                    <label htmlFor="search-box">Name:</label>
                     <Autocomplete
                         id="search-box"
                         options={participantList}
                         getOptionLabel={(option) => option.first_name + " " + option.last_name}
                         style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} variant="outlined" autocomplete="off" />}
+                        renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" />}
                         onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                     />
                 </section>
