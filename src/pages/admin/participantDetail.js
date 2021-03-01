@@ -13,6 +13,7 @@ function ParticipantDetail() {
 
     const [participantData, setParticipantData] = useState();
     const [groupData, setGroupData] = useState();
+    const [classList, setClassList] = useState();
     const [showParticipantForm, setShowParticipantForm] = useState(false);
     const [refetchParticipant, setRefetchParticipant] = useState(0);
     const [showEditAttendanceForm, setShowEditAttendanceForm] = useState(false);
@@ -33,6 +34,25 @@ function ParticipantDetail() {
             });
     }, [refetchParticipant]);
 
+    useEffect(() => {
+        groupData != null ?
+            fetchRequest(`${process.env.REACT_APP_API_URL}groups/${groupData.id}/`)
+                .then(result => {
+                    console.log("result is", result)
+                    if (result.ok) {
+                        setClassList(result.data.classes)
+                    } else if (result.status == 400) {
+                        // the API returned an error - do something with it
+                        // console.error(data);
+                        setErrorMessage("No classes found for participant's group.");
+                    }
+                })
+                // .catch(error => history.push("/network-error"))
+                .catch(error => setErrorMessage(error.message))
+            :
+            null
+    }, [groupData]);
+
     const displayParticipantForm = (bool) => {
         setShowParticipantForm(bool);
     }
@@ -43,6 +63,13 @@ function ParticipantDetail() {
 
     const displayEditAttendanceForm = (bool) => {
         setShowEditAttendanceForm(bool);
+    }
+
+    const getSessionTitle = (classID) => {
+        if (classList != null) {
+            const currentSession = classList.filter(session => session.id === classID);
+            return currentSession[0].title
+        }
     }
 
     return (
@@ -56,7 +83,7 @@ function ParticipantDetail() {
                 }
                 {
                     showEditAttendanceForm ?
-                        <EditAttendanceForm groupID={groupData.id} participant={participantData} group={groupData} displayEditAttendanceForm={displayEditAttendanceForm} refetchParticipant={refetchParticipantData} />
+                        <EditAttendanceForm participant={participantData} classList={classList} displayEditAttendanceForm={displayEditAttendanceForm} refetchParticipant={refetchParticipantData} />
                         :
                         null
                 }
@@ -67,10 +94,19 @@ function ParticipantDetail() {
                 </div>
                 <button onClick={() => displayEditAttendanceForm(true)}>Show Edit Attendance Form</button>
                 <h4>{groupData.group_name}</h4>
-                <h2>Attended:</h2>
-                {participantData.attended.map(session => <h4>{session}</h4>)}
-                <h2>Absent:</h2>
-                {participantData.absent.map(session => <h4>{session}</h4>)}
+                {
+                    classList ?
+                        <React.Fragment>
+                            <h2>Attended:</h2>
+                            {participantData.attended.map(session => <h4>{getSessionTitle(session)}</h4>)}
+                            <h2>Absent:</h2>
+                            {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
+                            {participantData.absent.map(session => <h4>{getSessionTitle(session)}</h4>)}
+                        </React.Fragment>
+                        :
+                        null
+                }
+
             </div >
             :
             null

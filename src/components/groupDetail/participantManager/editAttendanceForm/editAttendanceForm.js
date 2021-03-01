@@ -8,11 +8,10 @@ import CloseIcon from '../../../icons/close';
 
 function EditAttendanceForm(props) {
 
-    const { group, participant, displayEditAttendanceForm, refetchParticipant } = props;
+    const { classList, participant, displayEditAttendanceForm, refetchParticipant } = props;
 
     const [errorMessage, setErrorMessage] = useState();
 
-    const [classList, setClassList] = useState();
     const [attended, setAttended] = useState(participant.attended);
     const [absent, setAbsent] = useState(participant.absent);
 
@@ -54,21 +53,7 @@ function EditAttendanceForm(props) {
         }));
     }
 
-    useEffect(() => {
-        fetchRequest(`${process.env.REACT_APP_API_URL}groups/${participant.group}/`)
-            .then(result => {
-                console.log("result is", result)
-                if (result.ok) {
-                    setClassList(result.data.classes)
-                } else if (result.status == 400) {
-                    // the API returned an error - do something with it
-                    // console.error(data);
-                    setErrorMessage("No classes found for participant's group.");
-                }
-            })
-            // .catch(error => history.push("/network-error"))
-            .catch(error => setErrorMessage(error.message))
-    }, []);
+
 
     const putData = async () => {
         const attendanceDetails = {
