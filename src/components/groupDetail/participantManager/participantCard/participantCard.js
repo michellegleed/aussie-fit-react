@@ -52,7 +52,7 @@ function ParticipantCard(props) {
             }
             <div className="table-row">
                 <p>{`${participant.first_name} ${participant.last_name}`}</p>
-                <div>
+                <div className="card-buttons edit-buttons">
                     <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
                     <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
                 </div>
