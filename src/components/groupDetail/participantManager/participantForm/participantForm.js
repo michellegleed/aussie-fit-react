@@ -50,12 +50,12 @@ function participantForm(props) {
         }));
     }
 
-    const handleDate = (date) => {
-        setParticipantDetails((prevDetails) => ({
-            ...prevDetails,
-            time: date,
-        }));
-    }
+    // const handleDate = (date) => {
+    //     setParticipantDetails((prevDetails) => ({
+    //         ...prevDetails,
+    //         time: date,
+    //     }));
+    // }
 
     const postData = async () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/`, "POST", participantDetails)
@@ -140,6 +140,16 @@ function participantForm(props) {
                         :
                         null
                     }
+                </div>
+                <div className="form-item">
+                    <label htmlFor="attendance">Attendance Record:</label>
+                    { }
+                    <input
+                        type="text"
+                        id="last_name"
+                        value={participantDetails.last_name}
+                        onChange={handleChange}
+                    />
                 </div>
 
 

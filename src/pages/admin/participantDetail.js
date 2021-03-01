@@ -6,14 +6,16 @@ import CloseIcon from '../../components/icons/close';
 
 import { fetchRequest } from '../../utils/fetchRequest';
 import ParticipantForm from '../../components/groupDetail/participantManager/participantForm/participantForm';
+import EditAttendanceForm from '../../components/groupDetail/participantManager/editAttendanceForm/editAttendanceForm';
 
 
 function ParticipantDetail() {
 
     const [participantData, setParticipantData] = useState();
     const [groupData, setGroupData] = useState();
-    const [showparticipantForm, setShowparticipantForm] = useState(false);
-    const [refetchParticipants, setRefetchParticipants] = useState(0);
+    const [showParticipantForm, setShowParticipantForm] = useState(false);
+    const [refetchParticipant, setRefetchParticipant] = useState(0);
+    const [showEditAttendanceForm, setShowEditAttendanceForm] = useState(false);
 
     const { id } = useParams();
 
@@ -26,25 +28,35 @@ function ParticipantDetail() {
                 }
                 else {
                     history.push("/notfound");
-                    console.log("no participant data")
+                    console.log("no participant data");
                 }
             });
-    }, [refetchParticipants]);
+    }, [refetchParticipant]);
 
     const displayParticipantForm = (bool) => {
-        setShowparticipantForm(bool);
+        setShowParticipantForm(bool);
     }
 
-    const refetchParticipantList = () => {
-        setRefetchParticipants((prevState) => prevState + 1)
+    const refetchParticipantData = () => {
+        setRefetchParticipant((prevState) => prevState + 1);
+    }
+
+    const displayEditAttendanceForm = (bool) => {
+        setShowEditAttendanceForm(bool);
     }
 
     return (
         participantData && groupData ?
             <div>
                 {
-                    showparticipantForm ?
-                        <ParticipantForm groupID={groupData.id} participant={participantData} displayParticipantForm={displayParticipantForm} refetchParticipantList={refetchParticipantList} />
+                    showParticipantForm ?
+                        <ParticipantForm groupID={groupData.id} participant={participantData} displayParticipantForm={displayParticipantForm} refetchParticipant={refetchParticipantData} />
+                        :
+                        null
+                }
+                {
+                    showEditAttendanceForm ?
+                        <EditAttendanceForm groupID={groupData.id} participant={participantData} group={groupData} displayEditAttendanceForm={displayEditAttendanceForm} refetchParticipant={refetchParticipantData} />
                         :
                         null
                 }
@@ -53,6 +65,7 @@ function ParticipantDetail() {
                     <button onClick={() => displayParticipantForm(true)}><PencilIcon /></button>
                     <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
                 </div>
+                <button onClick={() => displayEditAttendanceForm(true)}>Show Edit Attendance Form</button>
                 <h4>{groupData.group_name}</h4>
                 <h2>Attended:</h2>
                 {participantData.attended.map(session => <h4>{session}</h4>)}

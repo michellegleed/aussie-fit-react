@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import { fetchRequest } from '../../../../utils/fetchRequest';
 
@@ -50,14 +50,18 @@ function ParticipantCard(props) {
                     :
                     null
             }
-            <div className="table-row">
-                <p>{`${participant.first_name} ${participant.last_name}`}</p>
-                <div className="card-buttons edit-buttons">
-                    <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
-                    <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
+            <Link to={`/admin/participant/${participant.id}`}>
+                <div className="table-row">
+
+                    <p>{`${participant.first_name} ${participant.last_name}`}</p>
+                    <div className="card-buttons edit-buttons">
+                        <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
+                        <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
+                    </div>
+
                 </div>
-            </div>
-        </div>
+            </Link>
+        </div >
     )
 }
 
