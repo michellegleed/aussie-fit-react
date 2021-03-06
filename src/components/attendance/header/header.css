@@ -1,0 +1,12 @@
+#attendance-header h1,
+#attendance-header h2 {
+  margin: 16px 0 8px 0;
+}
+
+#attendance-header h1 {
+  font-size: 48px;
+}
+
+#attendance-header {
+  margin: 10vh 0;
+}

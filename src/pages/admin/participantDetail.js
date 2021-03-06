@@ -37,11 +37,11 @@ function ParticipantDetail() {
 
     useEffect(() => {
         groupData != null ?
-            fetchRequest(`${process.env.REACT_APP_API_URL}groups/${groupData.id}/`)
+            fetchRequest(`${process.env.REACT_APP_API_URL}classes/`)
                 .then(result => {
                     console.log("result is", result)
                     if (result.ok) {
-                        setClassList(result.data.classes)
+                        setClassList(result.data)
                     } else if (result.status == 400) {
                         // the API returned an error - do something with it
                         // console.error(data);
@@ -69,7 +69,7 @@ function ParticipantDetail() {
     const getSessionTitle = (classID) => {
         if (classList != null) {
             const currentSession = classList.filter(session => session.id === classID);
-            return currentSession[0].title
+            return [currentSession[0].title, currentSession[0].time]
         }
     }
 
@@ -97,15 +97,24 @@ function ParticipantDetail() {
                 <h2>{groupData.group_name}</h2>
                 {
                     classList ?
-                        <div className="card-container">
+                        <div className="detail-container">
                             <div>
                                 <h4>Attended:</h4>
-                                {participantData.attended.map(session => <p key={`${session}-attended`}>{getSessionTitle(session)}</p>)}
+                                {participantData.attended.map(session =>
+                                    <div className="class-item" key={`${session}-attended`}>
+                                        <h5>{getSessionTitle(session)[0]}</h5>
+                                        <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                    </div>
+                                )}
                             </div>
                             <div>
                                 <h4>Absent:</h4>
                                 {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
-                                {participantData.absent.map(session => <p key={`${session}-absent`}>{getSessionTitle(session)}</p>)}
+                                {participantData.absent.map(session =>
+                                    <div className="class-item" key={`${session}-absent`}>
+                                        <h5>{getSessionTitle(session)[0]}</h5>
+                                        <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                    </div>)}
                             </div>
                         </div>
                         :

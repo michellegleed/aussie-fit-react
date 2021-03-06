@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Moment from 'react-moment';
 
+import './header.css';
+
 function Header(props) {
 
     const { groupName, nextClass } = props;
@@ -10,7 +12,7 @@ function Header(props) {
     }, [])
 
     return (
-        <div>
+        <div id="attendance-header">
             <h1>{groupName}</h1>
             {nextClass != null ?
                 <div>

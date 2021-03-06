@@ -2,7 +2,7 @@
   margin-bottom: 0;
 }
 
-.class-card:nth-child(4n),
+/* .class-card:nth-child(4n),
 .class-card:nth-child(4n) svg {
   color: var(--card1);
 }
@@ -20,8 +20,24 @@
 .class-card:nth-child(4n + 3),
 .class-card:nth-child(4n + 3) svg {
   color: var(--card4);
-}
+} */
 
 .class-card svg {
   fill: currentColor;
+}
+
+.class-card .table-row > * {
+  width: 20%;
+}
+
+.class-card:nth-child(2n) {
+  background-color: var(--card4);
+  opacity: 0.65;
+  color: var(--lightHeading);
+}
+
+.class-card:nth-child(2n + 1) {
+  background-color: var(--card4);
+  opacity: 0.75;
+  color: var(--lightHeading);
 }

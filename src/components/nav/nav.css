@@ -22,7 +22,7 @@ nav {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
+  /* background-color: rgba(255, 255, 255, 0.5); */
 
   display: flex;
   flex-direction: column;
@@ -36,9 +36,16 @@ nav {
   transition: all 0.5s;
 }
 
-#close-menu-svg {
+.dark-svg {
+  color: #232323;
+  stroke: #232323;
+  fill: #232323;
+}
+
+.light-svg {
   color: white;
   stroke: white;
+  fill: white;
 }
 
 .nav-item {
@@ -46,9 +53,9 @@ nav {
   text-align: center;
 }
 
-.nav-item a {
-  color: white;
-}
+/* .nav-item a { */
+/* color: inherit; */
+/* } */
 
 @media screen and (min-width: 720px) {
   .menu-button {
@@ -75,6 +82,6 @@ nav {
   }
 
   .nav-item a {
-    color: #232323;
+    color: inherit;
   }
 }

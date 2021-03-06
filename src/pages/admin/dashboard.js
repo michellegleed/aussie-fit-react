@@ -7,10 +7,10 @@ import "react-datetime/css/react-datetime.css";
 
 function Dashboard() {
     return (
-        <React.Fragment>
+        <div id="dashboard">
             <Groups />
             <Quiz />
-        </React.Fragment>
+        </div>
     )
 }
 

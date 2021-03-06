@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Alert from '../../alert/alert';
 
+import './question.css';
+
 function Question(props) {
 
     const { question, nextQuestion } = props;
@@ -16,17 +18,17 @@ function Question(props) {
     }, [question])
 
     return (
-        <div>
+        <div id="attendance-question">
             <h1>{question.question}</h1>
             { question.yesAction != "" || question.noAction != "" ?
                 <React.Fragment>
-                    <div>
-                        <button onClick={() => {
+                    <div className="centered-button-container">
+                        <button className="text-button" onClick={() => {
                             question.yesAction != "" ? setMessage(question.yesAction) : setMessage(null);
                             setDisableNext(false);
                         }
                         }>Yes</button>
-                        <button onClick={() => {
+                        <button className="text-button" onClick={() => {
                             question.noAction != "" ? setMessage(question.noAction) : setMessage(null);
                             setDisableNext(false);
                         }
@@ -37,7 +39,9 @@ function Question(props) {
                         :
                         null
                     }
-                    <button disabled={disableNext} onClick={() => nextQuestion()}>Next</button>
+                    <div className="centered-button-container">
+                        <button className="text-button" disabled={disableNext} onClick={() => nextQuestion()}>Next</button>
+                    </div>
                 </React.Fragment>
                 :
                 null

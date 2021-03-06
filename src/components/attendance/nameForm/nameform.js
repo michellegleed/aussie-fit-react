@@ -5,6 +5,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import ErrorMessage from '../../errorMessage/errorMessage';
 import { fetchRequest } from '../../../utils/fetchRequest';
 
+import './nameform.css';
+
 function NameForm(props) {
 
     const { participants } = props;
@@ -48,7 +50,9 @@ function NameForm(props) {
                     onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                 />
             </section>
-            <button onClick={e => registerAttendance(e)}>Next</button>
+            <div className="centered-button-container">
+                <button className="text-button" onClick={e => registerAttendance(e)}>Next</button>
+            </div>
         </form>
     )
 }

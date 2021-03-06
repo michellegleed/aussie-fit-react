@@ -1,0 +1,14 @@
+#attendance-question h1 {
+  margin: 16px 0 8px 0;
+  font-size: 28px;
+}
+
+#attendance-question {
+  margin: 10vh 0;
+  text-align: center;
+}
+
+/* #attendance-question .button { */
+/* display: flex;
+  justify-content: center;
+} */
