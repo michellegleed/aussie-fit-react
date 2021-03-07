@@ -36,6 +36,13 @@ function SearchForm() {
     }, []);
 
     const useStyles = makeStyles({
+        // root: {
+        //     color: "white",
+        //     backgroundColor: "transparent",
+        //     "&.Mui-focused": {
+        //         color: "white",
+        //         backgroundColor: "transparent"
+        //     },
         root: {
             color: "white",
             "&.Mui-focused": {
@@ -53,8 +60,12 @@ function SearchForm() {
             }
         },
         input: {
+            color: "white",
+            "&.Mui-focused": {
+                color: "white",
+            },
             "&::selection": {
-                backgroundColor: "white",
+                backgroundColor: "transparent",
                 color: "white"
             }
         }
@@ -83,8 +94,8 @@ function SearchForm() {
                         getOptionLabel={(option) => option.first_name + " " + option.last_name}
                         style={{ width: 220, color: "white" }}
                         size="small"
-                        renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" label="Search Participants" InputProps={{ classes: classes }}
-                            InputLabelProps={{ classes: labelClasses }}
+                        renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" label="Search Participants" InputProps={{ ...params.InputProps, classes: classes, style: { color: "#fff" } }}
+                            InputLabelProps={{ ...params.InputLabelProps, classes: labelClasses }}
                         />}
                         onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                     />

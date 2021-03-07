@@ -32,7 +32,7 @@ function NameForm(props) {
 
     const useStyles = makeStyles({
         root: {
-            color: "#fff",
+            color: "#fff"
             // "&.Mui-focused": {
             //     color: "#fff",
             // },
@@ -51,14 +51,14 @@ function NameForm(props) {
             "&::selection": {
                 backgroundColor: "#fff",
                 color: "#fff"
-            }
+            },
         },
         MuiInputBase: {
             root: {
                 color: "#fff"
-            }
-        }
-    });
+            },
+        },
+    })
 
     const useLabelStyles = makeStyles({
         root: {
@@ -67,7 +67,7 @@ function NameForm(props) {
                 color: "white"
             }
         }
-    });
+    })
 
     const classes = useStyles();
     const labelClasses = useLabelStyles();
@@ -86,13 +86,13 @@ function NameForm(props) {
                 <label htmlFor="participant">Name:</label>
                 <Autocomplete
                     id="participant"
-                    classes={classes}
+                    // classes={classes}
                     options={participants}
                     getOptionLabel={(option) => option.first_name + " " + option.last_name}
                     style={{ width: 300, color: "#fff" }}
                     renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off"
-                        // InputProps={{ style: { color: "#fff" } }}
-                        InputLabelProps={{ classes: labelClasses }}
+                        InputProps={{ ...params.InputProps, classes: classes, style: { color: "#fff" } }}
+                        InputLabelProps={{ ...params.InputLabelProps, classes: labelClasses }}
                     />}
                     onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                 />
