@@ -6,6 +6,8 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import CloseIcon from '../../../icons/close';
 import PencilIcon from '../../../icons/pencil';
 
+import './participantCard.css';
+
 function ParticipantCard(props) {
 
     const history = useHistory();
@@ -37,7 +39,7 @@ function ParticipantCard(props) {
     }
 
     return (
-        <div className="class-card">
+        <div className="participant-card">
             {
                 deleteParticipantID ?
                     <div className="modal">

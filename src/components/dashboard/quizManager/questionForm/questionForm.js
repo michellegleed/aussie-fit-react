@@ -55,6 +55,9 @@ function QuestionForm(props) {
         questionDetails ?
             <div className="modal">
                 <form>
+                    <button id="close-button" onClick={() => displayQuestionForm(false)}>
+                        <CloseIcon />
+                    </button>
                     <h1>{index != null ? "Edit Question" : "New Question"}</h1>
                     <div className="error-message">
                         {
@@ -64,9 +67,6 @@ function QuestionForm(props) {
                                 null
                         }
                     </div>
-                    <button id="close-button" onClick={() => displayQuestionForm(false)}>
-                        <CloseIcon />
-                    </button>
                     <div className="form-item">
                         <label htmlFor="question">Question:</label>
                         <input
@@ -95,7 +95,7 @@ function QuestionForm(props) {
                         />
                     </div>
 
-                    <button type="submit" onClick={handleSubmit}>
+                    <button className="text-button" type="submit" onClick={handleSubmit}>
                         Save
                 </button>
                 </form>

@@ -17,12 +17,12 @@ function Header(props) {
             {nextClass != null ?
                 <div>
                     <h2>{nextClass.title}</h2>
-                    <h6><Moment format="ddd DD/MM/YY">
+                    <h4><Moment format="ddd DD/MM/YY">
                         {nextClass.time}
-                    </Moment></h6>
-                    <h6><Moment format="h:mma">
+                    </Moment></h4>
+                    <h4><Moment format="h:mma">
                         {nextClass.time}
-                    </Moment></h6>
+                    </Moment></h4>
                 </div>
                 :
                 <div>

@@ -99,6 +99,9 @@ function participantForm(props) {
     return (
         <div className="modal">
             <form>
+                <button id="close-button" onClick={() => displayParticipantForm(false)}>
+                    <CloseIcon />
+                </button>
                 <h1>{participant.id ? `Edit ${participant.first_name} ${participant.last_name}` : "New Participant"}</h1>
                 <div participantName="error-message">
                     {
@@ -108,41 +111,40 @@ function participantForm(props) {
                             null
                     }
                 </div>
-                <button id="close-button" onClick={() => displayParticipantForm(false)}>
-                    <CloseIcon />
-                </button>
-                <div className="form-item">
-                    <label htmlFor="first_name">First Name:</label>
-                    <input
-                        type="text"
-                        id="first_name"
-                        value={participantDetails.first_name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-item">
-                    <label htmlFor="last_name">Last Name:</label>
-                    <input
-                        type="text"
-                        id="last_name"
-                        value={participantDetails.last_name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-item">
-                    <label htmlFor="group">Group:</label>
-                    {groupList ?
-                        <select id="group" name="group" onChange={handleChange}>
-                            {groupList.map(group => {
-                                return checkIfCurrentlySelected(group);
-                            })}
-                        </select>
-                        :
-                        null
-                    }
+                <div className="form-input-fields">
+                    <div className="form-item">
+                        <label htmlFor="first_name">First Name:</label>
+                        <input
+                            type="text"
+                            id="first_name"
+                            value={participantDetails.first_name}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-item">
+                        <label htmlFor="last_name">Last Name:</label>
+                        <input
+                            type="text"
+                            id="last_name"
+                            value={participantDetails.last_name}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-item">
+                        <label htmlFor="group">Group:</label>
+                        {groupList ?
+                            <select id="group" name="group" onChange={handleChange}>
+                                {groupList.map(group => {
+                                    return checkIfCurrentlySelected(group);
+                                })}
+                            </select>
+                            :
+                            null
+                        }
+                    </div>
                 </div>
 
-                <button type="submit" onClick={handleSubmit}>
+                <button className="text-button" type="submit" onClick={handleSubmit}>
                     Save
                 </button>
             </form>

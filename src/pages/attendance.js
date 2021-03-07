@@ -39,7 +39,7 @@ function AttendancePage() {
                         <NameForm participants={groupData.participants} classID={groupData.next_class[0].id} />
                         :
                         groupData.next_class != null ?
-                            <h4>Attendance for this class opens one hour before start time.</h4>
+                            <h5>Attendance for this class opens one hour before start time.</h5>
                             :
                             null
                     }

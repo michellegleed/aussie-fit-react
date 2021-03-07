@@ -22,12 +22,28 @@
   color: var(--card4);
 } */
 
-.class-card svg {
-  fill: currentColor;
+.table-row {
+  /* width: 66vw; */
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 4px 0;
+  padding: 4px 8px;
 }
 
-.class-card .table-row > * {
-  width: 20%;
+.class-card:nth-child(2n) {
+  background-color: #efefef;
+  border-radius: 10px;
+}
+
+.class-card:nth-child(2n + 1) {
+  background-color: #dedede;
+  border-radius: 10px;
+}
+
+.class-card svg {
+  fill: currentColor;
 }
 
 .class-card:nth-child(2n) {
@@ -40,4 +56,19 @@
   background-color: var(--card4);
   opacity: 0.75;
   color: var(--lightHeading);
+}
+
+@media screen and (min-width: 520px) {
+  .table-row {
+    flex-direction: row;
+  }
+  .class-card .table-row > * {
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .class-card .table-row > * {
+    width: 20%;
+  }
 }

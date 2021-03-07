@@ -53,7 +53,7 @@ function Classes(props) {
     return (
         <div>
             <h2>Classes</h2>
-            <button onClick={() => displayClassForm(true)}><PlusIcon /></button>
+            <button className="icon-button" onClick={() => displayClassForm(true)}><PlusIcon /></button>
             {
                 showClassForm ?
                     <ClassForm session={populateClassForm()} displayClassForm={displayClassForm} refetchClassList={refetchClassList} />

@@ -77,6 +77,9 @@ function ClassForm(props) {
     return (
         <div className="modal">
             <form>
+                <button id="close-button" onClick={() => displayClassForm(false)}>
+                    <CloseIcon />
+                </button>
                 <h1>{session.id ? "Edit Class" : "New Class"}</h1>
                 <div className="error-message">
                     {
@@ -86,27 +89,27 @@ function ClassForm(props) {
                             null
                     }
                 </div>
-                <button id="close-button" onClick={() => displayClassForm(false)}>
-                    <CloseIcon />
-                </button>
-                <div className="form-item">
-                    <label htmlFor="title">Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        value={classDetails.title}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-item">
-                    <label htmlFor="time">Time:</label>
-                    <Datetime value={classDetails.time} onChange={handleDate} id="time" />
+                <div className="form-input-fields">
+                    <div className="form-item">
+                        <label htmlFor="title">Title:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            value={classDetails.title}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-item">
+                        <label htmlFor="time">Time:</label>
+                        <Datetime value={classDetails.time} onChange={handleDate} id="time" />
+                    </div>
                 </div>
 
-
-                <button type="submit" onClick={handleSubmit}>
-                    Save
+                <div className="centered-button-container">
+                    <button className="text-button" type="submit" onClick={handleSubmit}>
+                        Save
                 </button>
+                </div>
             </form>
         </div>
     )

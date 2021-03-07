@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from "@material-ui/core/styles";
 import ErrorMessage from '../../errorMessage/errorMessage';
 import { fetchRequest } from '../../../utils/fetchRequest';
 
@@ -29,6 +30,48 @@ function NameForm(props) {
         }
     }
 
+    const useStyles = makeStyles({
+        root: {
+            color: "#fff",
+            // "&.Mui-focused": {
+            //     color: "#fff",
+            // },
+            // "&:before": {
+            //     borderBottomColor: "#fff"
+            // },
+            // "&:hover:not(.Mui-focused):before": {
+            //     borderBottomColor: "#fff"
+            // },
+            // "&:after": {
+            //     // focused
+            //     borderBottomColor: "#fff"
+            // }
+        },
+        input: {
+            "&::selection": {
+                backgroundColor: "#fff",
+                color: "#fff"
+            }
+        },
+        MuiInputBase: {
+            root: {
+                color: "#fff"
+            }
+        }
+    });
+
+    const useLabelStyles = makeStyles({
+        root: {
+            color: "white",
+            "&.Mui-focused": {
+                color: "white"
+            }
+        }
+    });
+
+    const classes = useStyles();
+    const labelClasses = useLabelStyles();
+
     return (
         <form autoComplete="off">
             <div className="error-message">
@@ -39,14 +82,18 @@ function NameForm(props) {
                         null
                 }
             </div>
-            <section>
+            <section id="autocomplete-bottom-border">
                 <label htmlFor="participant">Name:</label>
                 <Autocomplete
                     id="participant"
+                    classes={classes}
                     options={participants}
                     getOptionLabel={(option) => option.first_name + " " + option.last_name}
-                    style={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off" />}
+                    style={{ width: 300, color: "#fff" }}
+                    renderInput={(params) => <TextField {...params} variant="outlined" autoComplete="off"
+                        // InputProps={{ style: { color: "#fff" } }}
+                        InputLabelProps={{ classes: labelClasses }}
+                    />}
                     onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
                 />
             </section>

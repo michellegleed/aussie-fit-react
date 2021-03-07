@@ -91,7 +91,7 @@ function GroupForm(props) {
                     />
                 </div>
 
-                <button type="submit" onClick={handleSubmit}>
+                <button className="text-button" type="submit" onClick={handleSubmit}>
                     Save
                 </button>
             </form>

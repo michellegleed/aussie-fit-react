@@ -1,0 +1,8 @@
+#autocomplete-bottom-border {
+  border-bottom: solid #fff 1px;
+}
+
+.MuiInputBase-root,
+.MuiAutocomplete-endAdornment {
+  color: #fff;
+}

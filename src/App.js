@@ -15,23 +15,12 @@ function App() {
 
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const theme = {
-    dark: {
-      backgroundColor: "#222",
-      color: "#fff"
-    },
-    light: {
-      backgroundColor: "#fff",
-      color: "#232323"
-    }
-  }
-
   const updateIsAdmin = (bool) => {
     setIsAdmin(bool);
   }
 
   return (
-    <div className="App" style={isAdmin ? theme.light : theme.dark}>
+    <div className={`App ${isAdmin ? "light-theme" : "dark-theme"}`}>
       <Router>
         <Nav updateIsAdmin={updateIsAdmin} />
         <div id="main-container">

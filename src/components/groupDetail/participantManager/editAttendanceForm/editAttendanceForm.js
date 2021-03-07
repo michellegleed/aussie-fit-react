@@ -104,6 +104,9 @@ function EditAttendanceForm(props) {
     return (
         <div className="modal">
             <form>
+                <button id="close-button" onClick={() => displayAttendanceForm(false)}>
+                    <CloseIcon />
+                </button>
                 <h1>Edit Attendance Record</h1>
                 <div className="error-message">
                     {
@@ -113,9 +116,6 @@ function EditAttendanceForm(props) {
                             null
                     }
                 </div>
-                <button id="close-button" onClick={() => displayAttendanceForm(false)}>
-                    <CloseIcon />
-                </button>
                 {
                     classList != null ?
                         classList.map(session => <div className="form-item" key={session.id}>

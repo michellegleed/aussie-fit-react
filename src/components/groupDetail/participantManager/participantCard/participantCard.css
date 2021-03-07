@@ -1,0 +1,63 @@
+.edit-buttons {
+  margin-bottom: 0;
+}
+
+/* .class-card:nth-child(4n),
+  .class-card:nth-child(4n) svg {
+    color: var(--card1);
+  }
+  
+  .class-card:nth-child(4n + 1),
+  .class-card:nth-child(4n + 1) svg {
+    color: var(--card2);
+  }
+  
+  .class-card:nth-child(4n + 2),
+  .class-card:nth-child(4n + 2) svg {
+    color: var(--card3);
+  }
+  
+  .class-card:nth-child(4n + 3),
+  .class-card:nth-child(4n + 3) svg {
+    color: var(--card4);
+  } */
+
+.table-row {
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  padding: 4px 8px;
+}
+
+.participant-card:nth-child(2n) {
+  background-color: #efefef;
+  border-radius: 10px;
+}
+
+.participant-card:nth-child(2n + 1) {
+  background-color: #dedede;
+  border-radius: 10px;
+}
+
+.participant-card svg {
+  fill: currentColor;
+}
+
+.participant-card:nth-child(2n) {
+  background-color: var(--card2);
+  opacity: 0.45;
+  color: var(--lightHeading);
+}
+
+.participant-card:nth-child(2n + 1) {
+  background-color: var(--card2);
+  opacity: 0.75;
+  color: var(--lightHeading);
+}
+
+@media screen and (min-width: 520px) {
+  .participant-card {
+    width: 66vw;
+  }
+}
