@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import './loginForm.css';
+
 function LoginForm() {
 
     const [errorMessage, setErrorMessage] = useState();
@@ -81,11 +83,11 @@ function LoginForm() {
                     <input
                         type="password"
                         id="password"
-                        placeholder="Password"
+                        placeholder="Enter password"
                         onChange={handleChange} />
                 </div>
-                <div className="btn-container">
-                    <button className="text-button" type="submit" onClick={handleSubmit}>
+                <div className="centered-button-container">
+                    <button className="text-button" id="submit-button" type="submit" onClick={handleSubmit}>
                         Login
             </button>
                 </div>

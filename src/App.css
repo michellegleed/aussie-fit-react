@@ -28,6 +28,10 @@ h6 {
   font-weight: 700;
 }
 
+h1 {
+  margin: 5vh 0;
+}
+
 .dark-theme {
   background-color: #222;
   color: #fff;
@@ -67,9 +71,14 @@ button {
 
 .detail-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   justify-content: space-evenly;
   width: 80vw;
+}
+
+#login-container h1 {
+  margin-top: 25vh;
 }
 
 .section-title {
@@ -127,6 +136,17 @@ button:hover path {
   align-items: flex-start;
 }
 
+.form-item {
+  margin-bottom: 24px;
+}
+
+input {
+  margin-left: 12px;
+  border: solid 1px;
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+
 #close-button {
   width: 36px;
   align-self: flex-end;
@@ -179,6 +199,14 @@ button:hover path {
   #main-container {
     display: flex;
     justify-content: space-evenly;
+  }
+
+  .detail-container {
+    flex-direction: row;
+  }
+
+  #login-container h1 {
+    margin-top: 15vh;
   }
 
   #group-section {

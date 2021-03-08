@@ -3,10 +3,10 @@ import LoginForm from '../components/loginForm/loginForm';
 
 function LoginPage() {
     return (
-        <React.Fragment>
+        <div id="login-container">
             <h1>Log In</h1>
             <LoginForm />
-        </React.Fragment>
+        </div>
     )
 }
 

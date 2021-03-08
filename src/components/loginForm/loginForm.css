@@ -1,0 +1,9 @@
+#submit-button {
+  width: unset;
+  border: solid 3px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 15vh;
+}
