@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import { fetchRequest } from '../../utils/fetchRequest';
 import SearchForm from '../dashboard/searchForm/searchForm';
 import CloseIcon from '../icons/close';
@@ -13,6 +13,7 @@ function Nav(props) {
 
     // location variable will update whenever the react app's url changes
     const location = useLocation();
+    const history = useHistory();
 
     /// Update Nav Based on Logged In/Out and logged in user isAdmin or not
     const [loggedIn, setLoggedIn] = useState(false);
@@ -92,7 +93,7 @@ function Nav(props) {
                         </React.Fragment>
                         :
                         <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                            <NavLink exact to="/" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Home</NavLink>
+                            <a onClick={() => history.goBack()}>Home</a>
                         </div>
                     }
                     <div className="nav-item" onClick={() => toggleMobileNav(false)}>

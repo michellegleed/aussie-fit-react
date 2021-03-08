@@ -1,0 +1,7 @@
+#alert {
+  color: yellow;
+  border: solid yellow 1px;
+  border-radius: 10px;
+  padding: 16px 32px;
+  margin: 0 15vw;
+}

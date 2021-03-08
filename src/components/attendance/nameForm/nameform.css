@@ -1,5 +1,21 @@
 #autocomplete-bottom-border {
   border-bottom: solid #fff 1px;
+  margin-bottom: 10vh;
+}
+
+#autocomplete-bottom-border label {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+#next-button {
+  width: unset;
+  border: solid 3px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 15vh;
 }
 
 .MuiInputBase-root,

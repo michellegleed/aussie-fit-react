@@ -150,6 +150,10 @@ button:hover path {
   color: inherit;
 }
 
+.disabled {
+  opacity: 50%;
+}
+
 #dashboard {
   background-color: white;
 }

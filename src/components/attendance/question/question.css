@@ -1,11 +1,25 @@
-#attendance-question h1 {
-  margin: 16px 0 8px 0;
-  font-size: 28px;
+#attendance-question {
+  margin: 20vh 0;
+  text-align: center;
 }
 
-#attendance-question {
-  margin: 10vh 0;
-  text-align: center;
+#attendance-question h1 {
+  margin: 16px 0 8px 0;
+  font-size: 36px;
+}
+
+.answer-button,
+#next-button {
+  width: unset;
+  border: solid 3px;
+  padding: 8px 16px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#next-button {
+  position: absolute;
+  bottom: 15vh;
 }
 
 /* #attendance-question .button { */

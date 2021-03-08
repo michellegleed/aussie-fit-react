@@ -23,16 +23,16 @@ function Question(props) {
             { question.yesAction != "" || question.noAction != "" ?
                 <React.Fragment>
                     <div className="centered-button-container">
-                        <button className="text-button" onClick={() => {
+                        <button className="text-button answer-button" onClick={() => {
                             question.yesAction != "" ? setMessage(question.yesAction) : setMessage(null);
                             setDisableNext(false);
                         }
-                        }>Yes</button>
-                        <button className="text-button" onClick={() => {
+                        }>YES</button>
+                        <button className="text-button answer-button" onClick={() => {
                             question.noAction != "" ? setMessage(question.noAction) : setMessage(null);
                             setDisableNext(false);
                         }
-                        }>No</button>
+                        }>NO</button>
                     </div>
                     {message != null ?
                         <Alert message={message} />
@@ -40,7 +40,7 @@ function Question(props) {
                         null
                     }
                     <div className="centered-button-container">
-                        <button className="text-button" disabled={disableNext} onClick={() => nextQuestion()}>Next</button>
+                        <button id="next-button" className={`text-button ${disableNext ? "disabled" : ""}`} disabled={disableNext} onClick={() => nextQuestion()}>Next</button>
                     </div>
                 </React.Fragment>
                 :
