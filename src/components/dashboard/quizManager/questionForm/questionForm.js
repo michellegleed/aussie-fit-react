@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
 import CloseIcon from '../../../icons/close';
+import CloseButton from '../../../buttons/closeButton/closeButton';
 
 function QuestionForm(props) {
 
@@ -55,9 +56,10 @@ function QuestionForm(props) {
         questionDetails ?
             <div className="modal">
                 <form>
-                    <button id="close-button" onClick={() => displayQuestionForm(false)}>
+                    {/* <button id="close-button" onClick={() => displayQuestionForm(false)}>
                         <CloseIcon />
-                    </button>
+                    </button> */}
+                    <CloseButton clickHandler={() => displayQuestionForm(false)} />
                     <h1>{index != null ? "Edit Question" : "New Question"}</h1>
                     <div className="error-message">
                         {

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import CloseButton from '../../buttons/closeButton/closeButton';
 
 import CloseIcon from '../../icons/close';
 
@@ -18,14 +19,15 @@ function QRCodeUrls(props) {
     return (
         <div className="modal">
             <div className="modal-content">
-                <div className="card-buttons">
+                {/* <div className="card-buttons">
                     <button id="close-button" onClick={() => closeModal()}>
                         <CloseIcon />
                     </button>
-                </div>
+                </div> */}
+                <CloseButton clickHandler={() => closeModal()} />
                 <h4>Url copied to clipboard! Go to www.... to create the QR code.</h4>
             </div>
-        </div>
+        </div >
     )
 }
 

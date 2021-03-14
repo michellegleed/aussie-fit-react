@@ -5,6 +5,7 @@ import Datetime from 'react-datetime';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
 import CloseIcon from '../../../icons/close';
+import CloseButton from '../../../buttons/closeButton/closeButton';
 
 function ClassForm(props) {
 
@@ -77,9 +78,10 @@ function ClassForm(props) {
     return (
         <div className="modal">
             <form>
-                <button id="close-button" onClick={() => displayClassForm(false)}>
+                {/* <button id="close-button" onClick={() => displayClassForm(false)}>
                     <CloseIcon />
-                </button>
+                </button> */}
+                <CloseButton clickHandler={() => displayClassForm(false)} />
                 <h1>{session.id ? "Edit Class" : "New Class"}</h1>
                 <div className="error-message">
                     {
@@ -111,7 +113,7 @@ function ClassForm(props) {
                 </button>
                 </div>
             </form>
-        </div>
+        </div >
     )
 }
 

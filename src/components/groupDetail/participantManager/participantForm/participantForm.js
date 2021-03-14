@@ -5,6 +5,7 @@ import Datetime from 'react-datetime';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
 import CloseIcon from '../../../icons/close';
+import CloseButton from '../../../buttons/closeButton/closeButton';
 
 function participantForm(props) {
 
@@ -99,9 +100,10 @@ function participantForm(props) {
     return (
         <div className="modal">
             <form>
-                <button id="close-button" onClick={() => displayParticipantForm(false)}>
+                {/* <button id="close-button" onClick={() => displayParticipantForm(false)}>
                     <CloseIcon />
-                </button>
+                </button> */}
+                <CloseButton clickHandler={() => displayParticipantForm(false)} />
                 <h1>{participant.id ? `Edit ${participant.first_name} ${participant.last_name}` : "New Participant"}</h1>
                 <div participantName="error-message">
                     {
@@ -148,7 +150,7 @@ function participantForm(props) {
                     Save
                 </button>
             </form>
-        </div>
+        </div >
     )
 }
 

@@ -1,0 +1,16 @@
+.plus-button {
+  border: solid 1px var(--darkHeading);
+  color: var(--darkHeading);
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.plus-button p {
+  margin-left: 6px;
+}
+
+.plus-button:hover {
+  color: tomato;
+  border-color: tomato;
+}

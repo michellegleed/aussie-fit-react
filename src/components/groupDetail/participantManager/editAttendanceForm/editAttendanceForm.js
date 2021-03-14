@@ -8,6 +8,7 @@ import CloseIcon from '../../../icons/close';
 import participantForm from '../participantForm/participantForm';
 
 import './editAttendanceForm.css';
+import CloseButton from '../../../buttons/closeButton/closeButton';
 
 function EditAttendanceForm(props) {
 
@@ -106,9 +107,10 @@ function EditAttendanceForm(props) {
     return (
         <div className="modal">
             <form id="edit-attendance-form">
-                <button id="close-button" onClick={() => displayAttendanceForm(false)}>
+                {/* <button id="close-button" onClick={() => displayAttendanceForm(false)}>
                     <CloseIcon />
-                </button>
+                </button> */}
+                <CloseButton clickHandler={() => displayAttendanceForm(false)} />
                 <h1>Edit {participant.first_name} {participant.last_name}'s Attendance</h1>
                 <div className="error-message">
                     {

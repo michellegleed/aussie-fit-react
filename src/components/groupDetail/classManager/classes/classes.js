@@ -5,6 +5,7 @@ import ClassForm from '../classForm/classForm';
 import PlusIcon from '../../../icons/plus';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
+import PlusButton from '../../../buttons/plusButton/plusButton';
 
 function Classes(props) {
 
@@ -53,7 +54,8 @@ function Classes(props) {
     return (
         <div>
             <h2>Classes</h2>
-            <button className="icon-button" onClick={() => displayClassForm(true)}><PlusIcon /></button>
+            {/* <button className="icon-button" onClick={() => displayClassForm(true)}><PlusIcon /></button> */}
+            <PlusButton clickHandler={() => displayClassForm(true)} buttonText="New Class" />
             {
                 showClassForm ?
                     <ClassForm session={populateClassForm()} displayClassForm={displayClassForm} refetchClassList={refetchClassList} />

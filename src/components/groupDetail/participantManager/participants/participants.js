@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Moment from 'react-moment';
 import ParticipantCard from '../participantCard/participantCard';
 import ParticipantForm from '../participantForm/participantForm';
 import PlusIcon from '../../../icons/plus';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
+import PlusButton from '../../../buttons/plusButton/plusButton';
 
 function Participants(props) {
 
@@ -30,10 +30,10 @@ function Participants(props) {
             });
     }, [refetchparticipants]);
 
-    const editParticipant = (participantID) => {
-        setParticipantToEdit(participantID);
-        setShowparticipantForm(true);
-    }
+    // const editParticipant = (participantID) => {
+    //     setParticipantToEdit(participantID);
+    //     setShowparticipantForm(true);
+    // }
 
     const refetchParticipantList = () => {
         setRefetchParticipants((prevState) => prevState + 1)
@@ -53,7 +53,8 @@ function Participants(props) {
     return (
         <div>
             <h2>Participants</h2>
-            <button onClick={() => displayParticipantForm(true)}><PlusIcon /></button>
+            {/* <button onClick={() => displayParticipantForm(true)}><PlusIcon /></button> */}
+            <PlusButton clickHandler={() => displayParticipantForm(true)} buttonText="New Participant" />
             {
                 showparticipantForm ?
                     <ParticipantForm groupID={group} participant={populateParticipantForm()} displayParticipantForm={displayParticipantForm} refetchParticipantList={refetchParticipantList} />
@@ -62,7 +63,7 @@ function Participants(props) {
             }
             {
                 participantList != null && participantList.length > 0 ?
-                    participantList.map(participant => <ParticipantCard participant={participant} editParticipant={editParticipant} refetchParticipantList={refetchParticipantList} />)
+                    participantList.map(participant => <ParticipantCard participant={participant} refetchParticipantList={refetchParticipantList} />)
                     :
                     <h4>No participants found</h4>
             }

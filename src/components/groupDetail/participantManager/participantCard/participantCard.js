@@ -1,24 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import { fetchRequest } from '../../../../utils/fetchRequest';
-
-import CloseIcon from '../../../icons/close';
-import PencilIcon from '../../../icons/pencil';
 
 import './participantCard.css';
 
 function ParticipantCard(props) {
 
-    const history = useHistory();
-
-    const { participant, editParticipant, refetchParticipantList } = props;
+    const { participant, refetchParticipantList } = props;
 
     const [deleteParticipantID, setDeleteParticipantID] = useState();
-
-    const deleteParticipant = (participantID) => {
-        setDeleteParticipantID(participantID);
-    }
 
     const deleteData = () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participant.id}/`, "DELETE")
@@ -54,13 +44,7 @@ function ParticipantCard(props) {
             }
             <Link to={`/admin/participant/${participant.id}`}>
                 <div className="table-row">
-
                     <p>{`${participant.first_name} ${participant.last_name}`}</p>
-                    <div className="card-buttons edit-buttons">
-                        <button onClick={() => editParticipant(participant.id)}><PencilIcon /></button>
-                        <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
-                    </div>
-
                 </div>
             </Link>
         </div >

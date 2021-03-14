@@ -7,6 +7,7 @@ import { fetchRequest } from '../../../../utils/fetchRequest';
 import QuestionCard from '../questionCard/questionCard';
 import QuestionForm from '../questionForm/questionForm';
 import PlusIcon from '../../../icons/plus';
+import PlusButton from '../../../buttons/plusButton/plusButton';
 
 function Quiz() {
 
@@ -144,7 +145,8 @@ function Quiz() {
             </div>
             <div className="section-title">
                 <h1>Questions</h1>
-                <button onClick={() => displayQuestionForm(true)}><PlusIcon /></button>
+                {/* <button onClick={() => displayQuestionForm(true)}><PlusIcon /></button> */}
+                <PlusButton clickHandler={() => displayQuestionForm(true)} buttonText="New Question" />
             </div>
             <h4>Drag and drop questions in the list to change the order they show on the Attendance Page.</h4>
             {

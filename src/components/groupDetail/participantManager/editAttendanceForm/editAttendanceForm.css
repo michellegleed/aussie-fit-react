@@ -7,10 +7,6 @@
   font-size: 24px;
 }
 
-.form-header .icon-button {
-  border: none;
-}
-
 #form-attendance-list {
   overflow-y: scroll;
   margin: 0 auto;

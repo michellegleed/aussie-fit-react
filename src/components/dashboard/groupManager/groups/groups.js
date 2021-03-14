@@ -4,6 +4,7 @@ import { fetchRequest } from '../../../../utils/fetchRequest'
 import GroupForm from '../groupForm/groupForm';
 import GroupCard from '../groupCard/groupCard';
 import PlusIcon from '../../../icons/plus';
+import PlusButton from '../../../buttons/plusButton/plusButton';
 
 function Groups() {
 
@@ -50,7 +51,8 @@ function Groups() {
         <div id="group-section">
             <div className="section-title">
                 <h1>Groups</h1>
-                <button onClick={() => displayGroupForm(true)}><PlusIcon /></button>
+                {/* <button onClick={() => displayGroupForm(true)}><PlusIcon /></button> */}
+                <PlusButton clickHandler={() => displayGroupForm(true)} buttonText="New Group" />
             </div>
             <div className="card-container">
                 {

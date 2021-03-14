@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
 import CloseIcon from '../../../icons/close';
+import CloseButton from '../../../buttons/closeButton/closeButton';
 
 function GroupForm(props) {
 
@@ -67,11 +68,12 @@ function GroupForm(props) {
     return (
         <div className="modal">
             <form>
-                <div className="card-buttons">
+                {/* <div className="card-buttons">
                     <button id="close-button" onClick={() => displayGroupForm(false)}>
                         <CloseIcon />
                     </button>
-                </div>
+                </div> */}
+                <CloseButton clickHandler={() => displayGroupForm(false)} />
                 <h1>{group.id ? `Edit ${group.group_name}` : "New Group"}</h1>
                 <div className="error-message">
                     {
