@@ -25,7 +25,7 @@ function QRCodeUrls(props) {
                     </button>
                 </div> */}
                 <CloseButton clickHandler={() => closeModal()} />
-                <h4>Url copied to clipboard! Go to www.... to create the QR code.</h4>
+                <h4>Url copied to clipboard! Go to <a className="underlined-link" href="https://www.qrcode-monkey.com/" target="blank">www.qrcode-monkey.com</a> to create the QR code.</h4>
             </div>
         </div >
     )

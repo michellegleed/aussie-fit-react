@@ -57,8 +57,10 @@ function GroupCard(props) {
                     <div className="modal">
                         <div className="modal-content">
                             <h4>Permanently delete {group.group_name}?</h4>
-                            <button onClick={() => deleteData()}>OK</button>
-                            <button onClick={() => setDeleteGroupID(null)}>Cancel</button>
+                            <div className="button-row">
+                                <button onClick={() => deleteData()}>OK</button>
+                                <button onClick={() => setDeleteGroupID(null)}>Cancel</button>
+                            </div>
                         </div>
                     </div>
                     :

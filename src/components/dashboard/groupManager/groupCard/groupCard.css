@@ -40,8 +40,25 @@
   justify-content: flex-end;
 }
 
-.card-buttons button {
+/* .card-buttons button {
   border: none;
+} */
+
+.button-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-row button {
+  border: solid 1px var(--darkHeading);
+  padding: 4px 12px;
+}
+
+.button-row button:hover {
+  border-color: tomato;
+  color: tomato;
 }
 
 button:hover path {

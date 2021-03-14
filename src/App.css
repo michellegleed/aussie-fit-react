@@ -55,6 +55,10 @@ a {
   color: inherit;
 }
 
+a.underlined-link {
+  text-decoration: underline;
+}
+
 ul {
   list-style: none;
 }
@@ -64,13 +68,21 @@ button {
   padding: 0 4px;
   background: transparent;
   /* border: solid rgba(0, 0, 0, 0.5) 1px; */
-  border: solid inherit 1px;
+  border: none;
+}
+
+.text-button {
+  border: solid 1px;
 }
 
 #main-container {
   margin: 10vw;
   /* minHeight = screen height - margins - nav height */
   min-height: calc(100vh - 10vh - 64px);
+}
+
+#dashboard {
+  display: flex;
 }
 
 .detail-container {
@@ -85,10 +97,10 @@ button {
   margin-top: 25vh;
 }
 
-.section-title {
+/* .section-title {
   display: flex;
   justify-content: space-between;
-}
+} */
 
 /* .card {
   margin: 4vh 0;
