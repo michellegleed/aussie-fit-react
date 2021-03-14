@@ -89,39 +89,40 @@ function ParticipantDetail() {
                         null
                 }
                 <h1>{participantData.first_name} {participantData.last_name}</h1>
-                <div className="card-buttons edit-buttons">
-                    <button onClick={() => displayEditAttendanceForm(true)}><CalendarIcon /></button>
-                    <button onClick={() => displayParticipantForm(true)}><PencilIcon /></button>
-                    <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /></button>
-                </div>
                 <h2>{groupData.group_name}</h2>
-                {
-                    classList ?
-                        <div className="detail-container">
-                            <div>
-                                <h4>Attended:</h4>
-                                {participantData.attended.map(session =>
-                                    <div className="class-item" key={`${session}-attended`}>
-                                        <h5>{getSessionTitle(session)[0]}</h5>
-                                        <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
-                                    </div>
-                                )}
+                <div id="participant-detail-container">
+                    <div className="icon-text-buttons">
+                        <button onClick={() => displayEditAttendanceForm(true)}><CalendarIcon /><p>Update Attendance Record</p></button>
+                        <button onClick={() => displayParticipantForm(true)}><PencilIcon /><p>Edit Participant Details</p></button>
+                        <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /><p>Delete Participant</p></button>
+                    </div>
+                    {
+                        classList ?
+                            <div className="detail-container">
+                                <div>
+                                    <h4>Attended:</h4>
+                                    {participantData.attended.map(session =>
+                                        <div className="table-row class-item" key={`${session}-attended`}>
+                                            <h5>{getSessionTitle(session)[0]}</h5>
+                                            <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                        </div>
+                                    )}
+                                </div>
+                                <div>
+                                    <h4>Absent:</h4>
+                                    {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
+                                    {participantData.absent.map(session =>
+                                        <div className="table-row class-item" key={`${session}-absent`}>
+                                            <h5>{getSessionTitle(session)[0]}</h5>
+                                            <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                        </div>)}
+                                </div>
                             </div>
-                            <div>
-                                <h4>Absent:</h4>
-                                {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
-                                {participantData.absent.map(session =>
-                                    <div className="class-item" key={`${session}-absent`}>
-                                        <h5>{getSessionTitle(session)[0]}</h5>
-                                        <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
-                                    </div>)}
-                            </div>
-                        </div>
-                        :
-                        null
-                }
-
-            </div >
+                            :
+                            null
+                    }
+                </div>
+            </div>
             :
             null
     )

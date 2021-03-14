@@ -32,6 +32,10 @@ h1 {
   margin: 5vh 0;
 }
 
+h4 {
+  margin: 12px 0;
+}
+
 .dark-theme {
   background-color: #222;
   color: #fff;
@@ -170,6 +174,40 @@ input {
   color: inherit;
 }
 
+#participant-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 90vw;
+}
+
+.icon-text-buttons {
+  margin-right: 5vw;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+}
+
+.icon-text-buttons button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 220px;
+  margin: 24px 0;
+  padding: 4px 12px;
+  border: solid 1px black;
+  border-radius: 10px;
+}
+
+.icon-text-buttons button p {
+  margin-left: 12px;
+}
+
+.table-row.class-item {
+  flex-direction: row;
+}
+
 .disabled {
   opacity: 50%;
 }
@@ -192,6 +230,10 @@ input {
 
   .card {
     width: 260px;
+  }
+
+  #participant-detail-container {
+    flex-direction: row;
   }
 }
 
@@ -225,5 +267,9 @@ input {
   .table-row {
     width: 66vw;
     /* flex-direction: row; */
+  }
+
+  .table-row.class-item {
+    width: 260px;
   }
 }

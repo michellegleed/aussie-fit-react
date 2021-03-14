@@ -7,6 +7,8 @@ import ErrorMessage from '../../../errorMessage/errorMessage';
 import CloseIcon from '../../../icons/close';
 import participantForm from '../participantForm/participantForm';
 
+import './editAttendanceForm.css';
+
 function EditAttendanceForm(props) {
 
     const { participant, displayEditAttendanceForm, refetchParticipant } = props;
@@ -103,11 +105,11 @@ function EditAttendanceForm(props) {
 
     return (
         <div className="modal">
-            <form>
+            <form id="edit-attendance-form">
                 <button id="close-button" onClick={() => displayAttendanceForm(false)}>
                     <CloseIcon />
                 </button>
-                <h1>Edit Attendance Record</h1>
+                <h1>Edit {participant.first_name} {participant.last_name}'s Attendance</h1>
                 <div className="error-message">
                     {
                         errorMessage ?
@@ -118,34 +120,38 @@ function EditAttendanceForm(props) {
                 </div>
                 {
                     classList != null ?
-                        classList.map(session => <div className="form-item" key={session.id}>
-                            <h4>{session.title}</h4>
-                            <input
-                                type="radio"
-                                name={session.id}
-                                id={`${session.id}-true`}
-                                value={true}
-                                onChange={handleChange}
-                                checked={attended.includes(session.id)}
-                            />
-                            <label htmlFor="attended">Attended</label>
-                            <input
-                                type="radio"
-                                name={session.id}
-                                id={`${session.id}-false`}
-                                value={false}
-                                onChange={handleChange}
-                                checked={absent.includes(session.id)}
-                            />
-                            <label htmlFor="absent">Absent</label>
-                        </div>)
+                        <div id="form-attendance-list">
+                            {classList.map(session => <div className="form-item" key={session.id}>
+                                <h4>{session.title}</h4>
+                                <input
+                                    type="radio"
+                                    name={session.id}
+                                    id={`${session.id}-true`}
+                                    value={true}
+                                    onChange={handleChange}
+                                    checked={attended.includes(session.id)}
+                                />
+                                <label htmlFor="attended">Attended</label>
+                                <input
+                                    type="radio"
+                                    name={session.id}
+                                    id={`${session.id}-false`}
+                                    value={false}
+                                    onChange={handleChange}
+                                    checked={absent.includes(session.id)}
+                                />
+                                <label htmlFor="absent">Absent</label>
+                            </div>)}
+                        </div>
                         :
                         null
                 }
 
-                <button type="submit" onClick={handleSubmit}>
-                    Save
+                <div className="centered-button-container">
+                    <button className="text-button" type="submit" onClick={handleSubmit}>
+                        Save
                 </button>
+                </div>
             </form>
         </div>
     )
