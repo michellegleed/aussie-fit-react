@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import PencilIcon from '../../components/icons/pencil';
 import CloseIcon from '../../components/icons/close';
@@ -20,6 +20,7 @@ function ParticipantDetail() {
     const [showEditAttendanceForm, setShowEditAttendanceForm] = useState(false);
 
     const { id } = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/${id}/`)
@@ -66,6 +67,28 @@ function ParticipantDetail() {
         setShowEditAttendanceForm(bool);
     }
 
+    const [deleteParticipantID, setDeleteParticipantID] = useState();
+
+    const deleteParticipant = (participantID) => {
+        setDeleteParticipantID(participantID);
+    }
+
+    const deleteData = () => {
+        fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participantData.id}/`, "DELETE")
+            .then(result => {
+                console.log("result is", result)
+                if (result.ok) {
+                    history.goBack();
+                } else {
+                    // the API returned an error - do something with it
+                    console.error(data);
+                    setErrorMessage("Error deleting participant.");
+                }
+            })
+            // .catch(error => history.push("/network-error"))
+            .catch(error => console.log(error))
+    }
+
     const getSessionTitle = (classID) => {
         if (classList != null) {
             const currentSession = classList.filter(session => session.id === classID);
@@ -88,13 +111,25 @@ function ParticipantDetail() {
                         :
                         null
                 }
+                {
+                    deleteParticipantID ?
+                        <div className="modal">
+                            <div className="modal-content">
+                                <h4>Permanently delete {participantData.first_name} {participantData.last_name}?</h4>
+                                <button onClick={() => deleteData()}>OK</button>
+                                <button onClick={() => setDeleteParticipantID(null)}>Cancel</button>
+                            </div>
+                        </div>
+                        :
+                        null
+                }
                 <h1>{participantData.first_name} {participantData.last_name}</h1>
                 <h2>{groupData.group_name}</h2>
                 <div id="participant-detail-container">
                     <div className="icon-text-buttons">
                         <button onClick={() => displayEditAttendanceForm(true)}><CalendarIcon /><p>Update Attendance Record</p></button>
                         <button onClick={() => displayParticipantForm(true)}><PencilIcon /><p>Edit Participant Details</p></button>
-                        <button onClick={() => deleteParticipant(participant.id)}><CloseIcon /><p>Delete Participant</p></button>
+                        <button onClick={() => deleteParticipant(participantData.id)}><CloseIcon /><p>Delete Participant</p></button>
                     </div>
                     {
                         classList ?
