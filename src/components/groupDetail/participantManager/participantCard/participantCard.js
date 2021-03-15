@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchRequest } from '../../../../utils/fetchRequest';
+import PencilIcon from '../../../icons/pencil';
 
 import './participantCard.css';
 
@@ -45,6 +46,9 @@ function ParticipantCard(props) {
             <Link to={`/admin/participant/${participant.id}`}>
                 <div className="table-row">
                     <p>{`${participant.first_name} ${participant.last_name}`}</p>
+                    {/* <div className="card-buttons edit-buttons">
+                        <button><PencilIcon /></button>
+                    </div> */}
                 </div>
             </Link>
         </div >

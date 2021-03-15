@@ -82,7 +82,7 @@ function Nav(props) {
                     {isAdmin ?
                         <React.Fragment>
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                                <NavLink to="/admin" activeStyle={{ color: 'rgb(4, 180, 4)' }}>Dashboard</NavLink>
+                                <NavLink to="/admin">Dashboard</NavLink>
                             </div>
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                                 <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`} >Download Attendance Data</a>

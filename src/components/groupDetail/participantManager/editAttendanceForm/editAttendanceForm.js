@@ -121,7 +121,7 @@ function EditAttendanceForm(props) {
                     }
                 </div>
                 {
-                    classList != null ?
+                    classList != null && classList.length > 0 ?
                         <div id="form-attendance-list">
                             {classList.map(session => <div className="form-item" key={session.id}>
                                 <h4>{session.title}</h4>
@@ -146,7 +146,7 @@ function EditAttendanceForm(props) {
                             </div>)}
                         </div>
                         :
-                        null
+                        <h4>No classes found for this participant's group.</h4>
                 }
 
                 <div className="centered-button-container">

@@ -32,6 +32,10 @@ h1 {
   margin: 5vh 0;
 }
 
+h2 {
+  margin: 32px 0 16px 0;
+}
+
 h4 {
   margin: 12px 0;
 }
@@ -83,6 +87,7 @@ button {
 
 #dashboard {
   display: flex;
+  flex-direction: column;
 }
 
 .detail-container {
@@ -256,6 +261,10 @@ input {
   }
 
   .detail-container {
+    flex-direction: row;
+  }
+
+  #dashboard {
     flex-direction: row;
   }
 

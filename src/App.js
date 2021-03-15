@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 import Nav from './components/nav/nav';
+import HomePage from './pages/homePage';
 import Dashboard from './pages/admin/dashboard';
 import LoginPage from './pages/login';
 import AttendancePage from './pages/attendance';
@@ -48,6 +49,9 @@ function App() {
             </Route>
             <Route path="/network-error">
               {/* <NetworkError /> */}
+            </Route>
+            <Route exact path="/">
+              <HomePage userIsAdmin={isAdmin} />
             </Route>
             <Route path="/">
               {/* <NotFound /> */}

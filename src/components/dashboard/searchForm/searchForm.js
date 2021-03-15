@@ -66,7 +66,9 @@ function SearchForm() {
                                 style: { color: matches ? "black" : "white" }
                             }}
                         />}
-                        onChange={(e, value) => setParticipantID(value != null ? value.id : null)}
+                        onChange={(e, value) =>
+                            setParticipantID(value != null ? value.id : null)
+                        }
                     />
                 </section>
                 <button onClick={viewParticipantPage}><SearchIcon /></button>
