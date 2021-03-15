@@ -29,8 +29,10 @@ function GroupDetail() {
         groupData ?
             <div>
                 <h1>{groupData.group_name}</h1>
-                < Classes group={id} />
-                <Participants group={id} />
+                <div className="admin-page">
+                    <Classes group={id} />
+                    <Participants group={id} />
+                </div>
             </div >
             :
             null

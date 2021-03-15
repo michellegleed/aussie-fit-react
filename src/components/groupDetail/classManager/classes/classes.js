@@ -52,7 +52,7 @@ function Classes(props) {
     }
 
     return (
-        <div>
+        <div id="class-section">
             <h2>Classes</h2>
             {/* <button className="icon-button" onClick={() => displayClassForm(true)}><PlusIcon /></button> */}
             <PlusButton clickHandler={() => displayClassForm(true)} buttonText="New Class" />

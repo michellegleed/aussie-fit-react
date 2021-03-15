@@ -75,8 +75,54 @@ button {
   border: none;
 }
 
+#close-button {
+  width: 36px;
+  align-self: flex-end;
+}
+
+.centered-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-row button {
+  border: solid 1px var(--darkHeading);
+  padding: 4px 12px;
+}
+
+.card-buttons.edit-buttons button {
+  color: whitesmoke;
+}
+
 .text-button {
+  margin: 36px;
+  width: 15vw;
+  padding: 4px;
+  color: inherit;
   border: solid 1px;
+  border-radius: 10px;
+}
+
+.icon-button {
+  padding: 4px;
+  color: inherit;
+}
+
+button:hover {
+  border-color: tomato;
+  color: tomato;
+}
+
+button:hover path {
+  fill: tomato;
 }
 
 #main-container {
@@ -85,7 +131,7 @@ button {
   min-height: calc(100vh - 10vh - 64px);
 }
 
-#dashboard {
+.admin-page {
   display: flex;
   flex-direction: column;
 }
@@ -161,34 +207,15 @@ button:hover path {
   margin-bottom: 24px;
 }
 
-input {
+input,
+select {
   margin-left: 12px;
-  border: solid 1px;
-  border-radius: 10px;
   padding: 4px 8px;
 }
 
-#close-button {
-  width: 36px;
-  align-self: flex-end;
-}
-
-.centered-button-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.text-button {
-  margin: 36px;
-  width: 15vw;
-  padding: 4px;
-  color: inherit;
-}
-
-.icon-button {
-  padding: 4px;
-  color: inherit;
+input {
+  border-radius: 10px;
+  border: solid 1px;
 }
 
 #participant-detail-container {
@@ -229,7 +256,7 @@ input {
   opacity: 50%;
 }
 
-#dashboard {
+.admin-page {
   background-color: white;
 }
 
@@ -264,7 +291,7 @@ input {
     flex-direction: row;
   }
 
-  #dashboard {
+  .admin-page {
     flex-direction: row;
   }
 
@@ -281,14 +308,22 @@ input {
     max-width: 30vw;
   }
 
+  #class-section {
+    width: 55vw;
+    margin-right: 5vw;
+  }
+
+  #participant-section {
+    width: 25vw;
+  }
+
   .card {
     width: 300px;
   }
 
-  .table-row {
+  /* .table-row {
     width: 66vw;
-    /* flex-direction: row; */
-  }
+  } */
 
   .table-row.class-item {
     width: 260px;

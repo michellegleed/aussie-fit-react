@@ -116,8 +116,10 @@ function ParticipantDetail() {
                         <div className="modal">
                             <div className="modal-content">
                                 <h4>Permanently delete {participantData.first_name} {participantData.last_name}?</h4>
-                                <button onClick={() => deleteData()}>OK</button>
-                                <button onClick={() => setDeleteParticipantID(null)}>Cancel</button>
+                                <div className="centered-button-container">
+                                    <button className="text-button" onClick={() => deleteData()}>OK</button>
+                                    <button className="text-button" onClick={() => setDeleteParticipantID(null)}>Cancel</button>
+                                </div>
                             </div>
                         </div>
                         :

@@ -56,8 +56,10 @@ function ClassCard(props) {
                     <div className="modal">
                         <div className="modal-content">
                             <h4>Permanently delete {session.title}?</h4>
-                            <button onClick={() => deleteData()}>OK</button>
-                            <button onClick={() => setDeleteClassID(null)}>Cancel</button>
+                            <div className="button-row">
+                                <button onClick={() => deleteData()}>OK</button>
+                                <button onClick={() => setDeleteClassID(null)}>Cancel</button>
+                            </div>
                         </div>
                     </div>
                     :

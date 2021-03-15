@@ -51,7 +51,7 @@ function Participants(props) {
     }
 
     return (
-        <div>
+        <div id="participant-section">
             <h2>Participants</h2>
             {/* <button onClick={() => displayParticipantForm(true)}><PlusIcon /></button> */}
             <PlusButton clickHandler={() => displayParticipantForm(true)} buttonText="New Participant" />
@@ -63,7 +63,7 @@ function Participants(props) {
             }
             {
                 participantList != null && participantList.length > 0 ?
-                    participantList.map(participant => <ParticipantCard participant={participant} refetchParticipantList={refetchParticipantList} />)
+                    participantList.map(participant => <ParticipantCard participant={participant} />)
                     :
                     <h4>No participants found</h4>
             }
