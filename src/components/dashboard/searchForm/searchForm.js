@@ -63,7 +63,7 @@ function SearchForm() {
                             }}
                             InputLabelProps={{
                                 ...params.InputLabelProps,
-                                style: { color: matches ? "black" : "white" }
+                                style: { color: matches ? "black" : "white", fontFamily: "Montserrat" }
                             }}
                         />}
                         onChange={(e, value) =>

@@ -96,10 +96,11 @@ function QuestionForm(props) {
                             onChange={handleChange}
                         />
                     </div>
-
-                    <button className="text-button" type="submit" onClick={handleSubmit}>
-                        Save
+                    <div className="centered-button-container">
+                        <button className="text-button" type="submit" onClick={handleSubmit}>
+                            Save
                 </button>
+                    </div>
                 </form>
             </div>
             :

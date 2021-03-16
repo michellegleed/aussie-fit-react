@@ -15,6 +15,7 @@ function Classes(props) {
     const [showClassForm, setShowClassForm] = useState(false);
 
     const [classToEdit, setClassToEdit] = useState();
+    const [deleteClassID, setDeleteClassID] = useState();
 
     const [refetchClasses, setRefetchClasses] = useState(0);
 
@@ -36,6 +37,10 @@ function Classes(props) {
         setShowClassForm(true);
     }
 
+    const deleteClass = (classID) => {
+        setDeleteClassID(classID);
+    }
+
     const refetchClassList = () => {
         setRefetchClasses((prevState) => prevState + 1)
     }
@@ -51,6 +56,31 @@ function Classes(props) {
         return classToEdit ? classList.filter(session => session.id == classToEdit)[0] : { title: "", group: group, time: "" };
     }
 
+    const getClassTitle = () => {
+        const sess = deleteClassID ? classList.filter(session => session.id == deleteClassID)[0] : null;
+        return sess.title;
+    }
+
+    const deleteData = () => {
+        if (deleteClassID) {
+            fetchRequest(`${process.env.REACT_APP_API_URL}classes/${deleteClassID}/`, "DELETE")
+                .then(result => {
+                    console.log("result is", result)
+                    if (result.ok) {
+                        refetchClassList();
+                        setDeleteClassID(null);
+                        console.log("successfully deleted something!")
+                    } else {
+                        // the API returned an error - do something with it
+                        console.error(data);
+                        setErrorMessage("All fields are required.");
+                    }
+                })
+                .catch(error => console.log(error));
+            // .catch(error => history.push("/network-error"))
+        }
+    }
+
     return (
         <div id="class-section">
             <h2>Classes</h2>
@@ -63,8 +93,22 @@ function Classes(props) {
                     null
             }
             {
+                deleteClassID ?
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h4>Permanently delete {getClassTitle()}?</h4>
+                            <div className="button-row">
+                                <button onClick={() => deleteData()}>OK</button>
+                                <button onClick={() => setDeleteClassID(null)}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    :
+                    null
+            }
+            {
                 classList != null && classList.length > 0 ?
-                    classList.map(session => <ClassCard session={session} editClass={editClass} refetchClassList={refetchClassList} />)
+                    classList.map(session => <ClassCard session={session} editClass={editClass} deleteClass={deleteClass} />)
                     :
                     <h4>No classes found</h4>
             }

@@ -66,7 +66,7 @@ function QuestionsPage() {
         questions != null && questions.length > 0 ?
             <Question question={index < questions.length ? questions[index] : completed} nextQuestion={incrementQuestionIndex} />
             :
-            <Question question={completed} nextQuestion={null} />
+            null
     )
 }
 

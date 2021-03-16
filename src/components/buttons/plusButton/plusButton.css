@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   padding: 8px 16px;
+  margin: 8px 0 24px 0;
 }
 
 .plus-button p {

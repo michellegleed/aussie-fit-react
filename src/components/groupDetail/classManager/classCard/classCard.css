@@ -32,6 +32,10 @@
   padding: 4px 8px;
 }
 
+.class-card .modal-content {
+  color: var(--darkHeading);
+}
+
 .class-card:nth-child(2n) {
   background-color: #efefef;
   border-radius: 10px;

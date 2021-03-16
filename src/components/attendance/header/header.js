@@ -7,10 +7,6 @@ function Header(props) {
 
     const { groupName, nextClass } = props;
 
-    useEffect(() => {
-        console.log("NExt class as passed to header... ", nextClass)
-    }, [])
-
     return (
         <div id="attendance-header">
             <h1>{groupName}</h1>
