@@ -3,5 +3,10 @@
   border: solid yellow 1px;
   border-radius: 10px;
   padding: 16px 32px;
-  margin: 0 15vw;
+  margin: 0 10vw;
+}
+
+h6#alert {
+  font-size: 20px;
+  font-weight: 500;
 }

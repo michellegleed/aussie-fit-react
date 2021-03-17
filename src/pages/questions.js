@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, seState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fetchRequest } from '../utils/fetchRequest';
 import Question from '../components/attendance/question/question';
 import Spinner from '../components/spinner/spinner';

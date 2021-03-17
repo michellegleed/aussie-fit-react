@@ -109,7 +109,7 @@ function ParticipantDetail() {
                 <div>
                     {
                         showParticipantForm ?
-                            <ParticipantForm groupID={groupData.id} participant={participantData} displayParticipantForm={displayParticipantForm} refetchParticipant={refetchParticipantData} />
+                            <ParticipantForm groupID={groupData.id} participant={participantData} displayParticipantForm={displayParticipantForm} refetchParticipantList={refetchParticipantData} />
                             :
                             null
                     }
