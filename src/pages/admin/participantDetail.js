@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import PencilIcon from '../../components/icons/pencil';
@@ -8,6 +8,7 @@ import { fetchRequest } from '../../utils/fetchRequest';
 import ParticipantForm from '../../components/groupDetail/participantManager/participantForm/participantForm';
 import EditAttendanceForm from '../../components/groupDetail/participantManager/editAttendanceForm/editAttendanceForm';
 import CalendarIcon from '../../components/icons/calendar';
+import Spinner from '../../components/spinner/spinner';
 
 
 function ParticipantDetail() {
@@ -21,10 +22,13 @@ function ParticipantDetail() {
 
     const { id } = useParams();
     const history = useHistory();
+    const loadingRef = useRef(false);
 
     useEffect(() => {
+        loadingRef.current = true;
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/${id}/`)
             .then((result) => {
+                loadingRef.current = false;
                 if (result.ok) {
                     setParticipantData(result.data.participant);
                     setGroupData(result.data.group);
@@ -97,71 +101,74 @@ function ParticipantDetail() {
     }
 
     return (
-        participantData && groupData ?
-            <div>
-                {
-                    showParticipantForm ?
-                        <ParticipantForm groupID={groupData.id} participant={participantData} displayParticipantForm={displayParticipantForm} refetchParticipant={refetchParticipantData} />
-                        :
-                        null
-                }
-                {
-                    showEditAttendanceForm ?
-                        <EditAttendanceForm participant={participantData} classList={classList} displayEditAttendanceForm={displayEditAttendanceForm} refetchParticipant={refetchParticipantData} />
-                        :
-                        null
-                }
-                {
-                    deleteParticipantID ?
-                        <div className="modal">
-                            <div className="modal-content">
-                                <h4>Permanently delete {participantData.first_name} {participantData.last_name}?</h4>
-                                <div className="centered-button-container">
-                                    <button className="text-button" onClick={() => deleteData()}>OK</button>
-                                    <button className="text-button" onClick={() => setDeleteParticipantID(null)}>Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                        :
-                        null
-                }
-                <h1>{participantData.first_name} {participantData.last_name}</h1>
-                <h2>{groupData.group_name}</h2>
-                <div id="participant-detail-container">
-                    <div className="icon-text-buttons">
-                        <button onClick={() => displayEditAttendanceForm(true)}><CalendarIcon /><p>Update Attendance Record</p></button>
-                        <button onClick={() => displayParticipantForm(true)}><PencilIcon /><p>Edit Participant Details</p></button>
-                        <button onClick={() => deleteParticipant(participantData.id)}><CloseIcon /><p>Delete Participant</p></button>
-                    </div>
+        loadingRef.current == true ?
+            <Spinner />
+            :
+            participantData && groupData ?
+                <div>
                     {
-                        classList ?
-                            <div className="detail-container">
-                                <div>
-                                    <h4>Attended:</h4>
-                                    {participantData.attended.map(session =>
-                                        <div className="table-row class-item" key={`${session}-attended`}>
-                                            <h5>{getSessionTitle(session)[0]}</h5>
-                                            <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
-                                        </div>
-                                    )}
-                                </div>
-                                <div>
-                                    <h4>Absent:</h4>
-                                    {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
-                                    {participantData.absent.map(session =>
-                                        <div className="table-row class-item" key={`${session}-absent`}>
-                                            <h5>{getSessionTitle(session)[0]}</h5>
-                                            <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
-                                        </div>)}
+                        showParticipantForm ?
+                            <ParticipantForm groupID={groupData.id} participant={participantData} displayParticipantForm={displayParticipantForm} refetchParticipant={refetchParticipantData} />
+                            :
+                            null
+                    }
+                    {
+                        showEditAttendanceForm ?
+                            <EditAttendanceForm participant={participantData} classList={classList} displayEditAttendanceForm={displayEditAttendanceForm} refetchParticipant={refetchParticipantData} />
+                            :
+                            null
+                    }
+                    {
+                        deleteParticipantID ?
+                            <div className="modal">
+                                <div className="modal-content">
+                                    <h4>Permanently delete {participantData.first_name} {participantData.last_name}?</h4>
+                                    <div className="centered-button-container">
+                                        <button className="text-button" onClick={() => deleteData()}>OK</button>
+                                        <button className="text-button" onClick={() => setDeleteParticipantID(null)}>Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                             :
                             null
                     }
+                    <h1>{participantData.first_name} {participantData.last_name}</h1>
+                    <h2>{groupData.group_name}</h2>
+                    <div id="participant-detail-container">
+                        <div className="icon-text-buttons">
+                            <button onClick={() => displayEditAttendanceForm(true)}><CalendarIcon /><p>Update Attendance Record</p></button>
+                            <button onClick={() => displayParticipantForm(true)}><PencilIcon /><p>Edit Participant Details</p></button>
+                            <button onClick={() => deleteParticipant(participantData.id)}><CloseIcon /><p>Delete Participant</p></button>
+                        </div>
+                        {
+                            classList ?
+                                <div className="detail-container">
+                                    <div>
+                                        <h4>Attended:</h4>
+                                        {participantData.attended.map(session =>
+                                            <div className="table-row class-item" key={`${session}-attended`}>
+                                                <h5>{getSessionTitle(session)[0]}</h5>
+                                                <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <h4>Absent:</h4>
+                                        {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
+                                        {participantData.absent.map(session =>
+                                            <div className="table-row class-item" key={`${session}-absent`}>
+                                                <h5>{getSessionTitle(session)[0]}</h5>
+                                                <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                            </div>)}
+                                    </div>
+                                </div>
+                                :
+                                null
+                        }
+                    </div>
                 </div>
-            </div>
-            :
-            null
+                :
+                null
     )
 }
 

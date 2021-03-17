@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
 import { fetchRequest } from '../../../../utils/fetchRequest'
 import GroupForm from '../groupForm/groupForm';
 import GroupCard from '../groupCard/groupCard';
-import PlusIcon from '../../../icons/plus';
 import PlusButton from '../../../buttons/plusButton/plusButton';
+import Spinner from '../../../spinner/spinner';
 
 function Groups() {
 
@@ -16,9 +15,13 @@ function Groups() {
 
     const [groupList, setGroupList] = useState();
 
+    const loadingRef = useRef(false);
+
     useEffect(() => {
+        loadingRef.current = true;
         fetchRequest(`${process.env.REACT_APP_API_URL}groups/`)
             .then((result) => {
+                loadingRef.current = false;
                 if (result.ok) {
                     setGroupList(result.data);
                 }
@@ -59,7 +62,10 @@ function Groups() {
                     groupList != null && groupList.length > 0 ?
                         groupList.map(group => <GroupCard key={group.id} group={group} editGroup={editGroup} refetchGroupList={refetchGroupList} />)
                         :
-                        <h4>No groups found</h4>
+                        loadingRef.current === true ?
+                            <Spinner />
+                            :
+                            <h4>No groups found</h4>
                 }
             </div>
             {
