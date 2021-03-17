@@ -30,6 +30,11 @@ function ClassForm(props) {
     }
 
     const handleDate = (date) => {
+        if (session.in_progress || session.is_finished) {
+            // setErrorMessage(" This change will not be saved. Either delete this class or contact administrator.")
+            // return;
+        }
+        // setErrorMessage(null);
         setClassDetails((prevDetails) => ({
             ...prevDetails,
             time: date,
@@ -37,7 +42,7 @@ function ClassForm(props) {
     }
 
     const postData = async () => {
-        const result = fetchRequest(`${process.env.REACT_APP_API_URL}classes/`, "POST", classDetails)
+        fetchRequest(`${process.env.REACT_APP_API_URL}classes/`, "POST", classDetails)
             .then(result => {
                 console.log("result is", result)
                 if (result.ok) {
@@ -54,7 +59,7 @@ function ClassForm(props) {
     }
 
     const putData = async () => {
-        const result = fetchRequest(`${process.env.REACT_APP_API_URL}classes/${session.id}/`, "PUT", classDetails)
+        fetchRequest(`${process.env.REACT_APP_API_URL}classes/${session.id}/`, "PUT", classDetails)
             .then(result => {
                 console.log("result is", result)
                 if (result.ok) {
@@ -78,9 +83,6 @@ function ClassForm(props) {
     return (
         <div className="modal">
             <form>
-                {/* <button id="close-button" onClick={() => displayClassForm(false)}>
-                    <CloseIcon />
-                </button> */}
                 <CloseButton clickHandler={() => displayClassForm(false)} />
                 <h1>{session.id ? "Edit Class" : "New Class"}</h1>
                 <div className="error-message">
@@ -103,7 +105,12 @@ function ClassForm(props) {
                     </div>
                     <div className="form-item">
                         <label htmlFor="time">Time:</label>
-                        <Datetime value={classDetails.time} onChange={handleDate} id="time" />
+                        {
+                            session.in_progress || session.is_finished ?
+                                <h4>Cannot change the time of a class that has finished or is in progress.</h4>
+                                :
+                                <Datetime value={classDetails.time} onChange={handleDate} id="time" />
+                        }
                     </div>
                 </div>
 

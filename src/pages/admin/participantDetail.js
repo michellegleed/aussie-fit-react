@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Moment from 'react-moment';
 
 import PencilIcon from '../../components/icons/pencil';
 import CloseIcon from '../../components/icons/close';
@@ -148,7 +149,7 @@ function ParticipantDetail() {
                                         {participantData.attended.map(session =>
                                             <div className="table-row class-item" key={`${session}-attended`}>
                                                 <h5>{getSessionTitle(session)[0]}</h5>
-                                                <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                                <Moment format="DD/MM/YY">{getSessionTitle(session)[1]}</Moment>
                                             </div>
                                         )}
                                     </div>
@@ -158,7 +159,7 @@ function ParticipantDetail() {
                                         {participantData.absent.map(session =>
                                             <div className="table-row class-item" key={`${session}-absent`}>
                                                 <h5>{getSessionTitle(session)[0]}</h5>
-                                                <p>{getSessionTitle(session)[1].slice(0, 10)}</p>
+                                                <Moment format="DD/MM/YY">{getSessionTitle(session)[1]}</Moment>
                                             </div>)}
                                     </div>
                                 </div>
