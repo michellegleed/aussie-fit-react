@@ -18,7 +18,7 @@ function QRCodeUrls(props) {
 
     return (
         <div className="modal">
-            <div className="modal-content">
+            <div className="modal-content small-modal">
                 {/* <div className="card-buttons">
                     <button id="close-button" onClick={() => closeModal()}>
                         <CloseIcon />

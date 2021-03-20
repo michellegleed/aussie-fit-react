@@ -38,9 +38,9 @@ function participantForm(props) {
 
     const checkIfCurrentlySelected = (group) => {
         if (group.id == groupID) {
-            return <option value={group.id} selected>{group.group_name}</option>
+            return <option key={group.id} value={group.id} selected>{group.group_name}</option>
         }
-        return <option value={group.id}>{group.group_name}</option>
+        return <option key={group.id} value={group.id}>{group.group_name}</option>
     }
 
     const handleChange = (e) => {
@@ -105,7 +105,7 @@ function participantForm(props) {
                 </button> */}
                 <CloseButton clickHandler={() => displayParticipantForm(false)} />
                 <h1>{participant.id ? `Edit ${participant.first_name} ${participant.last_name}` : "New Participant"}</h1>
-                <div participantName="error-message">
+                <div className="error-message">
                     {
                         errorMessage ?
                             <ErrorMessage message={errorMessage} type="error" />

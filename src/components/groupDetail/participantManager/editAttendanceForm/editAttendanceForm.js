@@ -110,7 +110,7 @@ function EditAttendanceForm(props) {
                 {/* <button id="close-button" onClick={() => displayAttendanceForm(false)}>
                     <CloseIcon />
                 </button> */}
-                <CloseButton clickHandler={() => displayAttendanceForm(false)} />
+                <CloseButton clickHandler={() => displayEditAttendanceForm(false)} />
                 <h1>Edit {participant.first_name} {participant.last_name}'s Attendance</h1>
                 <div className="error-message">
                     {

@@ -63,7 +63,7 @@ function Participants(props) {
             }
             {
                 participantList != null && participantList.length > 0 ?
-                    participantList.map(participant => <ParticipantCard participant={participant} />)
+                    participantList.map(participant => <ParticipantCard key={participant.id} participant={participant} />)
                     :
                     <h4>No participants found</h4>
             }

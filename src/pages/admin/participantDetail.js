@@ -155,7 +155,6 @@ function ParticipantDetail() {
                                     </div>
                                     <div>
                                         <h4>Absent:</h4>
-                                        {/* {participantData.absent.map(session => <h4>{session}</h4>)} */}
                                         {participantData.absent.map(session =>
                                             <div className="table-row class-item" key={`${session}-absent`}>
                                                 <h5>{getSessionTitle(session)[0]}</h5>

@@ -108,7 +108,7 @@ function Classes(props) {
             }
             {
                 classList != null && classList.length > 0 ?
-                    classList.map(session => <ClassCard session={session} editClass={editClass} deleteClass={deleteClass} />)
+                    classList.map(session => <ClassCard key={session.id} session={session} editClass={editClass} deleteClass={deleteClass} />)
                     :
                     <h4>No classes found</h4>
             }
