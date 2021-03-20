@@ -31,7 +31,7 @@ function participantForm(props) {
                 }
                 else {
                     // history.push("/notfound");
-                    console.log("no group list found")
+                    setErrorMessage("Could not access group list. Refresh the page and try again.")
                 }
             });
     }, []);
@@ -61,7 +61,7 @@ function participantForm(props) {
     const postData = async () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/`, "POST", participantDetails)
             .then(result => {
-                console.log("result is", result)
+
                 if (result.ok) {
                     displayParticipantForm(false);
                     refetchParticipantList();
@@ -78,7 +78,7 @@ function participantForm(props) {
     const putData = async () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participant.id}/`, "PUT", participantDetails)
             .then(result => {
-                console.log("result is", result)
+
                 if (result.ok) {
                     displayParticipantForm(false);
                     refetchParticipantList();

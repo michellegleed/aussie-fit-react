@@ -27,7 +27,7 @@ function QuestionForm(props) {
     // const putData = async () => {
     //     const result = fetchRequest(`${process.env.REACT_APP_API_URL}questions/${question.id}/`, "PUT", questionDetails)
     //         .then(result => {
-    //             console.log("result is", result)
+    //             
     //             if (result.ok) {
     //                 displayQuestionForm(false);
     //                 refetchQuestionList();
@@ -38,7 +38,7 @@ function QuestionForm(props) {
     //             }
     //         })
     //         // .catch(error => history.push("/network-error"))
-    //         .catch(error => console.log(error))
+    //         .catch(error => setErrorMessage("Network error."))
     // }
 
     const handleSubmit = (e) => {

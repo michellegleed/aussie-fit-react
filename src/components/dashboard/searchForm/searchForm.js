@@ -28,7 +28,7 @@ function SearchForm() {
                     setParticipantList(result.data);
                 }
                 else {
-                    console.log("couldn't find participants");
+                    setErrorMessage("Could not access participant data. Refresh the page and try again.")
                 }
             })
     }, []);

@@ -125,11 +125,6 @@ button:hover path {
   fill: tomato;
 }
 
-button:active {
-  border-color: #508d24;
-  color: #508d24;
-}
-
 #main-container {
   margin: 10vw;
   /* minHeight = screen height - margins - nav height */

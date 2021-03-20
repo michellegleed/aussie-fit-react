@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
 
 import QuestionCard from '../questionCard/questionCard';
@@ -28,7 +29,7 @@ function Quiz() {
                     setQuestionList(JSON.parse(result.data.questions))
                 }
                 else {
-                    console.log("no questions found")
+                    setErrorMessage("Could not access question list. Refresh the page and try again.")
                 }
             });
     }, []);
@@ -120,10 +121,9 @@ function Quiz() {
 
     useEffect(() => {
         if (saveUpdatesToAPI > 0) {
-            console.log("**** Sending PUT request to back-end ****")
             fetchRequest(`${process.env.REACT_APP_API_URL}questions/`, "PUT", { questions: JSON.stringify(questionList) })
                 .then(result => {
-                    console.log("result is", result)
+
                     if (result.ok) {
                         setQuestionList(JSON.parse(result.data.questions))
                     }

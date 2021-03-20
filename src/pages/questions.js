@@ -20,8 +20,7 @@ function QuestionsPage() {
                     setQuestions(JSON.parse(result.data.questions))
                 }
                 else {
-                    // history.push("/notfound");
-                    console.log("no questions found")
+                    setErrorMessage("Something went wrong. Please refresh the page.")
                 }
             });
     }, [])

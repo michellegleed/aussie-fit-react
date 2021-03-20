@@ -26,7 +26,7 @@ function Groups() {
                     setGroupList(result.data);
                 }
                 else {
-                    console.log("no group data")
+                    setErrorMessage("Could not access group data. Refresh the page and try again.")
                 }
             });
     }, [refetchGroups]);

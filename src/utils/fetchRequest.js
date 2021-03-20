@@ -16,7 +16,6 @@ const createRequestObject = (method, body) => {
         }
     }
     if (method !== "get") {
-        // console.log("fetch method is ", method);
         ro.method = method;
     }
     if (body != null) {

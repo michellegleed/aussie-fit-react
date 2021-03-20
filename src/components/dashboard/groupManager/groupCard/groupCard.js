@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import { fetchRequest } from '../../../../utils/fetchRequest';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
 import QRCodeUrls from '../../qrCodeUrls/qrCodeUrls';
 import CloseIcon from '../../../icons/close';
@@ -14,6 +15,8 @@ import QRCodeIcon from '../../../icons/qrCode';
 function GroupCard(props) {
 
     // const history = useHistory();
+
+    const [errorMessage, setErrorMessage] = useState();
 
     const { group, editGroup, refetchGroupList } = props;
 
@@ -36,22 +39,29 @@ function GroupCard(props) {
     const deleteData = () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}groups/${group.id}/`, "DELETE")
             .then(result => {
-                console.log("result is", result)
                 if (result.ok) {
                     refetchGroupList();
-                    console.log("successfully deleted something!")
                 } else {
                     // the API returned an error - do something with it
-                    console.error(data);
-                    setErrorMessage("All fields are required.");
+                    console.error("Delete op failed.");
+                    setErrorMessage("Unable to perform this operation at this time. Refresh the page and try again.");
                 }
             })
             // .catch(error => history.push("/network-error"))
-            .catch(error => console.log(error))
+            .catch(error => setErrorMessage("Network error."))
     }
 
     return (
         <div className="card">
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
+
             {
                 deleteGroupID ?
                     <div className="modal">

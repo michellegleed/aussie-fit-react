@@ -28,7 +28,7 @@ function Nav(props) {
                     setIsAdmin(result.data.is_admin);
                 }
                 else {
-                    console.log("couldn't get user permissions");
+                    setIsAdmin(false);
                 }
             })
     }
@@ -93,7 +93,8 @@ function Nav(props) {
                         </React.Fragment>
                         :
                         <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                            <a onClick={() => history.goBack()}>Home</a>
+                            {/* <a onClick={() => history.goBack()}>Home</a> */}
+                            <NavLink to="/">Home</NavLink>
                         </div>
                     }
                     <div className="nav-item" onClick={() => toggleMobileNav(false)}>

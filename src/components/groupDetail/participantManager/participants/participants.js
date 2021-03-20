@@ -25,15 +25,9 @@ function Participants(props) {
                 }
                 else {
                     history.push("/notfound");
-                    console.log("no group data")
                 }
             });
     }, [refetchparticipants]);
-
-    // const editParticipant = (participantID) => {
-    //     setParticipantToEdit(participantID);
-    //     setShowparticipantForm(true);
-    // }
 
     const refetchParticipantList = () => {
         setRefetchParticipants((prevState) => prevState + 1)
@@ -53,7 +47,6 @@ function Participants(props) {
     return (
         <div id="participant-section">
             <h2>Participants</h2>
-            {/* <button onClick={() => displayParticipantForm(true)}><PlusIcon /></button> */}
             <PlusButton clickHandler={() => displayParticipantForm(true)} buttonText="New Participant" />
             {
                 showparticipantForm ?

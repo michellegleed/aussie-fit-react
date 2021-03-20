@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import ErrorMessage from '../errorMessage/errorMessage';
 
 import './loginForm.css';
 

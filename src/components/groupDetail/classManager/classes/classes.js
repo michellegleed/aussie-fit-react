@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
+
+
+import { fetchRequest } from '../../../../utils/fetchRequest';
+import ErrorMessage from '../../../errorMessage/errorMessage';
+
 import ClassCard from '../classCard/classCard';
 import ClassForm from '../classForm/classForm';
 import PlusIcon from '../../../icons/plus';
-
-import { fetchRequest } from '../../../../utils/fetchRequest';
 import PlusButton from '../../../buttons/plusButton/plusButton';
 
 function Classes(props) {
 
     const [classList, setClassList] = useState();
     const { group } = props;
+
+    const [errorMessage, setErrorMessage] = useState();
 
     const [showClassForm, setShowClassForm] = useState(false);
 
@@ -26,8 +31,7 @@ function Classes(props) {
                     setClassList(result.data.classes);
                 }
                 else {
-                    history.push("/notfound");
-                    console.log("no group data")
+                    setErrorMessage("No classes found for this group.")
                 }
             });
     }, [refetchClasses]);
@@ -47,9 +51,10 @@ function Classes(props) {
 
     const displayClassForm = (bool) => {
         setShowClassForm(bool);
-
         // this clears group details from form upon closing
-        bool === false ? setClassToEdit(null) : null;
+        if (bool === false) {
+            setClassToEdit(null);
+        }
     }
 
     const populateClassForm = () => {
@@ -65,24 +70,30 @@ function Classes(props) {
         if (deleteClassID) {
             fetchRequest(`${process.env.REACT_APP_API_URL}classes/${deleteClassID}/`, "DELETE")
                 .then(result => {
-                    console.log("result is", result)
+
                     if (result.ok) {
                         refetchClassList();
                         setDeleteClassID(null);
-                        console.log("successfully deleted something!")
                     } else {
                         // the API returned an error - do something with it
-                        console.error(data);
-                        setErrorMessage("All fields are required.");
+                        setErrorMessage("Unable to delete this class. Check your network connection and try again.");
                     }
                 })
-                .catch(error => console.log(error));
+                .catch(error => setErrorMessage("Network error."));
             // .catch(error => history.push("/network-error"))
         }
     }
 
     return (
         <div id="class-section">
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
             <h2>Classes</h2>
             {/* <button className="icon-button" onClick={() => displayClassForm(true)}><PlusIcon /></button> */}
             <PlusButton clickHandler={() => displayClassForm(true)} buttonText="New Class" />

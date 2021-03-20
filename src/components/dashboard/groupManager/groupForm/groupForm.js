@@ -29,24 +29,24 @@ function GroupForm(props) {
     const postData = async () => {
         const result = fetchRequest(`${process.env.REACT_APP_API_URL}groups/`, "POST", groupDetails)
             .then(result => {
-                console.log("result is", result)
+
                 if (result.ok) {
                     displayGroupForm(false);
                     refetchGroupList();
                 } else {
                     // the API returned an error - do something with it
-                    console.error(data);
+                    // console.error(data);
                     setErrorMessage("All fields are required.");
                 }
             })
             // .catch(error => history.push("/network-error"))
-            .catch(error => console.log(error))
+            .catch(error => setErrorMessage("Network error."))
     }
 
     const putData = async () => {
         const result = fetchRequest(`${process.env.REACT_APP_API_URL}groups/${group.id}/`, "PUT", groupDetails)
             .then(result => {
-                console.log("result is", result)
+
                 if (result.ok) {
                     displayGroupForm(false);
                     refetchGroupList();

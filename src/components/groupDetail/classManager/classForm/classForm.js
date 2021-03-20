@@ -44,7 +44,7 @@ function ClassForm(props) {
     const postData = async () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}classes/`, "POST", classDetails)
             .then(result => {
-                console.log("result is", result)
+
                 if (result.ok) {
                     displayClassForm(false);
                     refetchClassList();
@@ -61,7 +61,7 @@ function ClassForm(props) {
     const putData = async () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}classes/${session.id}/`, "PUT", classDetails)
             .then(result => {
-                console.log("result is", result)
+
                 if (result.ok) {
                     displayClassForm(false);
                     refetchClassList();

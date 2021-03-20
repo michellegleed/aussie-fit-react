@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchRequest } from '../../../../utils/fetchRequest';
-import { useHistory } from 'react-router-dom';
-import Datetime from 'react-datetime';
 
 import ErrorMessage from '../../../errorMessage/errorMessage';
-import CloseIcon from '../../../icons/close';
-import participantForm from '../participantForm/participantForm';
 
 import './editAttendanceForm.css';
 import CloseButton from '../../../buttons/closeButton/closeButton';
@@ -24,25 +20,18 @@ function EditAttendanceForm(props) {
         participant != null ?
             fetchRequest(`${process.env.REACT_APP_API_URL}groups/${participant.group}/`)
                 .then(result => {
-                    console.log("result is", result)
                     if (result.ok) {
                         setClassList(result.data.classes)
                     } else if (result.status == 400) {
-                        // the API returned an error - do something with it
-                        // console.error(data);
                         setErrorMessage("No classes found for participant's group.");
                     }
                 })
-                // .catch(error => history.push("/network-error"))
                 .catch(error => setErrorMessage(error.message))
             :
             null
     }, [participant]);
 
-    const history = useHistory();
-
     const handleChange = (e) => {
-        console.log(e);
         const { name, value } = e.target;
         const sessionID = parseInt(name);
         if (value === "true") {

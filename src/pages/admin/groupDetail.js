@@ -25,7 +25,6 @@ function GroupDetail() {
                 }
                 else {
                     history.push("/notfound");
-                    console.log("no group data")
                 }
             });
     }, []);

@@ -21,15 +21,13 @@ function AttendancePage() {
     useEffect(() => {
         loadingRef.current = true;
         fetchRequest(`${process.env.REACT_APP_API_URL}groups/${id}/`)
-            // fetchRequest(`https://still-forest-93396.herokuapp.com/groups/1/`)
             .then((result) => {
                 loadingRef.current = false;
                 if (result.ok) {
                     setGroupData(result.data);
                 }
-                else {
-                    history.push("/notfound");
-                    console.log("no group data")
+                else if (result.status === 401) {
+                    history.push("/login");
                 }
             })
     }, []);
