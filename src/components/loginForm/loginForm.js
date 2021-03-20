@@ -4,7 +4,10 @@ import ErrorMessage from '../errorMessage/errorMessage';
 
 import './loginForm.css';
 
-function LoginForm() {
+function LoginForm(props) {
+
+
+    const { groupID } = props;
 
     const [errorMessage, setErrorMessage] = useState();
 
@@ -50,8 +53,8 @@ function LoginForm() {
         if (credentials.username && credentials.password) {
             postData().then(response => {
                 window.localStorage.setItem("token", response.token);
-                // redirect to home page on successful login
-                history.push("/");
+                // redirect to attendance page on successful login
+                history.push(`/group/${groupID}`);
             })
                 .catch(
                     (error) => {

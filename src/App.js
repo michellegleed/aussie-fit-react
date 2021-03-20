@@ -26,14 +26,14 @@ function App() {
         <Nav updateIsAdmin={updateIsAdmin} />
         <div id="main-container">
           <Switch>
+            <Route path="/group/:id/login">
+              <LoginPage />
+            </Route>
             <Route path="/group/:id" >
               <AttendancePage />
             </Route>
             <Route path="/check-in" exact>
               <QuestionsPage />
-            </Route>
-            <Route path="/login">
-              <LoginPage />
             </Route>
             <Route path="/admin/participant/:id">
               <ParticipantDetail />

@@ -26,8 +26,11 @@ function AttendancePage() {
                 if (result.ok) {
                     setGroupData(result.data);
                 }
-                else if (result.status === 401) {
-                    history.push("/login");
+
+                console.log("result object looks like this: ", result);
+                if (result.status === 401) {
+                    console.log("got a status of 401")
+                    history.push(`/group/${id}/login`);
                 }
             })
     }, []);
