@@ -68,6 +68,12 @@ nav {
   font-weight: 700;
 }
 
+#logo {
+  margin-left: -2vw;
+  height: 36px;
+  margin-top: 4px;
+}
+
 @media screen and (min-width: 720px) {
   .menu-button {
     display: none;

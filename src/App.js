@@ -6,11 +6,13 @@ import Nav from './components/nav/nav';
 import HomePage from './pages/homePage';
 import Dashboard from './pages/admin/dashboard';
 import LoginPage from './pages/login';
+
 import AttendancePage from './pages/attendance';
 import QuestionsPage from './pages/questions';
 import GroupDetail from './pages/admin/groupDetail';
 import ParticipantDetail from './pages/admin/participantDetail';
 import Footer from './components/footer/footer';
+import AdminLoginPage from './pages/admin/adminLogin';
 
 function App() {
 
@@ -37,6 +39,9 @@ function App() {
             </Route>
             <Route path="/admin/participant/:id">
               <ParticipantDetail />
+            </Route>
+            <Route path="/admin/login">
+              <AdminLoginPage />
             </Route>
             <Route path="/admin/:id">
               <GroupDetail />

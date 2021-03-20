@@ -4,8 +4,11 @@ import GroupForm from '../groupForm/groupForm';
 import GroupCard from '../groupCard/groupCard';
 import PlusButton from '../../../buttons/plusButton/plusButton';
 import Spinner from '../../../spinner/spinner';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
-function Groups() {
+function Groups(props) {
+
+    const { redirectToLogin } = props;
 
     const [showGroupForm, setShowGroupForm] = useState(false);
 
@@ -14,6 +17,8 @@ function Groups() {
     const [refetchGroups, setrefetchGroups] = useState(0);
 
     const [groupList, setGroupList] = useState();
+
+    const [errorMessage, setErrorMessage] = useState();
 
     const loadingRef = useRef(false);
 
@@ -24,6 +29,9 @@ function Groups() {
                 loadingRef.current = false;
                 if (result.ok) {
                     setGroupList(result.data);
+                }
+                else if (result.status == 401) {
+                    redirectToLogin();
                 }
                 else {
                     setErrorMessage("Could not access group data. Refresh the page and try again.")
@@ -52,6 +60,14 @@ function Groups() {
 
     return (
         <div id="group-section">
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
             <div className="section-title">
                 <h1>Groups</h1>
                 {/* <button onClick={() => displayGroupForm(true)}><PlusIcon /></button> */}

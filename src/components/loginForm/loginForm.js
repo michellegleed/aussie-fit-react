@@ -6,7 +6,6 @@ import './loginForm.css';
 
 function LoginForm(props) {
 
-
     const { groupID } = props;
 
     const [errorMessage, setErrorMessage] = useState();
@@ -54,7 +53,7 @@ function LoginForm(props) {
             postData().then(response => {
                 window.localStorage.setItem("token", response.token);
                 // redirect to attendance page on successful login
-                history.push(`/group/${groupID}`);
+                groupID != null ? history.push(`/group/${groupID}`) : history.push('/admin')
             })
                 .catch(
                     (error) => {

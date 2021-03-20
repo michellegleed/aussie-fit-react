@@ -93,18 +93,25 @@ function Nav(props) {
                         </React.Fragment>
                         :
                         <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                            {/* <a onClick={() => history.goBack()}>Home</a> */}
-                            <NavLink to="/">Home</NavLink>
+                            <a href="http://www.aussiefit.org/"><img src="/logo.png" alt="Aussie Fit" id="logo" /></a>
                         </div>
                     }
                     <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                        <Link to="/login" onClick={handleLogout}>Log Out</Link>
+                        <Link to="/" onClick={handleLogout}>Log Out</Link>
                     </div>
                 </div>
                 :
-                <div className="nav-menu-items logged-out">
+                // <div className="nav-menu-items logged-out">
+                //     <div className="nav-item" onClick={() => toggleMobileNav(false)}>
+                //         <Link to="/login">Log In</Link>
+                //     </div>
+                // </div>
+                <div
+                    className={`nav-menu-items ${showMobileNav ? "nav-active" : ""} dark-theme`}>
                     <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                        <Link to="/login">Log In</Link>
+                        <a href="http://www.aussiefit.org/"><img src="/logo.png" alt="Aussie Fit" id="logo" /></a>
+                    </div>
+                    <div className="nav-item">
                     </div>
                 </div>
             }
