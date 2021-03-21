@@ -68,10 +68,13 @@ nav {
   font-weight: 700;
 }
 
-#logo {
-  margin-left: -2vw;
+#in-menu-logo {
+  display: none;
+}
+
+#mobile-logo {
+  margin: 20px 24px;
   height: 36px;
-  margin-top: 4px;
 }
 
 @media screen and (min-width: 720px) {
@@ -108,5 +111,15 @@ nav {
 
   .nav-item a {
     color: inherit;
+  }
+
+  #mobile-logo {
+    display: none;
+  }
+
+  #in-menu-logo {
+    margin-left: -2vw;
+    height: 36px;
+    margin-top: 4px;
   }
 }

@@ -116,13 +116,10 @@ button {
   color: inherit;
 }
 
-button:hover {
-  border-color: tomato;
-  color: tomato;
-}
-
-button:hover path {
-  fill: tomato;
+button:active,
+button:active path {
+  color: #508d24;
+  fill: 508d24;
 }
 
 #main-container {
@@ -331,5 +328,20 @@ input {
 
   .table-row.class-item {
     width: 260px;
+  }
+
+  button:hover {
+    border-color: tomato;
+    color: tomato;
+  }
+
+  button:hover path {
+    fill: tomato;
+  }
+
+  button:active,
+  button:active path {
+    color: unset;
+    fill: unset;
   }
 }

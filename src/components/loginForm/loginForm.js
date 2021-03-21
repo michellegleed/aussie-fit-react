@@ -53,7 +53,7 @@ function LoginForm(props) {
             postData().then(response => {
                 window.localStorage.setItem("token", response.token);
                 // redirect to attendance page on successful login
-                groupID != null ? history.push(`/group/${groupID}`) : history.push('/admin')
+                groupID != null ? history.push(`/group/${groupID}`) : history.push('/')
             })
                 .catch(
                     (error) => {

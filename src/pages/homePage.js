@@ -1,5 +1,4 @@
 import React from 'react';
-import ArrowIcon from '../components/icons/arrow';
 import Dashboard from './admin/dashboard';
 
 function HomePage(props) {

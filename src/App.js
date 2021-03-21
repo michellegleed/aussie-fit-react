@@ -13,6 +13,7 @@ import GroupDetail from './pages/admin/groupDetail';
 import ParticipantDetail from './pages/admin/participantDetail';
 import Footer from './components/footer/footer';
 import AdminLoginPage from './pages/admin/adminLogin';
+import NotFound from './pages/notFound';
 
 function App() {
 
@@ -46,21 +47,18 @@ function App() {
             <Route path="/admin/:id">
               <GroupDetail />
             </Route>
-            <Route path="/admin">
-              <Dashboard />
-            </Route>
-            <Route path="/unauthorized">
-              {/* <Unauthorized /> */}
-            </Route>
-            <Route path="/network-error">
-              {/* <NetworkError /> */}
-            </Route>
             <Route exact path="/">
               <HomePage userIsAdmin={isAdmin} />
             </Route>
             <Route path="/">
-              {/* <NotFound /> */}
+              <NotFound />
             </Route>
+            {/* <Route path="/unauthorized">
+              <Unauthorized />
+            </Route> */}
+            {/* <Route path="/network-error">
+              <NetworkError />
+            </Route> */}
           </Switch>
         </div>
       </Router>

@@ -60,6 +60,7 @@ function Nav(props) {
 
     /// Logout
     const handleLogout = () => {
+        setIsAdmin(false);
         window.localStorage.clear();
     };
 
@@ -70,15 +71,21 @@ function Nav(props) {
                     showMobileNav ?
                         null
                         :
-                        <div onClick={() => toggleMobileNav(true)} className="menu-button"><MenuIcon id={isAdmin ? "dark-svg" : "light-svg"}
-                        /></div>
+                        <React.Fragment>
+                            <div>
+                                <a href="http://www.aussiefit.org/"><img src="/logo.png" alt="Aussie Fit" id="mobile-logo" /></a>
+                            </div>
+                            <div onClick={() => toggleMobileNav(true)} className="menu-button">
+                                <MenuIcon id={isAdmin ? "dark-svg" : "light-svg"}
+                                /></div>
+                        </React.Fragment>
                 }
             </div>
             {loggedIn ?
-                <div
-                    className={`nav-menu-items ${showMobileNav ? "nav-active" : ""} ${isAdmin ? "light-theme" : "dark-theme"}`
-                    }>
-                    <div className={`menu-button ${isAdmin ? "light-svg" : "dark-svg"}`} onClick={() => toggleMobileNav(false)}><CloseIcon id={isAdmin ? "light-svg" : "dark-svg"} /></div>
+                <div className={`nav-menu-items ${showMobileNav ? "nav-active" : ""} ${isAdmin ? "light-theme" : "dark-theme"}`}>
+                    <div className={`menu-button ${isAdmin ? "light-svg" : "dark-svg"}`} onClick={() => toggleMobileNav(false)}>
+                        <CloseIcon id={isAdmin ? "light-svg" : "dark-svg"} />
+                    </div>
                     {isAdmin ?
                         <React.Fragment>
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
@@ -101,17 +108,17 @@ function Nav(props) {
                     </div>
                 </div>
                 :
-                // <div className="nav-menu-items logged-out">
-                //     <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                //         <Link to="/login">Log In</Link>
-                //     </div>
-                // </div>
                 <div
                     className={`nav-menu-items ${showMobileNav ? "nav-active" : ""} dark-theme`}>
-                    <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                        <a href="http://www.aussiefit.org/"><img src="/logo.png" alt="Aussie Fit" id="logo" /></a>
+                    <div className="menu-button dark-svg" onClick={() => toggleMobileNav(false)}><CloseIcon id={isAdmin ? "light-svg" : "dark-svg"} /></div>
+                    <div className="nav-item">
+                        <img src="/logo.png" alt="Aussie Fit" id="logo" />
                     </div>
                     <div className="nav-item">
+                        <a href="http://www.aussiefit.org/">About</a>
+                    </div>
+                    <div className="nav-item">
+                        <a href="http://www.aussiefit.org/contact.html">Contact Us</a>
                     </div>
                 </div>
             }
