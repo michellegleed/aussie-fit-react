@@ -89,7 +89,7 @@ function Nav(props) {
                     {isAdmin ?
                         <React.Fragment>
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                                <NavLink to="/admin">Dashboard</NavLink>
+                                <NavLink to="/">Dashboard</NavLink>
                             </div>
                             <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                                 <a href={`${process.env.REACT_APP_API_URL}participants/attendance-to-csv/`} >Download Attendance Data</a>
@@ -99,9 +99,17 @@ function Nav(props) {
                             </div>
                         </React.Fragment>
                         :
-                        <div className="nav-item" onClick={() => toggleMobileNav(false)}>
-                            <a href="http://www.aussiefit.org/"><img src="/logo.png" alt="Aussie Fit" id="logo" /></a>
-                        </div>
+                        <React.Fragment>
+                            <div className="nav-item">
+                                <img src="/logo.png" alt="Aussie Fit" id="logo" />
+                            </div>
+                            <div className="nav-item">
+                                <a href="http://www.aussiefit.org/">About</a>
+                            </div>
+                            <div className="nav-item">
+                                <a href="http://www.aussiefit.org/contact.html">Contact Us</a>
+                            </div>
+                        </React.Fragment>
                     }
                     <div className="nav-item" onClick={() => toggleMobileNav(false)}>
                         <Link to="/" onClick={handleLogout}>Log Out</Link>
