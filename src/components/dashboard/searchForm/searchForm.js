@@ -6,6 +6,7 @@ import { fetchRequest } from '../../../utils/fetchRequest';
 
 import './searchForm.css';
 import SearchIcon from '../../icons/search';
+import ErrorMessage from '../../errorMessage/errorMessage';
 
 function SearchForm() {
 

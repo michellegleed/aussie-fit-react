@@ -5,6 +5,7 @@ import ParticipantForm from '../participantForm/participantForm';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
 import PlusButton from '../../../buttons/plusButton/plusButton';
+import ErrorMessage from '../../../errorMessage/errorMessage';
 
 function Participants(props) {
 
@@ -16,6 +17,8 @@ function Participants(props) {
     const [participantToEdit, setParticipantToEdit] = useState();
 
     const [refetchparticipants, setRefetchParticipants] = useState(0);
+
+    const [errorMessage, setErrorMessage] = useState();
 
     useEffect(() => {
         fetchRequest(`${process.env.REACT_APP_API_URL}groups/${group}/`)
@@ -48,6 +51,14 @@ function Participants(props) {
 
     return (
         <div id="participant-section">
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
             <h2>Participants</h2>
             <PlusButton clickHandler={() => displayParticipantForm(true)} buttonText="New Participant" />
             {
