@@ -1,5 +1,5 @@
 #attendance-question {
-  margin: 20vh 0;
+  margin: 15vh 0 0 0;
   text-align: center;
 }
 
@@ -19,7 +19,7 @@
 
 #next-button {
   position: absolute;
-  bottom: 15vh;
+  bottom: 5vh;
 }
 
 /* #attendance-question .button { */
