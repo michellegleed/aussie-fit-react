@@ -44,7 +44,7 @@ function ParticipantDetail() {
     }, [refetchParticipant]);
 
     useEffect(() => {
-        groupData != null ?
+        if (groupData != null) {
             fetchRequest(`${process.env.REACT_APP_API_URL}classes/`)
                 .then(result => {
 
@@ -58,8 +58,7 @@ function ParticipantDetail() {
                 })
                 // .catch(error => history.push("/network-error"))
                 .catch(error => setErrorMessage(error.message))
-            :
-            null
+        }
     }, [groupData]);
 
     const displayParticipantForm = (bool) => {

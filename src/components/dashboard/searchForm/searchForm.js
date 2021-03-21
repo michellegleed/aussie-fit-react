@@ -13,6 +13,8 @@ function SearchForm() {
 
     const [participantID, setParticipantID] = useState();
 
+    const [errorMessage, setErrorMessage] = useState();
+
     const history = useHistory();
 
     const viewParticipantPage = () => {
@@ -43,6 +45,15 @@ function SearchForm() {
     });
 
     return (
+        <React.Fragment>
+            <div className="error-message">
+                {
+                    errorMessage ?
+                        <ErrorMessage message={errorMessage} type="error" />
+                        :
+                        null
+                }
+            </div>
         participantList != null ?
             <form id="search-form" autoComplete="off">
                 <section>
@@ -75,6 +86,7 @@ function SearchForm() {
             </form>
             :
             null
+        </React.Fragment>
     )
 }
 

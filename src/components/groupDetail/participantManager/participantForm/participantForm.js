@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchRequest } from '../../../../utils/fetchRequest';
-import { useHistory } from 'react-router-dom';
-import Datetime from 'react-datetime';
-
 import ErrorMessage from '../../../errorMessage/errorMessage';
-import CloseIcon from '../../../icons/close';
 import CloseButton from '../../../buttons/closeButton/closeButton';
 
-function participantForm(props) {
+function ParticipantForm(props) {
 
     const { groupID, participant, displayParticipantForm, refetchParticipantList } = props;
 
@@ -21,8 +17,6 @@ function participantForm(props) {
         group: participant.group, // for New participant, need to get group ID from params!!!
     });
 
-    const history = useHistory();
-
     useEffect(() => {
         fetchRequest(`${process.env.REACT_APP_API_URL}groups/`)
             .then((result) => {
@@ -30,7 +24,6 @@ function participantForm(props) {
                     setGroupList(result.data);
                 }
                 else {
-                    // history.push("/notfound");
                     setErrorMessage("Could not access group list. Refresh the page and try again.")
                 }
             });
@@ -51,13 +44,6 @@ function participantForm(props) {
         }));
     }
 
-    // const handleDate = (date) => {
-    //     setParticipantDetails((prevDetails) => ({
-    //         ...prevDetails,
-    //         time: date,
-    //     }));
-    // }
-
     const postData = async () => {
         fetchRequest(`${process.env.REACT_APP_API_URL}participants/`, "POST", participantDetails)
             .then(result => {
@@ -71,7 +57,6 @@ function participantForm(props) {
                     setErrorMessage("All fields are required.");
                 }
             })
-            // .catch(error => history.push("/network-error"))
             .catch(error => setErrorMessage(error.message))
     }
 
@@ -88,7 +73,6 @@ function participantForm(props) {
                     setErrorMessage("All fields are required.");
                 }
             })
-            // .catch(error => history.push("/network-error"))
             .catch(error => setErrorMessage(error.message))
     }
 
@@ -100,9 +84,6 @@ function participantForm(props) {
     return (
         <div className="modal">
             <form>
-                {/* <button id="close-button" onClick={() => displayParticipantForm(false)}>
-                    <CloseIcon />
-                </button> */}
                 <CloseButton clickHandler={() => displayParticipantForm(false)} />
                 <h1>{participant.id ? `Edit ${participant.first_name} ${participant.last_name}` : "New Participant"}</h1>
                 <div className="error-message">
@@ -155,4 +136,4 @@ function participantForm(props) {
     )
 }
 
-export default participantForm;
+export default ParticipantForm;

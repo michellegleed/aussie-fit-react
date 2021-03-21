@@ -17,7 +17,7 @@ function EditAttendanceForm(props) {
     const [absent, setAbsent] = useState(participant.absent);
 
     useEffect(() => {
-        participant != null ?
+        if (participant != null) {
             fetchRequest(`${process.env.REACT_APP_API_URL}groups/${participant.group}/`)
                 .then(result => {
                     if (result.ok) {
@@ -27,8 +27,7 @@ function EditAttendanceForm(props) {
                     }
                 })
                 .catch(error => setErrorMessage(error.message))
-            :
-            null
+        }
     }, [participant]);
 
     const handleChange = (e) => {
@@ -58,15 +57,6 @@ function EditAttendanceForm(props) {
             setAttended(attendedArray);
         }
     }
-
-    const handleDate = (date) => {
-        setClassDetails((prevDetails) => ({
-            ...prevDetails,
-            time: date,
-        }));
-    }
-
-
 
     const putData = async () => {
         const attendanceDetails = {

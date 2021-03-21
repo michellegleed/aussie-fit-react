@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ParticipantCard from '../participantCard/participantCard';
 import ParticipantForm from '../participantForm/participantForm';
-import PlusIcon from '../../../icons/plus';
+// import PlusIcon from '../../../icons/plus';
 
 import { fetchRequest } from '../../../../utils/fetchRequest';
 import PlusButton from '../../../buttons/plusButton/plusButton';
@@ -24,7 +24,7 @@ function Participants(props) {
                     setParticipantList(result.data.participants);
                 }
                 else {
-                    history.push("/notfound");
+                    setErrorMessage("Unable to fetch participant data. Refresh the page and try again.");
                 }
             });
     }, [refetchparticipants]);
@@ -37,7 +37,9 @@ function Participants(props) {
         setShowparticipantForm(bool);
 
         // this clears group details from form upon closing
-        bool === false ? setParticipantToEdit(null) : null;
+        if (bool === false) {
+            setParticipantToEdit(null)
+        }
     }
 
     const populateParticipantForm = () => {

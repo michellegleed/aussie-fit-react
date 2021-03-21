@@ -51,7 +51,9 @@ function Groups(props) {
     const displayGroupForm = (bool) => {
         setShowGroupForm(bool);
         // this clears group details from form upon closing
-        bool === false ? setGroupToEdit(null) : null;
+        if (bool === false) {
+            setGroupToEdit(null)
+        }
     }
 
     const populateGroupForm = () => {

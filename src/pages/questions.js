@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { fetchRequest } from '../utils/fetchRequest';
 import Question from '../components/attendance/question/question';
 import Spinner from '../components/spinner/spinner';
+import ErrorMessage from '../components/errorMessage/errorMessage';
 
 function QuestionsPage() {
 
@@ -10,6 +11,8 @@ function QuestionsPage() {
     const [questions, setQuestions] = useState();
 
     const loadingRef = useRef(false);
+
+    const [errorMessage, setErrorMessage] = useState();
 
     useEffect(() => {
         loadingRef.current = true;
@@ -39,10 +42,20 @@ function QuestionsPage() {
         loadingRef.current == true ?
             <Spinner />
             :
+            <React.Fragment>
+                <div className="error-message">
+                    {
+                        errorMessage ?
+                            <ErrorMessage message={errorMessage} type="error" />
+                            :
+                            null
+                    }
+                </div>
             questions != null && questions.length > 0 ?
                 <Question question={index < questions.length ? questions[index] : completed} nextQuestion={incrementQuestionIndex} />
                 :
                 null
+                </React.Fragment>
     )
 }
 
