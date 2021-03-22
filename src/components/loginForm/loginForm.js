@@ -67,10 +67,10 @@ function LoginForm(props) {
 
     return (
         <React.Fragment>
-            {/* {errorMessage ?
+            {errorMessage ?
                 <ErrorMessage message={errorMessage} type="error" />
                 : null
-            } */}
+            }
             <form>
                 <div className="form-item">
                     <label htmlFor="username">Username:</label>

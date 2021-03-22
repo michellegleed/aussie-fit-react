@@ -51,11 +51,13 @@ function QuestionsPage() {
                             null
                     }
                 </div>
-            questions != null && questions.length > 0 ?
-                <Question question={index < questions.length ? questions[index] : completed} nextQuestion={incrementQuestionIndex} />
-                :
-                null
-                </React.Fragment>
+                {
+                    questions != null && questions.length > 0 ?
+                        <Question question={index < questions.length ? questions[index] : completed} nextQuestion={incrementQuestionIndex} />
+                        :
+                        null
+                }
+            </React.Fragment>
     )
 }
 

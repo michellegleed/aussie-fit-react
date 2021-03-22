@@ -55,38 +55,40 @@ function SearchForm() {
                         null
                 }
             </div>
-        participantList != null ?
-            <form id="search-form" autoComplete="off">
-                <section>
-                    <Autocomplete
-                        id="search-box"
-                        options={participantList}
-                        getOptionLabel={(option) => option.first_name + " " + option.last_name}
-                        style={{ width: 220, color: matches ? "black" : "white" }}
-                        size="small"
-                        renderInput={(params) => <TextField
-                            {...params}
-                            variant="outlined"
-                            autoComplete="off"
-                            label="Search Participants"
-                            InputProps={{
-                                ...params.InputProps,
-                                style: { color: matches ? "black" : "white" }
-                            }}
-                            InputLabelProps={{
-                                ...params.InputLabelProps,
-                                style: { color: matches ? "black" : "white", fontFamily: "Montserrat" }
-                            }}
-                        />}
-                        onChange={(e, value) =>
-                            setParticipantID(value != null ? value.id : null)
-                        }
-                    />
-                </section>
-                <button onClick={viewParticipantPage}><SearchIcon /></button>
-            </form>
-            :
-            null
+            {
+                participantList != null ?
+                    <form id="search-form" autoComplete="off">
+                        <section>
+                            <Autocomplete
+                                id="search-box"
+                                options={participantList}
+                                getOptionLabel={(option) => option.first_name + " " + option.last_name}
+                                style={{ width: 220, color: matches ? "black" : "white" }}
+                                size="small"
+                                renderInput={(params) => <TextField
+                                    {...params}
+                                    variant="outlined"
+                                    autoComplete="off"
+                                    label="Search Participants"
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        style: { color: matches ? "black" : "white" }
+                                    }}
+                                    InputLabelProps={{
+                                        ...params.InputLabelProps,
+                                        style: { color: matches ? "black" : "white", fontFamily: "Montserrat" }
+                                    }}
+                                />}
+                                onChange={(e, value) =>
+                                    setParticipantID(value != null ? value.id : null)
+                                }
+                            />
+                        </section>
+                        <button onClick={viewParticipantPage}><SearchIcon /></button>
+                    </form>
+                    :
+                    null
+            }
         </React.Fragment>
     )
 }

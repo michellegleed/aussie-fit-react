@@ -17,6 +17,11 @@
   font-weight: 500;
 }
 
+.answer-button.active {
+  color: yellow;
+  opacity: 0.9;
+}
+
 #next-button {
   position: absolute;
   bottom: 5vh;
