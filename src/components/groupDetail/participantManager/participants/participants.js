@@ -27,7 +27,7 @@ function Participants(props) {
                     setParticipantList(result.data.participants);
                 }
                 else {
-                    setErrorMessage("Unable to fetch participant data. Refresh the page and try again.");
+                    setErrorMessage("Unable to fetch participant data. Refresh the page to try again.");
                 }
             });
     }, [refetchparticipants]);

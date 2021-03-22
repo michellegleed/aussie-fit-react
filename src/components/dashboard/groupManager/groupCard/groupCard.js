@@ -44,7 +44,7 @@ function GroupCard(props) {
                 } else {
                     // the API returned an error - do something with it
                     console.error("Delete op failed.");
-                    setErrorMessage("Unable to perform this operation at this time. Refresh the page and try again.");
+                    setErrorMessage("Unable to perform this operation at this time. Refresh the page to try again.");
                 }
             })
             // .catch(error => history.push("/network-error"))

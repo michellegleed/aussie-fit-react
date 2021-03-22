@@ -12,7 +12,7 @@ function QuestionCard(props) {
                 <button onClick={() => editQuestion(index)}><PencilIcon /></button>
                 <button onClick={() => deleteQuestion(index)}><CloseIcon /></button>
             </div>
-            <p>{question.question}</p>
+            <h4>{question.question}</h4>
             <p>Yes: {question.yesAction != "" ? question.yesAction : "(No message)"}</p>
             <p>No: {question.noAction != "" ? question.noAction : "(No message)"}</p>
         </div>

@@ -34,7 +34,7 @@ function Groups(props) {
                     redirectToLogin();
                 }
                 else {
-                    setErrorMessage("Could not access group data. Refresh the page and try again.")
+                    setErrorMessage("Could not access group data. Refresh the page to try again.")
                 }
             });
     }, [refetchGroups]);

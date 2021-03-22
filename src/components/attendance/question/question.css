@@ -21,13 +21,3 @@
   color: yellow;
   opacity: 0.9;
 }
-
-#next-button {
-  position: absolute;
-  bottom: 5vh;
-}
-
-/* #attendance-question .button { */
-/* display: flex;
-  justify-content: center;
-} */

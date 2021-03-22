@@ -18,7 +18,10 @@ function LoginForm(props) {
     const history = useHistory();
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        let { id, value } = e.target;
+        if (id === "username") {
+            value = value.toLowerCase();
+        }
         setCredentials((prevCredentials) => ({
             ...prevCredentials,
             [id]: value,

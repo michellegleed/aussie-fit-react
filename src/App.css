@@ -194,6 +194,7 @@ button:hover path {
   padding: 5vh;
   border-radius: 10px;
   height: 50vh;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -202,6 +203,7 @@ button:hover path {
 
 .modal-content.small-modal {
   height: unset;
+  min-height: unset;
 }
 
 .form-item {
@@ -223,6 +225,10 @@ select {
 input {
   border-radius: 10px;
   border: solid 1px;
+}
+
+select {
+  border-radius: 10px;
 }
 
 #participant-detail-container {
@@ -274,7 +280,9 @@ input {
 
   .card-container {
     display: flex;
+    display: -webkit-flex;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     justify-content: space-around;
     justify-content: space-evenly;
   }

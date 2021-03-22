@@ -24,7 +24,7 @@ function ParticipantForm(props) {
                     setGroupList(result.data);
                 }
                 else {
-                    setErrorMessage("Could not access group list. Refresh the page and try again.")
+                    setErrorMessage("Could not access group list. Refresh the page to try again.")
                 }
             });
     }, []);

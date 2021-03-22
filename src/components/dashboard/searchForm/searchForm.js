@@ -31,7 +31,7 @@ function SearchForm() {
                     setParticipantList(result.data);
                 }
                 else {
-                    setErrorMessage("Could not access participant data. Refresh the page and try again.")
+                    setErrorMessage("Could not access participant data. Refresh the page to try again.")
                 }
             })
     }, []);
