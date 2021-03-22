@@ -9,7 +9,7 @@ function QRCodeUrls(props) {
 
     useEffect(() => {
         const el = document.createElement('textarea');
-        el.value = `http://localhost:3000/group/${groupID}`;
+        el.value = `https://aussiefit.herokuapp.com/group/${groupID}`;
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy');

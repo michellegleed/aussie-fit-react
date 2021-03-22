@@ -40,8 +40,8 @@ function LoginForm(props) {
                 throw Error(text)
             }).catch(
                 (error) => {
-                    // const errorObj = JSON.parse(error.message);
-                    // setErrorMessage(errorObj.non_field_errors[0]);
+                    const errorObj = JSON.parse(error.message);
+                    setErrorMessage(errorObj.non_field_errors[0]);
                 }
             )
         }
