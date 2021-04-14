@@ -22,7 +22,7 @@ function NameForm(props) {
     const registerAttendance = (e) => {
         e.preventDefault();
         if (participantID != null) {
-            fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participantID}/class/${classID}`)
+            fetchRequest(`${process.env.REACT_APP_API_URL}participants/${participantID}/class/${classID}/`)
             history.push("/check-in");
         }
         else {
