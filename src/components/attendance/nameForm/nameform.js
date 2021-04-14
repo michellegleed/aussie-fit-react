@@ -98,7 +98,7 @@ function NameForm(props) {
                 />
             </section>
             <div className="centered-button-container">
-                <button className="text-button" id="next-button" onClick={e => registerAttendance(e)}>Next</button>
+                <button className="text-button" id="register-attendance-button" onClick={e => registerAttendance(e)}>Next</button>
             </div>
         </form>
     )

@@ -1,11 +1,15 @@
 #attendance-question {
-  margin: 15vh 0 0 0;
+  /* margin: 15vh 0 0 0; */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(90vh - 64px);
 }
 
 #attendance-question h1 {
   margin: 16px 0 8px 0;
-  font-size: 36px;
+  font-size: 28px;
 }
 
 .answer-button,
